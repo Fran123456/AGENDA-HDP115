@@ -60,7 +60,7 @@
                   <button type="submit" class="btn btn-primary block full-width m-b">Ingresa</button>
               </form>
 
-                    
+
 
                        <!-- Small modal -->
                       <button type="button" class="btn " data-toggle="modal" data-target=".bs-example-modal-sm">Registrate</button>
@@ -74,12 +74,12 @@
                               <br>
                               <div class="col-md-12">
                                 <h4>Registrate y unite a un grupo</h4>
-                                <a class="btn btn-success" href=""><i class="fa fa-location-arrow" aria-hidden="true"></i></a>
+                                <a class="btn btn-success" href="{{route('Validate-code')}}"><i class="fa fa-location-arrow" aria-hidden="true"></i></a>
                                 <br>
                               <br>
                            
                               </div>
-                              
+
                               <div class="col-md-12">
                                 <h4>Registrate y crea tu grupo</h4>
                                 <a class="btn btn-info" href="{{ route('register') }}"><i class="fa fa-location-arrow" aria-hidden="true"></i></a>

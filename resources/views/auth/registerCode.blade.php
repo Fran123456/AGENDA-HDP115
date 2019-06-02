@@ -105,7 +105,7 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Código grupo</label>
                                 <div class="col-md-9">
-                                    <input readonly="" type="text" value="{{ $codigo}}" class="form-control"
+                                    <input readonly="" type="text" value="" class="form-control"
                                     name="codigo_grupo" required>
                                 </div>
                             </div>

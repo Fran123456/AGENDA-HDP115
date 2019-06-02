@@ -46,7 +46,7 @@
                               <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">{{ Auth::user()->name }}</strong>
                               </span> <span class="text-muted text-xs block">{{ Auth::user()->email }} <b class="caret"></b></span> </span> </a>
                           <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                              <li><a href="profile.html">Profile</a></li>
+                              <li><a href="{{route('Perfil.index')}}">Mi perfil</a></li>
                               <li class="divider"></li>
                               <li>
                                 <a href="{{ route('logout') }}"
@@ -66,11 +66,48 @@
                       </div>
                   </li>
                   <li>
-                      <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span> <span class="fa arrow"></span></a>
+                    <a href="http://mobile-yetitask.djfrankremixer.com/home"><i class="fa fa-home" aria-hidden="true"></i> <span class="nav-label">Dashboard</span></a>
+                    </li>
+                    <li class="">
+                      <a href="Tareas.index"><i class="fa fa-thumb-tack" aria-hidden="true"></i> <span class="nav-label">Tareas</span> <span class="fa arrow"></span></a>
+                      <ul class="nav nav-second-level collapse" style="height: 0px;">
+                          <li><a href="http://mobile-yetitask.djfrankremixer.com/Tareas">Todas las tareas</a></li>
+                          <li><a href="http://mobile-yetitask.djfrankremixer.com/tareas-sin-iniciar">Tareas sin iniciar</a></li>
+                          <li><a href="http://mobile-yetitask.djfrankremixer.com/tareas-en-proceso">Tareas en proceso</a></li>
+                          <li><a href="http://mobile-yetitask.djfrankremixer.com/tareas-finalizadas">Tareas finalizadas</a></li>
+                         <li><a href="http://mobile-yetitask.djfrankremixer.com/Mis-tareas">Mis tareas</a></li>
+                          <li><a href="http://mobile-yetitask.djfrankremixer.com/tareas-no-finalizadas">Tareas no finalizadas</a></li>
+                      </ul>
+                     </li>
+                      <!--AVATAR-->
+                     <li>
+                      <a href="http://mobile-yetitask.djfrankremixer.com/avatar"><i class="fa fa-smile-o" aria-hidden="true"></i> <span class="nav-label">Avatar</span></a>
+                    </li>
+                      <!--AVATAR-->
+                      <!--USUARIOS-->
+                    <li>
+                      <a href="http://mobile-yetitask.djfrankremixer.com/Perfil"><i class="fa fa-users" aria-hidden="true"></i> <span class="nav-label">Usuarios</span></a>
+                    </li>
+                      <!--USUARIOS-->
+                  <!--NOTIFICACIONES-->
+                    <li>
+                    <a href="Tareas1.index"><i class="fa fa-comment-o" aria-hidden="true"></i> <span class="nav-label">Notificaciones</span> <span class="fa arrow"></span></a>
                       <ul class="nav nav-second-level collapse">
-                          <li><a href="index.html">Dashboard v.1</a></li>
+                          <li><a href="http://mobile-yetitask.djfrankremixer.com/Notificaciones">Mis notificaciones</a></li>
+                          <li><a href="http://mobile-yetitask.djfrankremixer.com/notificaciones-enviadas">Notificaciones enviadas</a></li>
+                          <li><a href="http://mobile-yetitask.djfrankremixer.com/notificaciones-sistema">Notificaciones del sistema</a></li>
+                          </ul>
+                    </li>
+                      <!--NOTIFICACIONES-->
+                   <!--PERFIL-->
+                    <li>
+                    <a href=""><i class="fa fa-user" aria-hidden="true"></i> <span class="nav-label">Mi perfil</span> <span class="fa arrow"></span></a>
+                      <ul class="nav nav-second-level collapse">
+                          <li><a href="http://mobile-yetitask.djfrankremixer.com/Perfil/2">Mi perfil</a></li>
+                          <li><a href="http://mobile-yetitask.djfrankremixer.com/Perfil/2/edit">Editar perfil</a></li>
                       </ul>
                   </li>
+                    <!--PERFIL-->
               </ul>
           </div>
       </nav>

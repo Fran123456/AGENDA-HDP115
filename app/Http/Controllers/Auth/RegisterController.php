@@ -7,6 +7,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\DB;
+use App\Grupo_User;
+use App\Grupo;
+use Illuminate\Http\Request;
+
 
 class RegisterController extends Controller
 {
@@ -55,10 +59,7 @@ class RegisterController extends Controller
         ]);
     }
 
-    /**https://i.ibb.co/P5p1trd/contacts2.png
-https://i.ibb.co/P5p1trd/contacts2.png
-https://i.ibb.co/P5p1trd/contacts2.png
-https://i.ibb.co/P5p1trd/contacts2.png
+    /**
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
@@ -66,13 +67,8 @@ https://i.ibb.co/P5p1trd/contacts2.png
      */
     protected function create(array $data)
     {
-
-        DB::table('grupo')->insert([
-            'codigo_grupo' => $data['codigo_grupo'],
-            'nombre_grupo' => $data['nombre_grupo'],
-            'descripcion' => $data['des']
-          ]);
-
+      $dataAux = DB::table('grupo')->where('codigo_grupo' , $data['codigo_grupo'])->get();
+      if(count($dataAux) > 0){
 
         $UserAux = User::create([
             'name' => $data['name'],
@@ -82,14 +78,56 @@ https://i.ibb.co/P5p1trd/contacts2.png
             'password' => bcrypt($data['password']),
         ]);
 
-       DB::table('grupo_user')->insert([
+      Grupo::create([
+          'user_id'  => $UserAux->id,
+          'codigo_grupo' => $data['codigo_grupo'],
+          'rol' => 'usuario'
+       ]);
+
+      }else{
+        Grupo::create([
+            'codigo_grupo' => $data['codigo_grupo'],
+            'nombre_grupo' => $data['nombre_grupo'],
+            'descripcion' => $data['des']
+          ]);
+
+        $UserAux = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'grupo_activo' => $data['codigo_grupo'],
+            'avatar' => 'https://i.ibb.co/P5p1trd/contacts2.png',
+            'password' => bcrypt($data['password']),
+        ]);
+
+       Grupo_User::create([
           'user_id'  => $UserAux->id,
           'codigo_grupo' => $data['codigo_grupo'],
           'rol' => 'Administrador'
        ]);
-
+      }
         return $UserAux;
+    }
 
+
+    public function showRegistrationFormCode($id){//EN ESTE METODO VAMOS A REGISTRAR LOS USUARIOS CON CODIGO YA EXISTENTE
+    echo $id;
+      //return view('auth.registerCode');
+    }
+
+    public function showValidateCode(){
+      return view('auth.code');
+    }
+
+    public function validarCode(Request $request){
+
+      $da = Grupo::where('codigo_grupo', $request['code'])->get();
+      if(count($da) == 0){
+        return redirect()->route('Validate-code')->with('codigo' , 'Error, el código no existe');
+      }else {
+        return redirect()->route('Register-code/', 1);
+      }
 
     }
+
+
 }

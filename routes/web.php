@@ -19,4 +19,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
+//ruta para registrar usuario con codigo
+Route::get('/Validate-code', 'Auth\RegisterController@showValidateCode')->name('Validate-code');
+Route::get('/Register-code/{id}', 'Auth\RegisterController@showRegistrationFormCode')->name('Register-code');
+Route::post('/validarCode', 'Auth\RegisterController@validarCode')->name('validarCode');
+
+
+
+//rutas para home
 Route::get('/home', 'HomeController@index')->name('home');
+
+//rutas para perfil
+Route::resource('Perfil', 'perfil\perfilController');
