@@ -66,7 +66,7 @@
                       </div>
                   </li>
                   <li>
-                    <a href="http://mobile-yetitask.djfrankremixer.com/home"><i class="fa fa-home" aria-hidden="true"></i> <span class="nav-label">Dashboard</span></a>
+                    <a href="{{route('home')}}"><i class="fa fa-home" aria-hidden="true"></i> <span class="nav-label">Dashboard</span></a>
                     </li>
                     <li class="">
                       <a href="Tareas.index"><i class="fa fa-thumb-tack" aria-hidden="true"></i> <span class="nav-label">Tareas</span> <span class="fa arrow"></span></a>
@@ -81,7 +81,7 @@
                      </li>
                       <!--AVATAR-->
                      <li>
-                      <a href="{{Route('Avatars.index')}}"><i class="fa fa-smile-o" aria-hidden="true"></i> <span class="nav-label">Avatar</span></a>
+                      <a href="{{route('Avatars.index')}}"><i class="fa fa-smile-o" aria-hidden="true"></i> <span class="nav-label">Avatar</span></a>
                     </li>
                       <!--AVATAR-->
                       <!--USUARIOS-->
