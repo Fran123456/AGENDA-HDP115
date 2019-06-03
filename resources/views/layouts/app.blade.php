@@ -40,7 +40,7 @@
               <ul class="nav metismenu" id="side-menu">
                   <li class="nav-header">
                       <div class="dropdown profile-element"> <span>
-                              <img alt="image" class="img-circle" src="img/profile_small.jpg" />
+                              <img alt="image" class="img-circle" height="50px" width="50px" src="{{Auth::user()->avatar}}" />
                                </span>
                           <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                               <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">{{ Auth::user()->name }}</strong>
@@ -62,7 +62,7 @@
                           </ul>
                       </div>
                       <div class="logo-element">
-                          TRIP
+                          TASK
                       </div>
                   </li>
                   <li>
@@ -86,7 +86,7 @@
                       <!--AVATAR-->
                       <!--USUARIOS-->
                     <li>
-                      <a href="http://mobile-yetitask.djfrankremixer.com/Perfil"><i class="fa fa-users" aria-hidden="true"></i> <span class="nav-label">Usuarios</span></a>
+                      <a href="{{route('Usuarios.index')}}"><i class="fa fa-users" aria-hidden="true"></i> <span class="nav-label">Usuarios</span></a>
                     </li>
                       <!--USUARIOS-->
                   <!--NOTIFICACIONES-->

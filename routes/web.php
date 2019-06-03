@@ -24,6 +24,8 @@ Route::get('/Validate-code', 'Auth\RegisterController@showValidateCode')->name('
 Route::get('/Register-code/{id}', 'Auth\RegisterController@showRegistrationFormCode')->name('Register-code');
 Route::post('/validarCode', 'Auth\RegisterController@validarCode')->name('validarCode');
 
+//rutas para mantenimiento de usuarios de un grupo
+Route::resource('Usuarios', 'Usuarios\UsuariosController');
 
 
 //rutas para home
