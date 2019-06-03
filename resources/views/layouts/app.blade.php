@@ -46,7 +46,7 @@
                               <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">{{ Auth::user()->name }}</strong>
                               </span> <span class="text-muted text-xs block">{{ Auth::user()->email }} <b class="caret"></b></span> </span> </a>
                           <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                              <li><a href="{{route('Perfil.index')}}">Mi perfil</a></li>
+                              <li><a href="{{route('Profile.index')}}">Mi perfil</a></li>
                               <li class="divider"></li>
                               <li>
                                 <a href="{{ route('logout') }}"
@@ -81,12 +81,12 @@
                      </li>
                       <!--AVATAR-->
                      <li>
-                      <a href="http://mobile-yetitask.djfrankremixer.com/avatar"><i class="fa fa-smile-o" aria-hidden="true"></i> <span class="nav-label">Avatar</span></a>
+                      <a href="{{Route('Avatars.index')}}"><i class="fa fa-smile-o" aria-hidden="true"></i> <span class="nav-label">Avatar</span></a>
                     </li>
                       <!--AVATAR-->
                       <!--USUARIOS-->
                     <li>
-                      <a href="{{route('Usuarios.index')}}"><i class="fa fa-users" aria-hidden="true"></i> <span class="nav-label">Usuarios</span></a>
+                      <a href="{{route('Users.index')}}"><i class="fa fa-users" aria-hidden="true"></i> <span class="nav-label">Usuarios</span></a>
                     </li>
                       <!--USUARIOS-->
                   <!--NOTIFICACIONES-->

@@ -14,11 +14,11 @@
 </style>
 
  <div class="container">
-   <h2>Usuarios del grupo: {{$grupo->nombre_grupo}}</h2>
+   <h2>Usuarios del grupo: {{$group->nombre_grupo}}</h2>
    <hr>
    <div class="row">
 
-     @foreach ($activos as $key => $value)
+     @foreach ($users as $key => $value)
        <div class="col-md-3">
                            <div class="ibox">
                                <div class="ibox-content product-box">

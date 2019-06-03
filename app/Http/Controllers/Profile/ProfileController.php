@@ -1,15 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Usuarios;
+namespace App\Http\Controllers\Profile;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Grupo;
-use App\Grupo_User;
-use Illuminate\Support\Facades\Auth;
 
-
-class UsuariosController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,14 +14,7 @@ class UsuariosController extends Controller
      */
     public function index()
     {
-        $grupo = Grupo::where('codigo_grupo' ,  Auth::user()->grupo_activo)->first();
-         $activos = Grupo_User::join('users' , 'user_id' , '=' , 'id')
-         ->where('codigo_grupo', Auth::user()->grupo_activo)
-         ->select('users.name','users.email','users.avatar' , 'grupo_user.rol')
-         ->get();
-
-
-        return view('User.Users', compact('grupo','activos'));
+        return view('Profile.Profile');
     }
 
     /**

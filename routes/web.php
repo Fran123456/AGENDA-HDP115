@@ -25,11 +25,13 @@ Route::get('/Register-code/{id}', 'Auth\RegisterController@showRegistrationFormC
 Route::post('/validarCode', 'Auth\RegisterController@validarCode')->name('validarCode');
 
 //rutas para mantenimiento de usuarios de un grupo
-Route::resource('Usuarios', 'Usuarios\UsuariosController');
+Route::resource('Users', 'Users\UsersController');
 
+//rutas para gestion de avatars
+Route::resource('Avatars', 'Avatars\AvatarsController');
 
 //rutas para home
 Route::get('/home', 'HomeController@index')->name('home');
 
 //rutas para perfil
-Route::resource('Perfil', 'perfil\perfilController');
+Route::resource('Profile', 'Profile\ProfileController');

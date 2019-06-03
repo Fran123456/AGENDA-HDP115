@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\perfil;
+namespace App\Http\Controllers\Avatars;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
-class perfilController extends Controller
+use App\Grupo;
+use App\Avatar;
+class AvatarsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,10 @@ class perfilController extends Controller
      */
     public function index()
     {
-        return view('Perfil.Perfil');
+        $group = Grupo::get_grupo_name();
+        $avatars = Avatar::get_avatars_by_group();
+
+        return view('Avatars.Avatar', compact('group','avatars'));
     }
 
     /**
