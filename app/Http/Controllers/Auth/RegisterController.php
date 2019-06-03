@@ -68,50 +68,39 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
       $dataAux = DB::table('grupo')->where('codigo_grupo' , $data['codigo_grupo'])->get();
+      $rol = "";
       if(count($dataAux) > 0){
-
-        $UserAux = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'grupo_activo' => $data['codigo_grupo'],
-            'avatar' => 'https://i.ibb.co/P5p1trd/contacts2.png',
-            'password' => bcrypt($data['password']),
-        ]);
-
-      Grupo::create([
-          'user_id'  => $UserAux->id,
-          'codigo_grupo' => $data['codigo_grupo'],
-          'rol' => 'usuario'
-       ]);
-
+          $rol = "Usuario";
       }else{
         Grupo::create([
-            'codigo_grupo' => $data['codigo_grupo'],
-            'nombre_grupo' => $data['nombre_grupo'],
-            'descripcion' => $data['des']
-          ]);
-
-        $UserAux = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'grupo_activo' => $data['codigo_grupo'],
-            'avatar' => 'https://i.ibb.co/P5p1trd/contacts2.png',
-            'password' => bcrypt($data['password']),
-        ]);
-
-       Grupo_User::create([
-          'user_id'  => $UserAux->id,
-          'codigo_grupo' => $data['codigo_grupo'],
-          'rol' => 'Administrador'
-       ]);
+             'codigo_grupo' => $data['codigo_grupo'],
+             'nombre_grupo' => $data['nombre_grupo'],
+             'descripcion' => $data['des']
+           ]);
+          $rol = "Administrador";
       }
+
+       $UserAux = User::create([
+           'name' => $data['name'],
+           'email' => $data['email'],
+           'grupo_activo' => $data['codigo_grupo'],
+           'avatar' => 'https://i.ibb.co/P5p1trd/contacts2.png',
+           'password' => bcrypt($data['password']),
+       ]);
+
+      Grupo_User::create([
+         'user_id'  => $UserAux->id,
+         'codigo_grupo' => $data['codigo_grupo'],
+         'rol' => $rol
+      ]);
+
         return $UserAux;
     }
 
 
     public function showRegistrationFormCode($id){//EN ESTE METODO VAMOS A REGISTRAR LOS USUARIOS CON CODIGO YA EXISTENTE
-    echo $id;
-      //return view('auth.registerCode');
+    $da = Grupo::where('codigo_grupo', $id)->first();
+      return view('auth.registerCode', compact('id' ,'da'));
     }
 
     public function showValidateCode(){
@@ -124,7 +113,7 @@ class RegisterController extends Controller
       if(count($da) == 0){
         return redirect()->route('Validate-code')->with('codigo' , 'Error, el código no existe');
       }else {
-        return redirect()->route('Register-code/', 1);
+        return redirect()->route('Register-code', $request['code']);
       }
 
     }

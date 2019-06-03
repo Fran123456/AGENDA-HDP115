@@ -90,7 +90,7 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Nombre grupo</label>
                                 <div class="col-md-9">
-                                    <input type="text" maxlength="200" class="form-control"
+                                    <input type="text" readonly value="{{$da->nombre_grupo}}" maxlength="200" class="form-control"
                                     name="nombre_grupo" required>
                                 </div>
                             </div>
@@ -98,14 +98,15 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Descripción</label>
                                 <div class="col-md-9">
-                                    <textarea name="des" class="form-control" rows="4" cols="8"></textarea>
+                                    <textarea name="des" readonly class="form-control" rows="4" cols="8">
+                                    {{$da->descripcion}}</textarea>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Código grupo</label>
                                 <div class="col-md-9">
-                                    <input readonly="" type="text" value="" class="form-control"
+                                    <input readonly="" value="{{$id}}" type="text" value="" class="form-control"
                                     name="codigo_grupo" required>
                                 </div>
                             </div>
