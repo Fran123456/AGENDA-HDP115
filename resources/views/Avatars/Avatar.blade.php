@@ -78,6 +78,8 @@
        </div>
        @endforeach
 
+       {{$avatars->render()}}
+
    </div>
  </div>
 @endsection

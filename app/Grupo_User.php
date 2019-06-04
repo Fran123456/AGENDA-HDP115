@@ -16,7 +16,7 @@ class Grupo_User extends Model
       $activos = Grupo_User::join('users' , 'user_id' , '=' , 'id')
      ->where('codigo_grupo', Auth::user()->grupo_activo)
      ->select('users.name','users.email','users.avatar' , 'grupo_user.rol')
-     ->get();
+     ->paginate(10);
      return $activos;
    }
 }

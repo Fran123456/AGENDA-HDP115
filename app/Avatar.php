@@ -16,7 +16,7 @@ class Avatar extends Model
       $avatars = Avatar::where('tipo', 'publico')
       ->orWhere('tipo' , Auth::user()
       ->grupo_activo)
-      ->get();
+      ->paginate(10);
       return $avatars;
    }
 }

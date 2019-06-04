@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Grupo;
 use App\Avatar;
+use Illuminate\Support\Facades\Storage;
 class AvatarsController extends Controller
 {
     /**
@@ -17,7 +18,6 @@ class AvatarsController extends Controller
     {
         $group = Grupo::get_grupo_name();
         $avatars = Avatar::get_avatars_by_group();
-
         return view('Avatars.Avatar', compact('group','avatars'));
     }
 
@@ -28,7 +28,7 @@ class AvatarsController extends Controller
      */
     public function create()
     {
-        //
+        return view('Avatars.CreateAvatar');
     }
 
     /**
@@ -39,7 +39,10 @@ class AvatarsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //image
+      /*  if ($request->file('file')) {
+          $path = Storage::disk('public')->put('image', $request->file('file'));
+        }*/
     }
 
     /**

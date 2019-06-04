@@ -60,6 +60,7 @@
                       </div>
               </div>
      @endforeach
+     {{$users->render()}}
 
 
 
