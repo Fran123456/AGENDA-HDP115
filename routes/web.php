@@ -27,11 +27,15 @@ Route::post('/validarCode', 'Auth\RegisterController@validarCode')->name('valida
 //rutas para mantenimiento de usuarios de un grupo
 Route::resource('Users', 'Users\UsersController');
 
+
 //rutas para gestion de avatars
 Route::resource('Avatars', 'Avatars\AvatarsController');
+
 
 //rutas para home
 Route::get('/home', 'HomeController@index')->name('home');
 
 //rutas para perfil
 Route::resource('Profile', 'Profile\ProfileController');
+route::get('Update-avatar/{id}','Profile\ProfileController@set_avatar')->name('Update-avatar');
+

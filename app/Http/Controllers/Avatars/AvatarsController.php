@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Grupo;
 use App\Avatar;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
+
 class AvatarsController extends Controller
 {
     /**
@@ -39,12 +41,20 @@ class AvatarsController extends Controller
      */
     public function store(Request $request)
     {
-        //image
-      /*  if ($request->file('file')) {
-          $path = Storage::disk('public')->put('image', $request->file('file'));
-        }*/
+
+        if($request->file('file')){
+             $path = Storage::disk('public')->put('AVATAR',$request->file('file'));
+            // $guide->fill(['avatar_url'=> asset($path)])->save();
+               $guide = Avatar::create([
+                    'nombre' => $request['nombre'],
+                    'avatar_url'=>asset($path),
+                    'tipo' => Auth::user()->grupo_activo,
+                ]);
+         }
+      return redirect()->route('Avatars.index')->with('agregado','Registro Agregado correctamente');
     }
 
+   
     /**
      * Display the specified resource.
      *

@@ -14,7 +14,7 @@
 </style>
 
  <div class="container">
-   <h2>Usuarios del grupo: {{$group->nombre_grupo}}</h2>
+   <h2><strong>Usuarios del grupo: {{$group->nombre_grupo}}</strong> </h2>
    <hr>
    <div class="row">
 

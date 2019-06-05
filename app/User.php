@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
+use App\Avatar;
 
 class User extends Authenticatable
 {
@@ -26,4 +28,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public static function update_avatar($id_avatar){
+
+      $url_avatar = Avatar::where('id_avatar', $id_avatar)->first();
+
+      User::where('id' , Auth::user()->id)
+      ->update(['avatar' => $url_avatar->avatar_url]);
+   }
 }

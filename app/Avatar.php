@@ -4,11 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Notifications\Notifiable;
+
 class Avatar extends Model
 {
+  use Notifiable;
   protected $table = 'avatar';
    protected $fillable = [
-    'id_avatar','avatar_url' ,'tipo'
+    'id_avatar','nombre','avatar_url' ,'tipo'
    ];
 
  //Obtiene los avatars publicos y los que pertenecen a un grupo especifico
@@ -19,4 +22,6 @@ class Avatar extends Model
       ->paginate(10);
       return $avatars;
    }
+
+   
 }

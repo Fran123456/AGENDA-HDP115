@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Grupo;
 use App\Grupo_User;
 use Illuminate\Support\Facades\Auth;
-
+use App\User;
 
 class UsersController extends Controller
 {
@@ -88,4 +88,7 @@ class UsersController extends Controller
     {
         //
     }
+
+    
+
 }

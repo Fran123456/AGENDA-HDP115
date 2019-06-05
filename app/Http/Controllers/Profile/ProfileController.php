@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Profile;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class ProfileController extends Controller
 {
@@ -81,5 +83,10 @@ class ProfileController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function set_avatar($id){
+      User::update_avatar($id);
+     return redirect()->route('Avatars.index')->with('change', 'Registro Actualizado');
     }
 }
