@@ -19,9 +19,18 @@ class Avatar extends Model
       $avatars = Avatar::where('tipo', 'publico')
       ->orWhere('tipo' , Auth::user()
       ->grupo_activo)
-      ->paginate(10);
+      ->paginate(12);
       return $avatars;
    }
 
-   
+   public static function create_avatar($nombre, $path, $grupo){
+     $avatar = Avatar::create([
+          'nombre' => $nombre,
+          'avatar_url'=>$path,
+          'tipo' => $grupo,
+      ]);
+      return $avatar;
+   }
+
+
 }

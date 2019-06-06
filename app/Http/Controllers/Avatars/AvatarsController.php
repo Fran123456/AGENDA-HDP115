@@ -41,20 +41,14 @@ class AvatarsController extends Controller
      */
     public function store(Request $request)
     {
-
         if($request->file('file')){
-             $path = Storage::disk('public')->put('AVATAR',$request->file('file'));
-            // $guide->fill(['avatar_url'=> asset($path)])->save();
-               $guide = Avatar::create([
-                    'nombre' => $request['nombre'],
-                    'avatar_url'=>asset($path),
-                    'tipo' => Auth::user()->grupo_activo,
-                ]);
+               $path = Storage::disk('public')->put('AVATAR',$request->file('file'));
+               $avatar = Avatar::create_avatar($request['nombre'], asset($path), Auth::user()->grupo_activo);
          }
       return redirect()->route('Avatars.index')->with('agregado','Registro Agregado correctamente');
     }
 
-   
+
     /**
      * Display the specified resource.
      *
