@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-06-2019 a las 08:25:20
+-- Tiempo de generación: 06-06-2019 a las 23:52:11
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.3.0
 
@@ -60,7 +60,7 @@ INSERT INTO `avatar` (`id_avatar`, `nombre`, `avatar_url`, `tipo`, `created_at`,
 
 CREATE TABLE `grupo` (
   `codigo_grupo` varchar(100) NOT NULL,
-  `nombre_grupo` varchar(200) NOT NULL,
+  `nombre_grupo` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
   `descripcion` text,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
@@ -121,6 +121,40 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `notificacion`
+--
+
+CREATE TABLE `notificacion` (
+  `id_noty` int(11) NOT NULL,
+  `codigo_noty` varchar(200) DEFAULT NULL,
+  `titulo` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci DEFAULT NULL,
+  `cuerpo` text CHARACTER SET utf8 COLLATE utf8_spanish_ci,
+  `creador` int(11) DEFAULT NULL,
+  `grupo` varchar(200) DEFAULT NULL,
+  `tarea_id` varchar(200) DEFAULT NULL,
+  `tipo` varchar(200) DEFAULT NULL,
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `notificacion_user`
+--
+
+CREATE TABLE `notificacion_user` (
+  `id` int(11) NOT NULL,
+  `notificacion_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `estado` varchar(100) DEFAULT NULL,
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `password_resets`
 --
 
@@ -129,6 +163,39 @@ CREATE TABLE `password_resets` (
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tareas`
+--
+
+CREATE TABLE `tareas` (
+  `id_tarea` int(11) NOT NULL,
+  `codigo_tarea` varchar(200) NOT NULL,
+  `titulo` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci DEFAULT NULL,
+  `cuerpo` text CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci,
+  `estado` varchar(100) DEFAULT NULL,
+  `fecha_fin` date DEFAULT NULL,
+  `creador` int(11) DEFAULT NULL,
+  `grupo` varchar(100) DEFAULT NULL,
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tareas_usuarios`
+--
+
+CREATE TABLE `tareas_usuarios` (
+  `id` int(11) NOT NULL,
+  `tarea_id` varchar(200) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -189,10 +256,44 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `notificacion`
+--
+ALTER TABLE `notificacion`
+  ADD PRIMARY KEY (`id_noty`),
+  ADD UNIQUE KEY `codigo_noty` (`codigo_noty`),
+  ADD KEY `creador` (`creador`),
+  ADD KEY `tarea_id` (`tarea_id`);
+
+--
+-- Indices de la tabla `notificacion_user`
+--
+ALTER TABLE `notificacion_user`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `notificacion_id` (`notificacion_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- Indices de la tabla `password_resets`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- Indices de la tabla `tareas`
+--
+ALTER TABLE `tareas`
+  ADD PRIMARY KEY (`id_tarea`),
+  ADD UNIQUE KEY `codigo_tarea` (`codigo_tarea`),
+  ADD KEY `creador` (`creador`),
+  ADD KEY `grupo` (`grupo`);
+
+--
+-- Indices de la tabla `tareas_usuarios`
+--
+ALTER TABLE `tareas_usuarios`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `tarea_id` (`tarea_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indices de la tabla `users`
@@ -209,7 +310,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `avatar`
 --
 ALTER TABLE `avatar`
-  MODIFY `id_avatar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_avatar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `grupo_user`
@@ -222,6 +323,30 @@ ALTER TABLE `grupo_user`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `notificacion`
+--
+ALTER TABLE `notificacion`
+  MODIFY `id_noty` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `notificacion_user`
+--
+ALTER TABLE `notificacion_user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `tareas`
+--
+ALTER TABLE `tareas`
+  MODIFY `id_tarea` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `tareas_usuarios`
+--
+ALTER TABLE `tareas_usuarios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
