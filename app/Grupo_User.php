@@ -19,4 +19,12 @@ class Grupo_User extends Model
      ->paginate(10);
      return $activos;
    }
+  //Optiene los usuarios que pertenecen a un grupo especifico pero sin ser paginados
+   public static function get_users_by_group_task(){
+     $activos = Grupo_User::join('users' , 'user_id' , '=' , 'id')
+     ->where('codigo_grupo', Auth::user()->grupo_activo)
+     ->select('users.name','users.email','users.avatar' , 'grupo_user.rol')
+     ->get();
+     return $activos;
+   }
 }

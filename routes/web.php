@@ -39,3 +39,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('Profile', 'Profile\ProfileController');
 route::get('Update-avatar/{id}','Profile\ProfileController@set_avatar')->name('Update-avatar');
 
+//rutas para gestion de tareas
+Route::resource('Tasks', 'Task\TaskController');

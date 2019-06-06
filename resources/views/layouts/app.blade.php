@@ -122,9 +122,9 @@
                     <a href="{{route('home')}}"><i class="fa fa-home" aria-hidden="true"></i> <span class="nav-label">Dashboard</span></a>
                     </li>
                     <li class="">
-                      <a href="Tareas.index"><i class="fa fa-thumb-tack" aria-hidden="true"></i> <span class="nav-label">Tareas</span> <span class="fa arrow"></span></a>
+                      <a href=""><i class="fa fa-thumb-tack" aria-hidden="true"></i> <span class="nav-label">Tareas</span> <span class="fa arrow"></span></a>
                       <ul class="nav nav-second-level collapse" style="height: 0px;">
-                          <li><a href="http://mobile-yetitask.djfrankremixer.com/Tareas">Todas las tareas</a></li>
+                          <li><a href="{{route('Tasks.index')}}">Todas las tareas</a></li>
                           <li><a href="http://mobile-yetitask.djfrankremixer.com/tareas-sin-iniciar">Tareas sin iniciar</a></li>
                           <li><a href="http://mobile-yetitask.djfrankremixer.com/tareas-en-proceso">Tareas en proceso</a></li>
                           <li><a href="http://mobile-yetitask.djfrankremixer.com/tareas-finalizadas">Tareas finalizadas</a></li>

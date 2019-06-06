@@ -30,9 +30,7 @@ class User extends Authenticatable
     ];
 
     public static function update_avatar($id_avatar){
-
       $url_avatar = Avatar::where('id_avatar', $id_avatar)->first();
-
       User::where('id' , Auth::user()->id)
       ->update(['avatar' => $url_avatar->avatar_url]);
    }
