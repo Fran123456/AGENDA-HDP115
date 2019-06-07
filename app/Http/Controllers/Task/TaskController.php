@@ -12,6 +12,7 @@ use App\Tarea_User;
 use App\Notificacion;
 use App\notificacion_user;
 use App\API\Code;
+use App\API\Noty;
 use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
@@ -65,7 +66,6 @@ class TaskController extends Controller
      $title = strtoupper(Auth::user()->name) . " TE ASIGNO UNA NUEVA TAREA";
      $Noty =  Notificacion::Create_Noty($code, $title, $request['mensaje'], Auth::user()->id, Auth::user()->grupo_activo ,$codeTask, 'tarea');
      //CREACION DE NOTIFICACION
-
      //CREACION DE NOTIFICACION POR USUARIO EN EL SISTEMA
          for ($i=0; $i <count($users) ; $i++) {
            if($users[$i] != Auth::user()->id){
@@ -122,4 +122,38 @@ class TaskController extends Controller
     {
         //
     }
+
+  //CAMBIO DE ESTADO FINALIZADO
+   public function Finish_Task($id){
+      Tarea::StatusTask($id, 'Finalizado');
+      $msm = Auth::user()->name . " ha cambiado el estado de la tarea ha FINALIZADO.";
+      $title = "CAMBIÓ DE ESTADO LA TAREA";
+      $codeNoty = Code::__code('Noty');
+      Noty::SendNotyChange($codeNoty,$id,  $title, $msm);
+     return back()->with('fin', "Elemento agregado correctamente");
+   }//CAMBIO DE ESTADO FINALIZADO
+
+   //CAMBIO DE ESTADO EN PROCESO
+    public function Process_Task($id){
+       Tarea::StatusTask($id, 'Proceso');
+       $msm = Auth::user()->name . " ha cambiado el estado de la tarea ha EN PROCESO.";
+       $title = "CAMBIÓ DE ESTADO LA TAREA";
+       $codeNoty = Code::__code('Noty');
+       Noty::SendNotyChange($codeNoty,$id,  $title, $msm);
+      return back()->with('proceso', "Elemento agregado correctamente");
+    } //CAMBIO DE ESTADO EN PROCESO
+
+    //CAMBIO DE ESTADO EN INICIO
+     public function Start_Task($id){
+        Tarea::StatusTask($id, 'Inicio');
+        $msm = Auth::user()->name . " ha cambiado el estado de la tarea ha INICIO.";
+        $title = "CAMBIÓ DE ESTADO LA TAREA";
+        $codeNoty = Code::__code('Noty');
+        Noty::SendNotyChange($codeNoty,$id,  $title, $msm);
+       return back()->with('inicio', "Elemento agregado correctamente");
+     } //CAMBIO DE ESTADO EN INICIO
+
+
+
+
 }

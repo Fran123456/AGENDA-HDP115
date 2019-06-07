@@ -60,8 +60,31 @@
       swal("Tarea agregada correctamente", "", "success");
     </script>
   @endif
+
+  @if(session('fin'))
+  <script type="text/javascript">
+      swal("Cambió estado a FINALIZADO correctamente", "", "success");
+    </script>
+  @endif
+
+  @if(session('proceso'))
+  <script type="text/javascript">
+      swal("Cambió estado a EN PROCESO correctamente", "", "success");
+    </script>
+  @endif
+
+  @if(session('inicio'))
+  <script type="text/javascript">
+      swal("Cambió estado a INICIO correctamente", "", "success");
+    </script>
+  @endif
+
+
+
+
   <!--ESTO ES PARA CUANDO SE AGREGA UN AVATAR NUEVO-->
 </div>
+
 
   <div class="container">
     <div class="row">
@@ -77,8 +100,6 @@
 
   <div class="container">
     <div class="row">
-
-
       @foreach($tasks as $key => $value)
         <div class="col-md-4 col-sm-12 col-xs-12"><br> <br>
           <div class="ibox">
@@ -109,13 +130,13 @@
 
                                   <tr>
                                     <td class="text-center">
-                                        <a class="btn btn-default btn-xs btn-outline"  href=""><i class="fa fa-play" aria-hidden="true"></i>   Iniciar </a>
+                                        <a class="btn btn-default btn-xs btn-outline"  href="{{route('changeStart', $value->codigo_tarea)}}"><i class="fa fa-play" aria-hidden="true"></i>   Iniciar </a>
                                     </td>
                                     </tr>
-                                    <tr><td class="text-center"> <a class="btn btn-warning btn-xs btn-outline" href=""><i class="fa fa-clock-o" aria-hidden="true"></i>  En proceso</a></td>
+                                    <tr><td class="text-center"> <a class="btn btn-warning btn-xs btn-outline" href="{{route('changeProcess', $value->codigo_tarea)}}"><i class="fa fa-clock-o" aria-hidden="true"></i>  En proceso</a></td>
                                       </tr>
                                     <tr>
-                                    <td class="text-center"><a class="btn btn-primary btn-xs btn-outline"  href=""><i class="fa fa-check" aria-hidden="true"></i>  Finalizado</a></td>
+                                    <td class="text-center"><a class="btn btn-primary btn-xs btn-outline"  href="{{route('changeFinish', $value->codigo_tarea)}}"><i class="fa fa-check" aria-hidden="true"></i>  Finalizado</a></td>
                                     </tr>
 
 

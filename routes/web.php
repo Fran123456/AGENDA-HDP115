@@ -41,3 +41,6 @@ route::get('Update-avatar/{id}','Profile\ProfileController@set_avatar')->name('U
 
 //rutas para gestion de tareas
 Route::resource('Tasks', 'Task\TaskController');
+Route::get('changeFinish/{id}', 'Task\TaskController@Finish_Task')->name('changeFinish');
+Route::get('changeProcess/{id}', 'Task\TaskController@Process_Task')->name('changeProcess');
+Route::get('changeStart/{id}', 'Task\TaskController@Start_Task')->name('changeStart');
