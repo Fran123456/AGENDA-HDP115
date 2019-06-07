@@ -11,4 +11,12 @@ class Notificacion_User extends Model
     'id','notificacion_id','user_id' ,'estado','created_at','updated_at'
    ];
 
+   public static function CreateNotyTask($code, $userId, $status){
+     $NotyTask =  Notificacion_User::create([
+     'notificacion_id' => $code,
+     'user_id' => $userId,
+     'estado' => $status,
+    ]);
+   }
+
 }
