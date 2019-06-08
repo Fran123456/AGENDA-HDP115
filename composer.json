@@ -25,7 +25,11 @@
         ],
         "psr-4": {
             "App\\": "app/"
-        }
+        },
+        "files": [
+              "app/API/Task.php"
+          ]
+
     },
     "autoload-dev": {
         "psr-4": {
