@@ -80,6 +80,18 @@
     font-size: 14px;
     float: left;
 }
+
+.nav > li > p {
+    color: #a7b1c2;
+    font-weight: 600;
+    padding: 14px 20px 14px 25px;
+}
+
+.stylea{
+  color: #676a6c;
+  font-weight: bold;
+ font-size: 1.5em;
+}
 </style>
 <!--PLANTILLA------------------------------------------------------------------------>
 
@@ -118,17 +130,23 @@
                           TASK
                       </div>
                   </li>
-                  <li>
+            <!--      <li>
+                  <p style="background-color: #4D6379"><i class="fa fa-key" aria-hidden="true"></i> <span class="nav-label">Dashboard</span></p>
+                </li>-->
+
+                    <li>
                     <a href="{{route('home')}}"><i class="fa fa-home" aria-hidden="true"></i> <span class="nav-label">Dashboard</span></a>
                     </li>
                     <li class="">
                       <a href=""><i class="fa fa-thumb-tack" aria-hidden="true"></i> <span class="nav-label">Tareas</span> <span class="fa arrow"></span></a>
                       <ul class="nav nav-second-level collapse" style="height: 0px;">
+                          @if(Task::rol() == "Administrador")
                           <li><a href="{{route('Tasks.index')}}">Todas las tareas</a></li>
                           <li><a href="http://mobile-yetitask.djfrankremixer.com/tareas-sin-iniciar">Tareas sin iniciar</a></li>
                           <li><a href="http://mobile-yetitask.djfrankremixer.com/tareas-en-proceso">Tareas en proceso</a></li>
                           <li><a href="http://mobile-yetitask.djfrankremixer.com/tareas-finalizadas">Tareas finalizadas</a></li>
-                         <li><a href="http://mobile-yetitask.djfrankremixer.com/Mis-tareas">Mis tareas</a></li>
+                          @endif
+                          <li><a href="http://mobile-yetitask.djfrankremixer.com/Mis-tareas">Todas mis tareas</a></li>
                           <li><a href="http://mobile-yetitask.djfrankremixer.com/tareas-no-finalizadas">Tareas no finalizadas</a></li>
                       </ul>
                      </li>
@@ -170,11 +188,11 @@
           <nav class="navbar navbar-static-top  " role="navigation" style="margin-bottom: 0">
           <div class="navbar-header">
             <!--  <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>-->
-              <a class="navbar-minimalize minimalize-styl-2 " href="#"> <img width="45" height="45" src="{{asset('FUNDAMENTAL/ICONO-SIN-LETRA.png')}}" alt=""></a>
+              <a class="stylea navbar-minimalize minimalize-styl-2 " href="#"> <img width="45" height="45" src="{{asset('FUNDAMENTAL/ICONO-SIN-LETRA.png')}}" alt="">&nbsp  {{Task::name_group()}} </a>
               <a href="" class=" minimalize-styl-2"></a>
           </div>
               <ul class="nav navbar-top-links navbar-right">
-                
+
                   <li>
                               <a href="{{ route('logout') }}"
                                   onclick="event.preventDefault();
