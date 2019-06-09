@@ -1,4 +1,27 @@
-﻿
+﻿-- phpMyAdmin SQL Dump
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 09-06-2019 a las 05:04:28
+-- Versión del servidor: 10.1.21-MariaDB
+-- Versión de PHP: 7.1.2
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de datos: `agenda-hdp115`
+--
+
+-- --------------------------------------------------------
+
 --
 -- Estructura de tabla para la tabla `avatar`
 --
@@ -17,16 +40,14 @@ CREATE TABLE `avatar` (
 --
 
 INSERT INTO `avatar` (`id_avatar`, `nombre`, `avatar_url`, `tipo`, `created_at`, `updated_at`) VALUES
-(1, 'anime 1', 'http://127.0.0.1:8000/AVATAR/vIWyqP3Z3D7rp6EbnXn0oQ4hZZej2kncMdIu7qyb.jpeg', 'publico', '2019-05-11 13:00:47', '0000-00-00 00:00:00'),
-(2, 'anime 2', 'http://127.0.0.1:8000/AVATAR/xLrKdyWzvX1yytsiWFWy6wFqM8MBgcXchDPWEqYo.png', 'publico', '2019-05-11 13:03:01', '2019-05-11 13:03:01'),
-(3, 'Task', 'http://127.0.0.1:8000/AVATAR/OPVLTOakMYTdYLCze1fSPLQqeDUnbn5IcxJB8E2p.png', 'publico', '2019-06-05 12:07:51', '2019-06-05 12:07:51'),
-(4, 'Anime 4', 'http://mobile-yetitask.djfrankremixer.com/avatars/14fLsM3tR4mlTuhX5VNVmoQT4yg8DLdYbjkSNKxe.jpeg', 'JDwC86aE69pbWJR19aE', '2019-05-11 13:03:01', '2019-05-11 13:03:01'),
-(5, 'Pikachu', 'http://mobile-yetitask.djfrankremixer.com/avatars/QwV5EqgMVFns4FvLdkun2usUM5DwczXdBVi2clrV.gif', 'wi3D502F400lsMU592F', '2019-05-11 13:03:01', '2019-05-11 13:03:01'),
-(9, 'Zero two', 'http://127.0.0.1:8000/AVATAR/BjtF0AiIx4QhloQNG68MA5mrXCW9USwMwGssQuTZ.png', 'wi3D502F400lsMU592F', '2019-06-05 11:17:55', '2019-06-05 11:17:55'),
-(10, 'Anime 4', 'http://127.0.0.1:8000/AVATAR/BdSP8Vm3ZkYpo6U3BktvFsLmHXU8DNNk2jGExvLX.jpeg', 'wi3D502F400lsMU592F', '2019-06-05 11:18:13', '2019-06-05 11:18:13'),
-(11, 'Zombie', 'http://127.0.0.1:8000/AVATAR/Pc3dH3fKW35BAoGZAnMYnV3AVYgDjbJRadtTua4h.png', 'wi3D502F400lsMU592F', '2019-06-05 11:18:30', '2019-06-05 11:18:30'),
-(12, 'Bola', 'http://127.0.0.1:8000/AVATAR/qtpdBFEJs0eqWSyU3V2Uosh9yujHEwfApq5PaQX1.png', 'wi3D502F400lsMU592F', '2019-06-05 11:24:17', '2019-06-05 11:24:17'),
-(14, 'Angry boy', 'http://127.0.0.1:8000/AVATAR/3FchSx0Rsbv5Ek5GqwOBLaW37gNkM3Yv7PLu6WBb.png', 'wi3D502F400lsMU592F', '2019-06-07 04:12:05', '2019-06-07 04:12:05');
+(1, 'Task', 'http://127.0.0.1:8000/AVATAR/aDIb1ZTu8MtcKEr79BE9nHe4i7VhzDw6D42bhvzu.png', 'publico', '2019-06-09 00:25:32', '2019-06-09 00:25:32'),
+(2, 'Anime 1', 'http://127.0.0.1:8000/AVATAR/WWmhwAbD7x8ynuFvGru2iPMn9zH4bXR1d2i4wChO.jpeg', 'publico', '2019-06-09 00:26:02', '2019-06-09 00:26:02'),
+(3, 'Zero two', 'http://127.0.0.1:8000/AVATAR/NjQw4cj3NUCyW8w4KAEMMulxMmk8Av8RfzcDrAkA.png', 'publico', '2019-06-09 00:26:20', '2019-06-09 00:26:20'),
+(4, 'Anime 2', 'http://127.0.0.1:8000/AVATAR/LbAAAetFZpGxNGqvCgO7auIYXx8rj8n5pTYd7rqf.jpeg', 'publico', '2019-06-09 00:26:34', '2019-06-09 00:26:34'),
+(5, 'Anime 3', 'http://127.0.0.1:8000/AVATAR/PS1BDonXbvxMndcvorlT7ohcbTMPVQER3OwXjnP5.png', 'publico', '2019-06-09 00:26:43', '2019-06-09 00:26:43'),
+(6, 'Sonic', 'http://127.0.0.1:8000/AVATAR/9f1rocC4mDJyANoYDQtgCTmaYDqkPLf8GdCbqsmc.png', 'publico', '2019-06-09 00:28:57', '2019-06-09 00:28:57'),
+(7, 'Sugar Cubs 1', 'http://127.0.0.1:8000/AVATAR/2eKynCTNnrU0iIcwsTDjZokOWCgI9JsThJL6twHC.jpg', 'xE2H41Gg10ws3iU95Gg', '2019-06-09 00:37:55', '2019-06-09 00:37:55'),
+(8, 'Sugar cubs 2', 'http://127.0.0.1:8000/AVATAR/KqvUpfIsr4skVF6OINVuhFHgEJiyGVJPD9bVPlPj.jpg', 'xE2H41Gg10ws3iU95Gg', '2019-06-09 00:38:50', '2019-06-09 00:38:50');
 
 -- --------------------------------------------------------
 
@@ -47,8 +68,7 @@ CREATE TABLE `grupo` (
 --
 
 INSERT INTO `grupo` (`codigo_grupo`, `nombre_grupo`, `descripcion`, `created_at`, `updated_at`) VALUES
-('JDwC86aE69pbWJR19aE', 'Grupo Hogar FPE', 'No tiene', '2019-06-01 17:49:56', '2019-06-01 17:49:56'),
-('wi3D502F400lsMU592F', 'TareaHDP115', 'Grupo para gestionar la tarea de Herramientas de productividad', '2019-06-01 11:49:05', '2019-06-01 11:48:33');
+('xE2H41Gg10ws3iU95Gg', 'Grupo Famila Cruz', 'Grupo familiar', '2019-06-08 23:34:06', '2019-06-08 23:34:06');
 
 -- --------------------------------------------------------
 
@@ -70,9 +90,11 @@ CREATE TABLE `grupo_user` (
 --
 
 INSERT INTO `grupo_user` (`id_grupo_user`, `user_id`, `codigo_grupo`, `rol`, `created_at`, `updated_at`) VALUES
-(1, 2, 'wi3D502F400lsMU592F', 'Administrador', '2019-06-01 11:49:22', '2019-06-01 11:49:52'),
-(2, 3, 'JDwC86aE69pbWJR19aE', 'Administrador', '2019-06-01 17:49:56', '2019-06-01 17:49:56'),
-(6, 9, 'wi3D502F400lsMU592F', 'Usuario', '2019-06-03 16:06:34', '2019-06-03 16:06:34');
+(1, 2, 'xE2H41Gg10ws3iU95Gg', 'Administrador', '2019-06-08 23:34:06', '2019-06-08 23:34:06'),
+(2, 3, 'xE2H41Gg10ws3iU95Gg', 'Usuario', '2019-06-08 23:37:25', '2019-06-08 23:37:25'),
+(3, 4, 'xE2H41Gg10ws3iU95Gg', 'Usuario', '2019-06-08 23:38:36', '2019-06-08 23:38:36'),
+(4, 5, 'xE2H41Gg10ws3iU95Gg', 'Usuario', '2019-06-08 23:39:23', '2019-06-08 23:39:23'),
+(5, 6, 'xE2H41Gg10ws3iU95Gg', 'Usuario', '2019-06-08 23:39:54', '2019-06-08 23:39:54');
 
 -- --------------------------------------------------------
 
@@ -113,13 +135,6 @@ CREATE TABLE `notificacion` (
   `updated_at` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `notificacion`
---
-
-INSERT INTO `notificacion` (`id_noty`, `codigo_noty`, `titulo`, `cuerpo`, `creador`, `grupo`, `tarea_id`, `tipo`, `created_at`, `updated_at`) VALUES
-(2, 'Noty-Qfj23-Jf84sI682-95807sDxmyVab-2097It2', 'FRANCISCO NAVAS TE ASIGNO UNA NUEVA TAREA', 'Hola papi', 2, 'wi3D502F400lsMU592F', 'Task-Nhf84-QAH5VN742-13036ehngqrCi-3049jdV', 'tarea', '2019-06-06 23:31:27', '2019-06-06 23:31:27');
-
 -- --------------------------------------------------------
 
 --
@@ -134,13 +149,6 @@ CREATE TABLE `notificacion_user` (
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `notificacion_user`
---
-
-INSERT INTO `notificacion_user` (`id`, `notificacion_id`, `user_id`, `estado`, `created_at`, `updated_at`) VALUES
-(1, 'Noty-Qfj23-Jf84sI682-95807sDxmyVab-2097It2', 9, 'SIN LEER', '2019-06-06 23:31:27', '2019-06-06 23:31:27');
 
 -- --------------------------------------------------------
 
@@ -173,13 +181,6 @@ CREATE TABLE `tareas` (
   `updated_at` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `tareas`
---
-
-INSERT INTO `tareas` (`id_tarea`, `codigo_tarea`, `titulo`, `cuerpo`, `estado`, `fecha_fin`, `creador`, `grupo`, `created_at`, `updated_at`) VALUES
-(4, 'Task-Nhf84-QAH5VN742-13036ehngqrCi-3049jdV', 'Tarea de prueba', '<p>orem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis vulputate urna, eu rhoncus tellus lobortis vitae. Suspendisse condimentum efficitur iaculis. Nullam posuere elit eu gravida dignissim. Donec rhoncus nulla eu mollis mattis. Nunc eleifend molestie tortor eu consequat. Donec vitae ipsum a nulla ullamcorper sagittis. Maecenas sed fermentum odio. Nam cursus dictum consequat. Fusce consectetur eget justo ut pretium. In hac habitasse platea dictumst. Vestibulum ac augue id turpis lacinia blandit vel vitae metus. Proin gravida pharetra ligula in fermentum. Morbi blandit accumsan felis, non sodales nisl. Donec suscipit, erat nec cursus egestas, sem lorem congue nibh, sed condimentum mi dolor non risus.</p>', 'Inicio', '2019-06-20', 2, 'wi3D502F400lsMU592F', '2019-06-06 23:31:26', '2019-06-06 23:31:26');
-
 -- --------------------------------------------------------
 
 --
@@ -193,13 +194,6 @@ CREATE TABLE `tareas_usuarios` (
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `tareas_usuarios`
---
-
-INSERT INTO `tareas_usuarios` (`id`, `tarea_id`, `user_id`, `created_at`, `updated_at`) VALUES
-(4, 'Task-Nhf84-QAH5VN742-13036ehngqrCi-3049jdV', 9, '2019-06-06 23:31:27', '2019-06-06 23:31:27');
 
 -- --------------------------------------------------------
 
@@ -224,10 +218,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `grupo_activo`, `avatar`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Juan Barrera', 'barrera98@gmail.com', '$2y$10$dYwnj637NoJT027pMZR8o.aXYhRT5R5URt6CY9X1IACxPiSYm7Rqe', 'owner', 'https://i.ibb.co/P5p1trd/contacts2.png', 'TYdnLUdj4XGIwKj3Zqm9Ij0vPwdMjIt2ETUhvqYNooc1RZq8ni75Vk8GKkXt', '2019-05-29 17:22:35', '2019-05-29 17:22:35'),
-(2, 'Francisco Navas', 'navasfran98@gmail.com', '$2y$10$dYwnj637NoJT027pMZR8o.aXYhRT5R5URt6CY9X1IACxPiSYm7Rqe', 'wi3D502F400lsMU592F', 'http://mobile-yetitask.djfrankremixer.com/avatars/QwV5EqgMVFns4FvLdkun2usUM5DwczXdBVi2clrV.gif', 'L5TSvMaZSGCeHIEN928ior8DDH7ac6s6HlwgQ6JlZKro9TKesJyX6cun4EP1', '2019-05-29 17:22:35', '2019-06-07 04:12:48'),
-(3, 'karla Margarita', 'karla@gmail.com', '$2y$10$AwOP.qc5u5go08GSvRP.MO.BTUmbCDNsw.UF.ErLtk7dpMwmjcFoe', 'JDwC86aE69pbWJR19aE', 'https://i.ibb.co/P5p1trd/contacts2.png', 'WJtdU1XmwSl1OipsIGR7wcawPrvlfZOkFD2JJ74KgX099ED5hojJSHM9u0gH', '2019-06-01 17:49:56', '2019-06-01 17:49:56'),
-(9, 'Carlos Canela', 'carloscanela@gmail.com', '$2y$10$6DsaaraJtyJ0Or6B.3Zj8uk.YoJklmvqpPGwIfOwXSPsZbAmmZhOm', 'wi3D502F400lsMU592F', 'AVATAR/xLrKdyWzvX1yytsiWFWy6wFqM8MBgcXchDPWEqYo.png', NULL, '2019-06-03 16:06:34', '2019-06-03 16:06:34');
+(1, 'Juan Carlos Contreras', 'carloscontreras@gmail.com', '$2y$10$G88mkcdlWyjX6Olga3ehIu.iSM2k0i4gZ57ug0/zj1xKptDKD/rlW', 'owner', 'https://i.ibb.co/P5p1trd/contacts2.png', '0lusD2F9F80PimoJaBqBJYXHd1CLGlKXUnOjvGIhXfhZg1PjRkKstHtdWzP0', '2019-06-08 23:34:06', '2019-06-08 23:34:06'),
+(2, 'Francisco Navas', 'navasfran98@gmail.com', '$2y$10$G88mkcdlWyjX6Olga3ehIu.iSM2k0i4gZ57ug0/zj1xKptDKD/rlW', 'xE2H41Gg10ws3iU95Gg', 'https://i.ibb.co/P5p1trd/contacts2.png', 'O2kqaOhJa1dpZxPRBlr5k7w5NggyRWIOTXBOt4pmKtRR0CfwlCPU2fF83FKk', '2019-06-08 23:34:06', '2019-06-08 23:34:06'),
+(3, 'Carlos Canela', 'canela45@gmail.com', '$2y$10$FCcl9BsH1k7F6wnEhDB1GuEGSCIWSnincEuH1K9NggBZh7mfez8Ri', 'xE2H41Gg10ws3iU95Gg', 'https://i.ibb.co/P5p1trd/contacts2.png', 'm7PafOKsvsAIYGBKcMG6jdNvFSMSBk08DHW99479eM9jZ17bVrftUoWVUA2c', '2019-06-08 23:37:25', '2019-06-08 23:37:25'),
+(4, 'karla Margarita', 'margatia66@gmail.com', '$2y$10$oBVzb8d2z9MBaBqkc./l6.tYWYkJVkWjwflfuNLBRUIkjcJkrSmOG', 'xE2H41Gg10ws3iU95Gg', 'https://i.ibb.co/P5p1trd/contacts2.png', 'KLbUiEZldVZjtQDMQvnhTP55hgoiJpjgIROd9sZabH1qwB8taaNmqUwnLFSy', '2019-06-08 23:38:36', '2019-06-08 23:38:36'),
+(5, 'Diana Carolina Garcia', 'caro345@gmail.com', '$2y$10$I6cau0iB1UOGmKWldi2HUu6auvRfbdDqTlHmE1NW0LhEN3qAXV7yy', 'xE2H41Gg10ws3iU95Gg', 'https://i.ibb.co/P5p1trd/contacts2.png', 'LKix5TtB89mBb5lPIBZ8pAZhhK2T8O0RTlf0DAB3dj9Kc7vvmDEhbjgFI3Pd', '2019-06-08 23:39:23', '2019-06-08 23:39:23'),
+(6, 'Hector Costa', 'costaH34@gmail.com', '$2y$10$PF1GukukBx/1sOQokoTdiO56xaY9FrLCgluIRMZn4Bwlb8ii9sD6S', 'xE2H41Gg10ws3iU95Gg', 'http://127.0.0.1:8000/AVATAR/LbAAAetFZpGxNGqvCgO7auIYXx8rj8n5pTYd7rqf.jpeg', NULL, '2019-06-08 23:39:54', '2019-06-09 01:24:23');
 
 --
 -- Índices para tablas volcadas
@@ -314,12 +310,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `avatar`
 --
 ALTER TABLE `avatar`
-  MODIFY `id_avatar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_avatar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT de la tabla `grupo_user`
 --
 ALTER TABLE `grupo_user`
-  MODIFY `id_grupo_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_grupo_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `migrations`
 --
@@ -329,27 +325,27 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de la tabla `notificacion`
 --
 ALTER TABLE `notificacion`
-  MODIFY `id_noty` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_noty` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `notificacion_user`
 --
 ALTER TABLE `notificacion_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `tareas`
 --
 ALTER TABLE `tareas`
-  MODIFY `id_tarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_tarea` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `tareas_usuarios`
 --
 ALTER TABLE `tareas_usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- Restricciones para tablas volcadas
 --
