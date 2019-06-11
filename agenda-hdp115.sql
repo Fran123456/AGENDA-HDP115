@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-06-2019 a las 05:04:28
+-- Tiempo de generación: 11-06-2019 a las 04:29:21
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 7.1.2
 
@@ -135,6 +135,16 @@ CREATE TABLE `notificacion` (
   `updated_at` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `notificacion`
+--
+
+INSERT INTO `notificacion` (`id_noty`, `codigo_noty`, `titulo`, `cuerpo`, `creador`, `grupo`, `tarea_id`, `tipo`, `created_at`, `updated_at`) VALUES
+(1, 'Noty-7Il81-LFZiCZ830-67095OCplrn2v-4664TGi', 'FRANCISCO NAVAS TE ASIGNO UNA NUEVA TAREA', 'Hola soy Francisco, les acabo de asignar su primer tarea.', 2, 'xE2H41Gg10ws3iU95Gg', 'Task-Cdi58-4sHRxE131-12450IVw1sc8e-2886AVy', 'tarea', '2019-06-10 22:51:01', '2019-06-10 22:51:01'),
+(2, 'Noty-hKM63-XzNBrW947-29663AnFyh714-5791G78', 'FRANCISCO NAVAS TE ASIGNO UNA NUEVA TAREA', 'Hola Carlos te asigne tu tarea.', 2, 'xE2H41Gg10ws3iU95Gg', 'Task-Ekt17-KebFX9276-32733yTzo96B8-48160fK', 'tarea', '2019-06-10 22:52:05', '2019-06-10 22:52:05'),
+(3, 'Noty-Jjx59-xtaN0Z134-66866NYQtRMow-4833cbH', 'CAMBIÓ DE ESTADO LA TAREA', 'Diana Carolina Garcia ha cambiado el estado de la tarea ha EN PROCESO.', 5, 'xE2H41Gg10ws3iU95Gg', 'Task-Cdi58-4sHRxE131-12450IVw1sc8e-2886AVy', 'cambio', '2019-06-11 01:18:30', '2019-06-11 01:18:30'),
+(4, 'Noty-bXK47-JhwtFy231-95728GemscHoU-20199lU', 'CAMBIÓ DE ESTADO LA TAREA', 'Diana Carolina Garcia ha cambiado el estado de la tarea ha FINALIZADO.', 5, 'xE2H41Gg10ws3iU95Gg', 'Task-Ekt17-KebFX9276-32733yTzo96B8-48160fK', 'cambio', '2019-06-11 01:38:47', '2019-06-11 01:38:47');
+
 -- --------------------------------------------------------
 
 --
@@ -149,6 +159,19 @@ CREATE TABLE `notificacion_user` (
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `notificacion_user`
+--
+
+INSERT INTO `notificacion_user` (`id`, `notificacion_id`, `user_id`, `estado`, `created_at`, `updated_at`) VALUES
+(1, 'Noty-7Il81-LFZiCZ830-67095OCplrn2v-4664TGi', 4, 'SIN LEER', '2019-06-10 22:51:01', '2019-06-10 22:51:01'),
+(2, 'Noty-7Il81-LFZiCZ830-67095OCplrn2v-4664TGi', 5, 'SIN LEER', '2019-06-10 22:51:01', '2019-06-10 22:51:01'),
+(3, 'Noty-7Il81-LFZiCZ830-67095OCplrn2v-4664TGi', 6, 'SIN LEER', '2019-06-10 22:51:01', '2019-06-10 22:51:01'),
+(4, 'Noty-hKM63-XzNBrW947-29663AnFyh714-5791G78', 3, 'SIN LEER', '2019-06-10 22:52:05', '2019-06-10 22:52:05'),
+(5, 'Noty-Jjx59-xtaN0Z134-66866NYQtRMow-4833cbH', 4, 'SIN LEER', '2019-06-11 01:18:30', '2019-06-11 01:18:30'),
+(6, 'Noty-Jjx59-xtaN0Z134-66866NYQtRMow-4833cbH', 6, 'SIN LEER', '2019-06-11 01:18:30', '2019-06-11 01:18:30'),
+(7, 'Noty-bXK47-JhwtFy231-95728GemscHoU-20199lU', 3, 'SIN LEER', '2019-06-11 01:38:47', '2019-06-11 01:38:47');
 
 -- --------------------------------------------------------
 
@@ -181,6 +204,14 @@ CREATE TABLE `tareas` (
   `updated_at` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `tareas`
+--
+
+INSERT INTO `tareas` (`id_tarea`, `codigo_tarea`, `titulo`, `cuerpo`, `estado`, `fecha_fin`, `creador`, `grupo`, `created_at`, `updated_at`) VALUES
+(1, 'Task-Cdi58-4sHRxE131-12450IVw1sc8e-2886AVy', 'Tarea #1', 'cuerpo tarea 1', 'Proceso', '2019-06-27', 2, 'xE2H41Gg10ws3iU95Gg', '2019-06-10 22:51:01', '2019-06-11 01:18:30'),
+(2, 'Task-Ekt17-KebFX9276-32733yTzo96B8-48160fK', 'Tarea #2', 'cuerpo tarea 2', 'Finalizado', '2019-06-29', 2, 'xE2H41Gg10ws3iU95Gg', '2019-06-10 22:52:05', '2019-06-11 01:38:47');
+
 -- --------------------------------------------------------
 
 --
@@ -191,9 +222,21 @@ CREATE TABLE `tareas_usuarios` (
   `id` int(11) NOT NULL,
   `tarea_id` varchar(200) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
+  `grupo_id` varchar(100) DEFAULT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tareas_usuarios`
+--
+
+INSERT INTO `tareas_usuarios` (`id`, `tarea_id`, `user_id`, `grupo_id`, `created_at`, `updated_at`) VALUES
+(1, 'Task-Cdi58-4sHRxE131-12450IVw1sc8e-2886AVy', 4, 'xE2H41Gg10ws3iU95Gg', '2019-06-10 22:51:01', '2019-06-10 22:51:01'),
+(2, 'Task-Cdi58-4sHRxE131-12450IVw1sc8e-2886AVy', 5, 'xE2H41Gg10ws3iU95Gg', '2019-06-10 22:51:01', '2019-06-10 22:51:01'),
+(3, 'Task-Cdi58-4sHRxE131-12450IVw1sc8e-2886AVy', 6, 'xE2H41Gg10ws3iU95Gg', '2019-06-10 22:51:01', '2019-06-10 22:51:01'),
+(4, 'Task-Ekt17-KebFX9276-32733yTzo96B8-48160fK', 3, 'xE2H41Gg10ws3iU95Gg', '2019-06-10 22:52:05', '2019-06-10 22:52:05'),
+(5, 'Task-Ekt17-KebFX9276-32733yTzo96B8-48160fK', 5, 'xE2H41Gg10ws3iU95Gg', '2019-06-10 22:52:05', '2019-06-10 22:52:05');
 
 -- --------------------------------------------------------
 
@@ -219,10 +262,10 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `grupo_activo`, `avatar`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Juan Carlos Contreras', 'carloscontreras@gmail.com', '$2y$10$G88mkcdlWyjX6Olga3ehIu.iSM2k0i4gZ57ug0/zj1xKptDKD/rlW', 'owner', 'https://i.ibb.co/P5p1trd/contacts2.png', '0lusD2F9F80PimoJaBqBJYXHd1CLGlKXUnOjvGIhXfhZg1PjRkKstHtdWzP0', '2019-06-08 23:34:06', '2019-06-08 23:34:06'),
-(2, 'Francisco Navas', 'navasfran98@gmail.com', '$2y$10$G88mkcdlWyjX6Olga3ehIu.iSM2k0i4gZ57ug0/zj1xKptDKD/rlW', 'xE2H41Gg10ws3iU95Gg', 'https://i.ibb.co/P5p1trd/contacts2.png', 'O2kqaOhJa1dpZxPRBlr5k7w5NggyRWIOTXBOt4pmKtRR0CfwlCPU2fF83FKk', '2019-06-08 23:34:06', '2019-06-08 23:34:06'),
+(2, 'Francisco Navas', 'navasfran98@gmail.com', '$2y$10$G88mkcdlWyjX6Olga3ehIu.iSM2k0i4gZ57ug0/zj1xKptDKD/rlW', 'xE2H41Gg10ws3iU95Gg', 'http://127.0.0.1:8000/AVATAR/PS1BDonXbvxMndcvorlT7ohcbTMPVQER3OwXjnP5.png', 'viJtBbNNPjqA3EsxMyxwBwTNuITE06z13hmIesoe73W2JPXbZCblcqc1LERD', '2019-06-08 23:34:06', '2019-06-11 04:48:54'),
 (3, 'Carlos Canela', 'canela45@gmail.com', '$2y$10$FCcl9BsH1k7F6wnEhDB1GuEGSCIWSnincEuH1K9NggBZh7mfez8Ri', 'xE2H41Gg10ws3iU95Gg', 'https://i.ibb.co/P5p1trd/contacts2.png', 'm7PafOKsvsAIYGBKcMG6jdNvFSMSBk08DHW99479eM9jZ17bVrftUoWVUA2c', '2019-06-08 23:37:25', '2019-06-08 23:37:25'),
 (4, 'karla Margarita', 'margatia66@gmail.com', '$2y$10$oBVzb8d2z9MBaBqkc./l6.tYWYkJVkWjwflfuNLBRUIkjcJkrSmOG', 'xE2H41Gg10ws3iU95Gg', 'https://i.ibb.co/P5p1trd/contacts2.png', 'KLbUiEZldVZjtQDMQvnhTP55hgoiJpjgIROd9sZabH1qwB8taaNmqUwnLFSy', '2019-06-08 23:38:36', '2019-06-08 23:38:36'),
-(5, 'Diana Carolina Garcia', 'caro345@gmail.com', '$2y$10$I6cau0iB1UOGmKWldi2HUu6auvRfbdDqTlHmE1NW0LhEN3qAXV7yy', 'xE2H41Gg10ws3iU95Gg', 'https://i.ibb.co/P5p1trd/contacts2.png', 'LKix5TtB89mBb5lPIBZ8pAZhhK2T8O0RTlf0DAB3dj9Kc7vvmDEhbjgFI3Pd', '2019-06-08 23:39:23', '2019-06-08 23:39:23'),
+(5, 'Diana Carolina Garcia', 'caro345@gmail.com', '$2y$10$I6cau0iB1UOGmKWldi2HUu6auvRfbdDqTlHmE1NW0LhEN3qAXV7yy', 'xE2H41Gg10ws3iU95Gg', 'https://i.ibb.co/P5p1trd/contacts2.png', 'rZlaDcHpfSCzskZB1wR5dhzdjnDK3bu51VL6jRE7vPH59lCGMWvhSszFTj6T', '2019-06-08 23:39:23', '2019-06-08 23:39:23'),
 (6, 'Hector Costa', 'costaH34@gmail.com', '$2y$10$PF1GukukBx/1sOQokoTdiO56xaY9FrLCgluIRMZn4Bwlb8ii9sD6S', 'xE2H41Gg10ws3iU95Gg', 'http://127.0.0.1:8000/AVATAR/LbAAAetFZpGxNGqvCgO7auIYXx8rj8n5pTYd7rqf.jpeg', NULL, '2019-06-08 23:39:54', '2019-06-09 01:24:23');
 
 --
@@ -325,22 +368,22 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de la tabla `notificacion`
 --
 ALTER TABLE `notificacion`
-  MODIFY `id_noty` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_noty` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `notificacion_user`
 --
 ALTER TABLE `notificacion_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `tareas`
 --
 ALTER TABLE `tareas`
-  MODIFY `id_tarea` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_tarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `tareas_usuarios`
 --
 ALTER TABLE `tareas_usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
