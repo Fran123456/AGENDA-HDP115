@@ -141,21 +141,16 @@
                       <a href=""><i class="fa fa-thumb-tack" aria-hidden="true"></i> <span class="nav-label">Tareas</span> <span class="fa arrow"></span></a>
                       <ul class="nav nav-second-level collapse" style="height: 0px;">
                           @if(Task::rol() == "Administrador")
-                          <li><a href="{{route('Tasks.index')}}">Todas las tareas</a></li>
-                          <li><a href="http://mobile-yetitask.djfrankremixer.com/tareas-sin-iniciar">Tareas sin iniciar</a></li>
-                          <li><a href="http://mobile-yetitask.djfrankremixer.com/tareas-en-proceso">Tareas en proceso</a></li>
-                          <li><a href="http://mobile-yetitask.djfrankremixer.com/tareas-finalizadas">Tareas finalizadas</a></li>
-                          <li><a href="{{route('My-Tasks')}}">Todas mis tareas</a></li>
-                          <li><a href="{{route('My-TasksA','start')}}">Tareas en inicio</a></li>
-                          <li><a href="{{route('My-TasksA','Process')}}">Tareas en proceso</a></li>
-                          <li><a href="{{route('My-TasksA','finish')}}">Tareas finalizadas</a></li>
-                          <li><a href="{{route('My-TasksA','No-finish')}}">Tareas no finalizadas</a></li>
+                          <li><a href="{{route('Admin-Task')}}">Administrar tareas</a></li>
+                          <li><a href="{{route('My-Admin-Task')}}">Administrar mis tareas</a></li>
+                        @else
+                          <li><a href="{{route('Tasks.index')}}">Administrar mis tareas</a></li>
+                        <!--  <li><a href="{{route('My-Tasks')}}">Todas mis tareas</a></li>
+                          <li><a href="{{route('My-TasksA','start')}}">Mis tareas en inicio</a></li>
+                          <li><a href="{{route('My-TasksA','Process')}}">Mis tareas en proceso</a></li>
+                          <li><a href="{{route('My-TasksA','finish')}}">Mis tareas finalizadas</a></li>
+                          <li><a href="{{route('My-TasksA','No-finish')}}">Mis tareas no finalizadas</a></li>-->
                           @endif
-                          <li><a href="{{route('My-Tasks')}}">Todas mis tareas</a></li>
-                          <li><a href="{{route('My-TasksA','start')}}">Tareas en inicio</a></li>
-                          <li><a href="{{route('My-TasksA','Process')}}">Tareas en proceso</a></li>
-                          <li><a href="{{route('My-TasksA','finish')}}">Tareas finalizadas</a></li>
-                          <li><a href="{{route('My-TasksA','No-finish')}}">Tareas no finalizadas</a></li>
                       </ul>
                      </li>
                       <!--AVATAR-->

@@ -23,6 +23,17 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function adminTask(){//MUESTRA EL MENU DE TODAS LAS TAREAS SI ERES ADMIN
+      $rolUserActivo = Grupo_User::get_rol(Auth::user()->id, Auth::user()->grupo_activo);
+      return view('Task.TaskAdmin', compact('rolUserActivo'));
+    }
+
+    public function MyadminTask(){//MUESTRA EL MENU DE TUS TAREAS USUARIO COMUN
+      $rolUserActivo = Grupo_User::get_rol(Auth::user()->id, Auth::user()->grupo_activo);
+      return view('Task.MyTaskAdmin', compact('rolUserActivo'));
+    }
+
     public function index()//Todas las Tareas mostradas a el administrador
     {
         $group = Grupo::get_grupo_name();
@@ -134,8 +145,6 @@ class TaskController extends Controller
        return view('Task.ShowTask', compact('Task','UserAsigment','arrayUsers'));
     }
 
-
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -167,7 +176,28 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $users = Tarea_User::where('tarea_id', $id)->get();
+       Notificacion::where('tarea_id', $id)->delete();
+      Tarea::where('codigo_tarea', $id)->delete();
+
+      //CREACION DE NOTIFICACION
+      $code = Code::__code('Noty');
+      $title = strtoupper(Auth::user()->name) . " HA ELIMINADO UNA TAREA";
+      $body = "Se ha eliminado una tarea, porfavor no continuar con ella";
+      $Noty =  Notificacion::Create_Noty($code, $title, $body, Auth::user()->id, Auth::user()->grupo_activo , null , 'borrar-tarea');
+      //CREACION DE NOTIFICACION
+      //CREACION DE NOTIFICACION POR USUARIO EN EL SISTEMA
+
+          foreach ($users as $key => $value) {
+            if($value->id != Auth::user()->id){
+              Notificacion_User::CreateNotyTask($code, $value->id, 'SIN LEER');
+         //    $to = User::where('id', $users[$i])->first();
+         //   $this->mail_newTask($to->email, $tituloGenerico , $request['mensaje'], 'support@yetitask.djfrankremixer.com'  ,'yeti.png',  Auth::user()->name, Auth::user()->email, ' Soporte YETI-TASK', $to->name);
+             }
+         }
+       //CREACION DE NOTIFICACION POR USUARIO EN EL SISTEMA
+
+      return back()->with('eliminado', "Tarea eliminada correctamente");
     }
 
   //CAMBIO DE ESTADO FINALIZADO

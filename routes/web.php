@@ -46,3 +46,5 @@ Route::get('changeProcess/{id}', 'Task\TaskController@Process_Task')->name('chan
 Route::get('changeStart/{id}', 'Task\TaskController@Start_Task')->name('changeStart');
 Route::get('My-Tasks', 'Task\TaskController@show_All_My_Task')->name('My-Tasks');
 Route::get('My-Tasks/{id}', 'Task\TaskController@show_All_My_Task_status')->name('My-TasksA');
+Route::get('Admin-Task', 'Task\TaskController@adminTask')->name('Admin-Task');
+Route::get('My-Admin-Task', 'Task\TaskController@MyadminTask')->name('My-Admin-Task');

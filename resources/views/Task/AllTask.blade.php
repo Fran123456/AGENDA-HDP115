@@ -79,6 +79,12 @@
     </script>
   @endif
 
+  @if(session('eliminado'))
+  <script type="text/javascript">
+      swal("Tarea eliminada correctamente", "", "success");
+    </script>
+  @endif
+
 
 
 
