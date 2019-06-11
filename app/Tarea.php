@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Tarea_User;
 class Tarea extends Model
 {
    protected $table = 'tareas';
@@ -31,6 +31,27 @@ class Tarea extends Model
      return $tasks;
    }
    //TRAE TODAS LAS TAREAS DE UN GRUPO
+
+  //TRAE LAS TAREAS QUE LE PERTENECEN A UN USUARIO EN UN GRUPO CON O SIN ESTADO
+   public static function MyTask_ByGroup($group, $user_id, $statusTask){
+     $container = array();
+     $container = Tarea_User::where('user_id', $user_id)->get();
+     $tasks = array();
+     foreach ($container as $key => $value) {
+       if($statusTask =="All"){
+         $tasks[$key] = Tarea::get_task($value->tarea_id);
+       }else{
+         $tasks[$key] = Tarea::where('codigo_tarea',$value->tarea_id)
+         ->where('estado',$statusTask)->first();
+       }
+     }
+     $tasks = array_filter($tasks);
+     //$container = Tarea::where('grupo', $group)->orderBy('id_tarea', 'DESC')->paginate(12);
+     return $tasks;
+   }
+    //TRAE LAS TAREAS QUE LE PERTENECEN A UN USUARIO EN UN GRUPO CON O SIN ESTADO
+
+
 
     //CAMBIA DE ESTADO UNA TAREA A FINALIZADA
    public static function StatusTask($code, $status){

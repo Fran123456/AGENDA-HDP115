@@ -145,9 +145,17 @@
                           <li><a href="http://mobile-yetitask.djfrankremixer.com/tareas-sin-iniciar">Tareas sin iniciar</a></li>
                           <li><a href="http://mobile-yetitask.djfrankremixer.com/tareas-en-proceso">Tareas en proceso</a></li>
                           <li><a href="http://mobile-yetitask.djfrankremixer.com/tareas-finalizadas">Tareas finalizadas</a></li>
+                          <li><a href="{{route('My-Tasks')}}">Todas mis tareas</a></li>
+                          <li><a href="{{route('My-TasksA','start')}}">Tareas en inicio</a></li>
+                          <li><a href="{{route('My-TasksA','Process')}}">Tareas en proceso</a></li>
+                          <li><a href="{{route('My-TasksA','finish')}}">Tareas finalizadas</a></li>
+                          <li><a href="{{route('My-TasksA','No-finish')}}">Tareas no finalizadas</a></li>
                           @endif
-                          <li><a href="http://mobile-yetitask.djfrankremixer.com/Mis-tareas">Todas mis tareas</a></li>
-                          <li><a href="http://mobile-yetitask.djfrankremixer.com/tareas-no-finalizadas">Tareas no finalizadas</a></li>
+                          <li><a href="{{route('My-Tasks')}}">Todas mis tareas</a></li>
+                          <li><a href="{{route('My-TasksA','start')}}">Tareas en inicio</a></li>
+                          <li><a href="{{route('My-TasksA','Process')}}">Tareas en proceso</a></li>
+                          <li><a href="{{route('My-TasksA','finish')}}">Tareas finalizadas</a></li>
+                          <li><a href="{{route('My-TasksA','No-finish')}}">Tareas no finalizadas</a></li>
                       </ul>
                      </li>
                       <!--AVATAR-->

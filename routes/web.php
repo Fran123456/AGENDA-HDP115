@@ -44,3 +44,5 @@ Route::resource('Tasks', 'Task\TaskController');
 Route::get('changeFinish/{id}', 'Task\TaskController@Finish_Task')->name('changeFinish');
 Route::get('changeProcess/{id}', 'Task\TaskController@Process_Task')->name('changeProcess');
 Route::get('changeStart/{id}', 'Task\TaskController@Start_Task')->name('changeStart');
+Route::get('My-Tasks', 'Task\TaskController@show_All_My_Task')->name('My-Tasks');
+Route::get('My-Tasks/{id}', 'Task\TaskController@show_All_My_Task_status')->name('My-TasksA');

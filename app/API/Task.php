@@ -4,6 +4,10 @@
 use App\Grupo_User;
 use App\Grupo;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Pagination\LengthAwarePaginator;
+
 class Task
 {
 
@@ -21,7 +25,13 @@ class Task
     $name = $group->nombre_grupo;
     return $name;
   }
+
+  public static function personalPaginate($data,$lenght, $route){
+        $page = Input::get('page');
+        $dataAux = new LengthAwarePaginator($data, count($data), $lenght, $page);
+        $dataAux->setPath($route);
+        return $dataAux;
+  }
+
 }
-
-
  ?>

@@ -13,6 +13,7 @@ use App\Notificacion;
 use App\notificacion_user;
 use App\API\Code;
 use App\API\Noty;
+use App\API\PersonalPaginate;
 use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
@@ -22,13 +23,54 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()//Todas las Tareas
+    public function index()//Todas las Tareas mostradas a el administrador
     {
         $group = Grupo::get_grupo_name();
         $tasks = Tarea::AllTask_ByGroup(Auth::user()->grupo_activo);
         $rolUserActivo = Grupo_User::get_rol(Auth::user()->id, Auth::user()->grupo_activo);
         return view('Task.AllTask', compact('group','tasks','rolUserActivo'));
     }
+
+    public function show_All_My_Task(){ //las tareas que pertenecen aun usuario en especifico en un grupo
+      $title = 'Todas tús tareas';
+      $group = Grupo::get_grupo_name();
+      $tasksSin = Tarea::MyTask_ByGroup(Auth::user()->grupo_activo, Auth::user()->id,'All');
+      $rolUserActivo = Grupo_User::get_rol(Auth::user()->id, Auth::user()->grupo_activo);
+      $tasks = PersonalPaginate::personal($tasksSin,1);
+      return view('Task.MyTask', compact('group','tasks','rolUserActivo','title'));
+    }
+
+    public function show_All_My_Task_status($id){ //las tareas que pertenecen aun usuario en especifico en un grupo dependiendo el estado
+      if($id == "start"){
+        $title = 'Todas tús tareas con estado inicio';
+        $status ="Inicio";
+      }elseif($id == 'Process'){
+         $title = 'Todas tús tareas con estado inicio';
+           $status ="Proceso";
+      }elseif($id == 'finish'){
+        $title = 'Todas tús tareas con estado inicio';
+        $status ="finalizado";
+      }elseif($id == 'No-finish'){
+        $title = 'Todas tús tareas con estado inicio';
+        $status ="No terminada";
+      }
+      else{
+        $title = 'Error, no hay tareas';
+        $status ="error";
+      }
+      $group = Grupo::get_grupo_name();
+      $tasks= Tarea::MyTask_ByGroup(Auth::user()->grupo_activo, Auth::user()->id, $status);
+      $rolUserActivo = Grupo_User::get_rol(Auth::user()->id, Auth::user()->grupo_activo);
+
+    if($id == 'No-finish'){
+
+    }else{
+      return view('Task.MyTask', compact('group','title','tasks','rolUserActivo'));
+    }
+
+    }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -57,7 +99,7 @@ class TaskController extends Controller
      //CREACION DE TAREA X USUARIO
      $users = $request->users;
      for ($i=0; $i <count($users) ; $i++) {
-          $TaskUser = Tarea_User::Create_TaskUser($codeTask, $users[$i]);
+          $TaskUser = Tarea_User::Create_TaskUser($codeTask, $users[$i], Auth::user()->grupo_activo);
      }
      //CREACION DE TAREA X USUARIO
 
@@ -84,10 +126,15 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id) //MUESTRA TODAS LAS TAREAS A EL ADMINISTRADOR
     {
-
+       $Task = tarea::get_task($id); //obtenemos la tarea
+       $UserAsigment = User::get_user($Task->creador);
+       $arrayUsers = Tarea_User::get_users_by_task($Task->codigo_tarea);
+       return view('Task.ShowTask', compact('Task','UserAsigment','arrayUsers'));
     }
+
+
 
     /**
      * Show the form for editing the specified resource.
