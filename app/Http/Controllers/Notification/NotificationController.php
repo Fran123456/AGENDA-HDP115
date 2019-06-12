@@ -22,9 +22,9 @@ class NotificationController extends Controller
      */
 
 
-    public function index()
+    public function index() //NOTIFICACIONES PARA UN USUARIO EN ESPECIFICO EN UN GRUPO
     {
-        //
+       return view('Notifications.myNotifications');        
     }
 
     /**

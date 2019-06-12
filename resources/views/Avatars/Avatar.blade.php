@@ -40,7 +40,7 @@
         <!--ESTO ES PARA CUANDO SE AGREGA UN AVATAR NUEVO-->
         @if(session('agregado'))
         <script type="text/javascript">
-            swal("Avatar agregado correctamente", "", "success");  
+            swal("Avatar agregado correctamente", "", "success");
           </script>
         @endif
         <!--ESTO ES PARA CUANDO SE AGREGA UN AVATAR NUEVO-->
@@ -48,7 +48,7 @@
         <!--ESTO ES PARA CUANDO SE CAMBIA DE AVATAR EN PERFIL-->
         @if(session('change'))
         <script type="text/javascript">
-            swal("Avatar actualizado", "", "success");  
+            swal("Avatar actualizado", "", "success");
           </script>
           <!--ESTO ES PARA CUANDO SE CAMBIA DE AVATAR EN PERFIL-->
         @endif

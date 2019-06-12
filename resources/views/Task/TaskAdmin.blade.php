@@ -13,7 +13,6 @@
       @if($rolUserActivo == "Administrador")
 
         <div class="col-lg-3">
-
                 <div class="contact-box">
                     <div class="col-sm-4">
                         <div class="text-center">

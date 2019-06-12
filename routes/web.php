@@ -48,3 +48,7 @@ Route::get('My-Tasks', 'Task\TaskController@show_All_My_Task')->name('My-Tasks')
 Route::get('My-Tasks/{id}', 'Task\TaskController@show_All_My_Task_status')->name('My-TasksA');
 Route::get('Admin-Task', 'Task\TaskController@adminTask')->name('Admin-Task');
 Route::get('My-Admin-Task', 'Task\TaskController@MyadminTask')->name('My-Admin-Task');
+
+
+//RUTAS PARA LAS NOTIFICACIONES
+Route::resource('Notifications', 'Notification\NotificationController');
