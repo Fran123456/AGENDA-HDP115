@@ -182,8 +182,8 @@
         </div>
       @endif
 
-             <div class="col-md-12">
-
+             <div class="col-md-12 text-center">
+              {{$tasks->render()}}
              </div>
     </div>
   </div>

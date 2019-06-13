@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Tarea_User;
+use Illuminate\Support\Facades\DB;
 class Tarea extends Model
 {
    protected $table = 'tareas';
@@ -34,19 +35,24 @@ class Tarea extends Model
 
   //TRAE LAS TAREAS QUE LE PERTENECEN A UN USUARIO EN UN GRUPO CON O SIN ESTADO
    public static function MyTask_ByGroup($group, $user_id, $statusTask){
-     $container = array();
-     $container = Tarea_User::where('user_id', $user_id)->get();
-     $tasks = array();
-     foreach ($container as $key => $value) {
        if($statusTask =="All"){
-         $tasks[$key] = Tarea::get_task($value->tarea_id);
+         $tasks = DB::table('users')
+                ->join('tareas_usuarios', 'users.id', '=', 'tareas_usuarios.user_id')
+                ->join('tareas', 'tareas_usuarios.tarea_id', '=', 'tareas.codigo_tarea')
+                ->where('tareas_usuarios.user_id', $user_id)
+                ->where('tareas_usuarios.grupo_id', $group)
+                ->select( 'tareas.*')
+                ->paginate(9);
        }else{
-         $tasks[$key] = Tarea::where('codigo_tarea',$value->tarea_id)
-         ->where('estado',$statusTask)->first();
+         $tasks = DB::table('users')
+                ->join('tareas_usuarios', 'users.id', '=', 'tareas_usuarios.user_id')
+                ->join('tareas', 'tareas_usuarios.tarea_id', '=', 'tareas.codigo_tarea')
+                ->where('tareas_usuarios.user_id', $user_id)
+                ->where('tareas_usuarios.grupo_id', $group)
+                ->where('tareas.estado', $statusTask)
+                ->select( 'tareas.*')
+                ->paginate(9);
        }
-     }
-     $tasks = array_filter($tasks);
-     //$container = Tarea::where('grupo', $group)->orderBy('id_tarea', 'DESC')->paginate(12);
      return $tasks;
    }
     //TRAE LAS TAREAS QUE LE PERTENECEN A UN USUARIO EN UN GRUPO CON O SIN ESTADO

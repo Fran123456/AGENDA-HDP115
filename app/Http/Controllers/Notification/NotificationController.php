@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Notification;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\notificacion_user;
+use App\Notificacion_user;
+use App\Notificacion;
 use App\API\Code;
 use App\User;
 use App\Grupo;
@@ -24,7 +25,9 @@ class NotificationController extends Controller
 
     public function index() //NOTIFICACIONES PARA UN USUARIO EN ESPECIFICO EN UN GRUPO
     {
-       return view('Notifications.myNotifications');        
+      $data = Notificacion::get_My_Notifications(Auth::user()->id, Auth::user()->grupo_activo);
+      return $data;
+      // return view('Notifications.myNotifications');
     }
 
     /**

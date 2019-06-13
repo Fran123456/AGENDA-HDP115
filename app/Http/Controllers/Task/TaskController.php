@@ -45,9 +45,8 @@ class TaskController extends Controller
     public function show_All_My_Task(){ //las tareas que pertenecen aun usuario en especifico en un grupo
       $title = 'Todas tús tareas';
       $group = Grupo::get_grupo_name();
-      $tasksSin = Tarea::MyTask_ByGroup(Auth::user()->grupo_activo, Auth::user()->id,'All');
+      $tasks = Tarea::MyTask_ByGroup(Auth::user()->grupo_activo, Auth::user()->id,'All');
       $rolUserActivo = Grupo_User::get_rol(Auth::user()->id, Auth::user()->grupo_activo);
-      $tasks = PersonalPaginate::personal($tasksSin,1);
       return view('Task.MyTask', compact('group','tasks','rolUserActivo','title'));
     }
 
@@ -80,7 +79,6 @@ class TaskController extends Controller
     }
 
     }
-
 
 
     /**
