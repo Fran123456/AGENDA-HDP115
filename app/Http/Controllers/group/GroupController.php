@@ -31,8 +31,8 @@ class GroupController extends Controller
      */
     //CREA EL GRUPO
     public function create()
-    {
-        return view('Group.CreateGroup');
+    {   $code = Code::code_group();
+        return view('Group.CreateGroup', compact('code'));
     }
 
     /**

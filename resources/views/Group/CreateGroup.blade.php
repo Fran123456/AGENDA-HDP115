@@ -1,4 +1,4 @@
-    padding-top: 15px;
+
 @extends('layouts.app')
 
 @section('content')
@@ -72,12 +72,10 @@
 
   <div class="container">
     <div class="row">
-     <div class="col-md-6">
-       <h2><strong>Tus grupos</strong></h2>
+     <div class="col-md-12">
+       <h2><strong>Crea tu grupo</strong></h2>
      </div>
-     <div class="col-md-6 text-right">
-       <a class="btn btn-success" href="">Crear grupo</a>
-     </div>
+    
    </div>
    <hr>
   </div>
@@ -90,7 +88,17 @@
       </div>
       <div class="col-md-6">
         <label>Codigo:</label>
-        <input type="text" readonly="" name="code" required="" class="form-control">
+        <input type="text" readonly="" name="code" value="{{$code}}" required="" class="form-control">
+      </div>
+
+      <div class="col-md-12">
+        <br>
+        <label>Descripcion:</label>
+        <textarea rows="6" class="form-control"></textarea>
+      </div>
+      <div class="col-md-12">
+        <br>
+        <input type="submit" name="Crear" class="btn btn-primary">
       </div>
   	</div>
   </div>
