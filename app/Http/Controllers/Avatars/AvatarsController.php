@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Grupo;
 use App\Avatar;
+use App\Grupo_User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,7 +21,8 @@ class AvatarsController extends Controller
     {
         $group = Grupo::get_grupo_name();
         $avatars = Avatar::get_avatars_by_group();
-        return view('Avatars.Avatar', compact('group','avatars'));
+        $rolUserActivo = Grupo_User::get_rol(Auth::user()->id, Auth::user()->grupo_activo);
+        return view('Avatars.Avatar', compact('group','avatars','rolUserActivo'));
     }
 
     /**

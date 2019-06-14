@@ -27,10 +27,10 @@
 
  <div class="container">
    <div class="row">
-     <div class="col-md-6">
+     <div class="col-md-8">
        <h2><strong>Avatars publicos y del grupo: {{$group->nombre_grupo}}</strong></h2>
      </div>
-     <div class="col-md-6 text-right">
+     <div class="col-md-4 text-right">
        <a class="btn btn-success" href="{{route('Avatars.create')}}">Agregar avatar</a>
      </div>
    </div>
@@ -88,17 +88,26 @@
                                                 <i class="fa fa-pencil" aria-hidden="true"></i>Asignar</a>
                                              </div>
                                           @else
-                                            <div class="col-xs-6 text-right">
-                                               <a class="btn btn-warning" href="{{route('Update-avatar', $value->id_avatar)}}">
-                                                <i class="fa fa-pencil" aria-hidden="true"></i>Asignar</a>
-                                             </div>
-                                             <div class="col-xs-6 text-left">
-                                               <form method="POST" action="http://mobile-yetitask.djfrankremixer.com/Perfil/5" accept-charset="UTF-8"><input name="_method" type="hidden" value="DELETE"><input name="_token" type="hidden" value="QRbQRCy6fzepo1PDO3UELsbFxincQaSKQUx2DKkW">
-                                                    <button onclick="return confirm('Estas seguro de Eliminar este Registro')" class="btn btn-sm btn-outline btn-danger">
-                                                          <i class="fa fa-trash" aria-hidden="true"></i>Eliminar
-                                                    </button>
-                                                </form>
-                                             </div>
+
+                                             @if ($rolUserActivo =="Administrador")
+                                               <div class="col-xs-6 text-right">
+                                                  <a class="btn btn-warning" href="{{route('Update-avatar', $value->id_avatar)}}">
+                                                   <i class="fa fa-pencil" aria-hidden="true"></i>Asignar</a>
+                                                </div>
+                                               <div class="col-xs-6 text-left">
+                                                 <form method="POST" action="http://mobile-yetitask.djfrankremixer.com/Perfil/5" accept-charset="UTF-8"><input name="_method" type="hidden" value="DELETE"><input name="_token" type="hidden" value="QRbQRCy6fzepo1PDO3UELsbFxincQaSKQUx2DKkW">
+                                                      <button onclick="return confirm('Estas seguro de Eliminar este Registro')" class="btn btn-sm btn-outline btn-danger">
+                                                            <i class="fa fa-trash" aria-hidden="true"></i>Eliminar
+                                                      </button>
+                                                  </form>
+                                               </div>
+                                             @else
+                                              <div class="col-xs-12 text-center">
+                                                <a class="btn btn-warning" href="{{route('Update-avatar', $value->id_avatar)}}">
+                                                 <i class="fa fa-pencil" aria-hidden="true"></i>Asignar</a>
+                                              </div>
+                                             @endif
+
                                           @endif
                                         </div>
                                       </div><br>

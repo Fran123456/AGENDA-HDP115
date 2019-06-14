@@ -33,6 +33,7 @@
                                        <h4>{{ $value->email}}</h4>
 
                                        <div class="text-center">
+                                         @if ($rolUserActivo == "Administrador")
                                         <div class="row">
                                           @if ($value->rol == "Administrador")
                                             <div class="col-xs-12 text-center">
@@ -52,8 +53,8 @@
                                                 </form>
                                              </div>
                                           @endif
-
                                         </div>
+                                        @endif
                                       </div>
                                    </div>
                                </div>

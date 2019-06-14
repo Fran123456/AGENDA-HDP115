@@ -20,7 +20,8 @@ class UsersController extends Controller
     {
         $group = Grupo::get_grupo_name();
         $users = Grupo_User::get_users_by_group();
-         return view('Users.Users', compact('group','users'));
+        $rolUserActivo = Grupo_User::get_rol(Auth::user()->id, Auth::user()->grupo_activo);
+         return view('Users.Users', compact('group','users','rolUserActivo'));
     }
 
     /**
@@ -30,7 +31,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
@@ -89,6 +90,6 @@ class UsersController extends Controller
         //
     }
 
-    
+
 
 }
