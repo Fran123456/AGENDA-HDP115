@@ -119,7 +119,7 @@ class TaskController extends Controller
      //CREACION DE NOTIFICACION POR USUARIO EN EL SISTEMA
          for ($i=0; $i <count($users) ; $i++) {
            if($users[$i] != Auth::user()->id){
-             Notificacion_User::CreateNotyTask($code, $users[$i], 'SIN LEER');
+             Notificacion_User::CreateNotyTask($code, $users[$i], 'SIN LEER', Auth::user()->grupo_activo);
         //    $to = User::where('id', $users[$i])->first();
         //   $this->mail_newTask($to->email, $tituloGenerico , $request['mensaje'], 'support@yetitask.djfrankremixer.com'  ,'yeti.png',  Auth::user()->name, Auth::user()->email, ' Soporte YETI-TASK', $to->name);
             }

@@ -164,7 +164,7 @@
                       <ul class="nav nav-second-level collapse">
                           <li><a href="{{route('Notifications.index')}}">Mis notificaciones</a></li>
                           <li><a href="{{route('Notifications-Sent')}}">Notificaciones enviadas</a></li>
-                          <li><a href="http://mobile-yetitask.djfrankremixer.com/notificaciones-sistema">Notificaciones del sistema</a></li>
+                          <!--<li><a href="http://mobile-yetitask.djfrankremixer.com/notificaciones-sistema">Notificaciones del sistema</a></li>-->
                           </ul>
                     </li>
                       <!--NOTIFICACIONES-->
@@ -174,6 +174,15 @@
                       <ul class="nav nav-second-level collapse">
                           <li><a href="http://mobile-yetitask.djfrankremixer.com/Perfil/2">Mi perfil</a></li>
                           <li><a href="http://mobile-yetitask.djfrankremixer.com/Perfil/2/edit">Editar perfil</a></li>
+                      </ul>
+                  </li>
+                    <!--PERFIL-->
+                    <!--PERFIL-->
+                    <li>
+                    <a href=""><i class="fa fa-folder-open" aria-hidden="true"></i> <span class="nav-label">Grupos</span> <span class="fa arrow"></span></a>
+                      <ul class="nav nav-second-level collapse">
+                          <li><a href="{{route('Groups.index')}}">Mis grupos</a></li>
+                          
                       </ul>
                   </li>
                     <!--PERFIL-->

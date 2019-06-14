@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 class Grupo_User extends Model
 {
   protected $table = 'grupo_user';
@@ -31,6 +32,16 @@ class Grupo_User extends Model
    public static function get_rol($user_id, $codeGroup){
      $user = Grupo_User::where('user_id', $user_id)->where('codigo_grupo', $codeGroup)->first();
      return $user->rol;
+   }
+   
+   //TODDOS LOS GRUPOS DE UN USUARIO
+   public static function get_groupsByUser($user){
+     $data = DB::table('grupo_user')
+                ->join('grupo', 'grupo_user.codigo_grupo', '=', 'grupo.codigo_grupo')
+                ->where('grupo_user.user_id', $user)
+                ->select( 'grupo.*','grupo_user.*')
+                ->paginate(9);
+    return $data;
    }
 
 

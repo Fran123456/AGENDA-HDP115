@@ -29,6 +29,20 @@ class Code
     return $variable;
    }
 
+   public static function code_group(){
+     $a = array();
+     $a[0] = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 4);
+     $a[1] = $a[4] = rand(10, 99);
+     $a[2] = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 2);
+     $a[3] = rand(0, 9);
+     $a[4] = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 9);
+     $a[5] = rand(10, 99);
+      $a[6] = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 4);
+
+    return $a[0].$a[1].$a[2].$a[3].$a[4].$a[5].$a[6];
+   }
+
+   
 
 }
 
