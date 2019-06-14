@@ -26,8 +26,8 @@ class NotificationController extends Controller
     public function index() //NOTIFICACIONES PARA UN USUARIO EN ESPECIFICO EN UN GRUPO
     {
       $data = Notificacion::get_My_Notifications(Auth::user()->id, Auth::user()->grupo_activo);
-      return $data;
-      // return view('Notifications.myNotifications');
+    //  print_r($data);
+      return view('Notifications.myNotifications', compact('data'));
     }
 
     /**
@@ -59,7 +59,9 @@ class NotificationController extends Controller
      */
     public function show($id)
     {
-        //
+        $info = Notificacion::get_Notification($id);
+        Notificacion_User::change_status($id, Auth::user()->id);
+        return view('Notifications.Notification', compact('info'));
     }
 
     /**
@@ -93,7 +95,13 @@ class NotificationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Notificacion_User::delete_notification_User(Auth::user()->id, $id);
+        return back()->with('eliminado', "Tarea eliminada correctamente");
+    }
+
+    public function delete_noty($id){
+      Notificacion_User::delete_notification_User(Auth::user()->id, $id);
+      return back()->with('eliminado', "Tarea eliminada correctamente");
     }
 
 

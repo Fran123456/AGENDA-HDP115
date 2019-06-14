@@ -3,7 +3,8 @@
 namespace App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
-
+use App\User;
+use App\Notificacion_User;
 class Notificacion extends Model
 {
     protected $table = 'notificacion';
@@ -26,15 +27,26 @@ class Notificacion extends Model
 
    public static function get_My_Notifications($user_id, $group){
 
-            $notifications = DB::table('users')
-                   ->join('notificacion_user', 'users.id', '=', 'notificacion_user.user_id')
-                   ->join('notificacion', 'notificacion_user.notificacion_id', '=', 'notificacion.codigo_noty')
-                  ->where('notificacion_user.user_id', $user_id)->where('notificacion_user.grupo_id', $group)
-                   ->select( 'notificacion.titulo', 'notificacion.codigo_noty')
-                   ->get();
-
-            return $notifications;
+                  $aux = Notificacion_User::where('grupo_id', $group)->where('user_id', $user_id)->get();
+                  if(count($aux) > 0){
+                     $notifications = DB::table('users')
+                     ->join('notificacion_user', 'users.id', '=', 'notificacion_user.user_id')
+                     ->join('notificacion', 'notificacion_user.notificacion_id', '=', 'notificacion.codigo_noty')
+                     ->where('notificacion_user.user_id', $user_id)->where('notificacion_user.grupo_id', $group)
+                     ->select( 'notificacion.*', 'notificacion_user.estado')
+                     ->paginate(12);
+                  }else{
+                    $notifications = array();
+                  }
+                return $notifications;
    }
 
-
+   public static function get_Notification($code_noty){
+     $noty = Notificacion::where('codigo_noty', $code_noty)->first();
+     $owner = User::where('id', $noty->creador)->first();
+     $data = array(
+       'noty' => $noty, 'owner' => $owner,
+     );
+     return $data;
+   }
 }

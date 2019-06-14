@@ -54,34 +54,41 @@
   }
   </style>
 
+  @if(session('eliminado'))
+  <script type="text/javascript">
+      swal("Notificación eliminada correctamente", "", "success");
+    </script>
+  @endif
+
 
  <div class="container">
    <div class="row">
+     @if(!empty($data))
+       @foreach ($data as $key => $value)
+       @endforeach
               <div class="col-md-3 col-xs-12">
                           <div class="wrapper wrapper-content animated fadeInUp">
                                     <ul class="notes">
                                          <li>
                                           <div>
-
-                                              <small>2019-03-15 23:02:39</small>
+                                              <small>{{$value->created_at}}</small>
                                               <br>
-                                              LA TAREA NO SE FINALIZO, PUEDE REPROGRAMARLA.
+                                              {{$value->titulo}}
                                               <br><br>
-                                              Estado: LEIDA
-
-
-                                                  <a class="data" href="http://mobile-yetitask.djfrankremixer.com/nueva-notificacion/Noty-qhPb6zp3nE-1208582-3676-YbyE2-49875-F9CxEW">
+                                              Estado: {{$value->estado}}
+                                                  <a class="data" href="{{route('Notifications.show', $value->codigo_noty)}}">
                                                     <i class="fa fa-eye" aria-hidden="true"></i></a>
-
-
-                                                  <a href="http://mobile-yetitask.djfrankremixer.com/delete-noti/Noty-qhPb6zp3nE-1208582-3676-YbyE2-49875-F9CxEW"><i class="fa fa-trash-o "></i></a>
-
-
+                                                  <a href="{{route('deleteNoty',$value->codigo_noty)}}"><i class="fa fa-trash-o "></i></a>
                                           </div>
                                          </li>
                                    </ul>
                             </div>
               </div>
+            @else
+              <div class="text-center">
+                  <h1>No hay notificaciones</h1>
+              </div>
+            @endif
    </div>
  </div>
 @endsection
