@@ -41,6 +41,12 @@ class Notificacion extends Model
                 return $notifications;
    }
 
+   public static function get_My_Notifications_Sended($user_id, $group){
+          $aux = Notificacion::where('creador', $user_id)->where('grupo', $group)->paginate(12);
+          return $aux;
+   }
+
+
    public static function get_Notification($code_noty){
      $noty = Notificacion::where('codigo_noty', $code_noty)->first();
      $owner = User::where('id', $noty->creador)->first();

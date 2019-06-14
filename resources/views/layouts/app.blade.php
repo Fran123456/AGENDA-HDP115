@@ -145,11 +145,6 @@
                           <li><a href="{{route('My-Admin-Task')}}">Administrar mis tareas</a></li>
                         @else
                           <li><a href="{{route('My-Admin-Task')}}">Administrar mis tareas</a></li>
-                        <!--  <li><a href="{{route('My-Tasks')}}">Todas mis tareas</a></li>
-                          <li><a href="{{route('My-TasksA','start')}}">Mis tareas en inicio</a></li>
-                          <li><a href="{{route('My-TasksA','Process')}}">Mis tareas en proceso</a></li>
-                          <li><a href="{{route('My-TasksA','finish')}}">Mis tareas finalizadas</a></li>
-                          <li><a href="{{route('My-TasksA','No-finish')}}">Mis tareas no finalizadas</a></li>-->
                           @endif
                       </ul>
                      </li>
@@ -165,10 +160,10 @@
                       <!--USUARIOS-->
                   <!--NOTIFICACIONES-->
                     <li>
-                    <a href="Tareas1.index"><i class="fa fa-comment-o" aria-hidden="true"></i> <span class="nav-label">Notificaciones</span> <span class="fa arrow"></span></a>
+                    <a href=""><i class="fa fa-comment-o" aria-hidden="true"></i> <span class="nav-label">Notificaciones</span> <span class="fa arrow"></span></a>
                       <ul class="nav nav-second-level collapse">
                           <li><a href="{{route('Notifications.index')}}">Mis notificaciones</a></li>
-                          <li><a href="http://mobile-yetitask.djfrankremixer.com/notificaciones-enviadas">Notificaciones enviadas</a></li>
+                          <li><a href="{{route('Notifications-Sent')}}">Notificaciones enviadas</a></li>
                           <li><a href="http://mobile-yetitask.djfrankremixer.com/notificaciones-sistema">Notificaciones del sistema</a></li>
                           </ul>
                     </li>

@@ -30,6 +30,12 @@ class NotificationController extends Controller
       return view('Notifications.myNotifications', compact('data'));
     }
 
+    //NOTIFICACIONES ENVIADAS
+    public function sended(){
+    $data = Notificacion::get_My_Notifications_Sended(Auth::user()->id, Auth::user()->grupo_activo);
+     return view('Notifications.myNotificationsSended', compact('data'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

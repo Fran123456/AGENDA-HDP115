@@ -25,6 +25,8 @@ class AvatarsController extends Controller
         return view('Avatars.Avatar', compact('group','avatars','rolUserActivo'));
     }
 
+  
+
     /**
      * Show the form for creating a new resource.
      *

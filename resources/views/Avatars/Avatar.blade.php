@@ -116,7 +116,9 @@
        </div>
        @endforeach
 
-       {{$avatars->render()}}
+       <div class="col-md-12 text-center">
+         {{$avatars->render()}}
+       </div>
 
    </div>
  </div>

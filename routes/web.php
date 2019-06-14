@@ -53,3 +53,4 @@ Route::get('My-Admin-Task', 'Task\TaskController@MyadminTask')->name('My-Admin-T
 //RUTAS PARA LAS NOTIFICACIONES
 Route::resource('Notifications', 'Notification\NotificationController');
 Route::get('deleteNoty/{id}','Notification\NotificationController@delete_noty')->name('deleteNoty');
+Route::get('Notifications-Sent','Notification\NotificationController@sended')->name('Notifications-Sent');

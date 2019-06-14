@@ -35,7 +35,7 @@
       color: #000;
       background: #ffc;
       display: block;
-      height: 180px;
+      height: 140px;
       width: 210px;
       padding: 1em;
       -moz-box-shadow: 5px 5px 7px #212121;
@@ -63,7 +63,17 @@
 
  <div class="container">
    <div class="row">
-     @if(!empty($data))
+
+     <div class="col-md-6">
+       <h2><strong>Tus notificaciones enviadas </strong></h2>
+     </div>
+
+     <div class="col-md-6 text-right">
+       <a class="btn btn-success" href="">Crear notificación</a>
+     </div><br><br>
+      <br><br>
+
+      @if(!empty($data))
        @foreach ($data as $key => $value)
               <div class="col-md-3 col-xs-12">
                           <div class="wrapper wrapper-content animated fadeInUp">
@@ -73,22 +83,22 @@
                                               <small>{{$value->created_at}}</small>
                                               <br>
                                               {{$value->titulo}}
-                                              <br><br>
-                                              Estado: {{$value->estado}}
-                                                  <a class="data" href="{{route('Notifications.show', $value->codigo_noty)}}">
-                                                    <i class="fa fa-eye" aria-hidden="true"></i></a>
+
+                                                  <!--<a class="data" href="{{route('Notifications.show', $value->codigo_noty)}}">
+                                                    <i class="fa fa-eye" aria-hidden="true"></i></a>-->
                                                   <a href="{{route('deleteNoty',$value->codigo_noty)}}"><i class="fa fa-trash-o "></i></a>
                                           </div>
                                          </li>
                                    </ul>
                             </div>
               </div>
-               @endforeach
+              @endforeach
             @else
               <div class="text-center">
                   <h1>No hay notificaciones</h1>
               </div>
             @endif
+
    </div>
  </div>
 @endsection

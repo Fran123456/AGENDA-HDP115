@@ -26,7 +26,7 @@ class Noty
    //CREACION DE NOTIFICACION POR USUARIO EN EL SISTEMA
     foreach ($users as $key => $value) {
      if(Auth::user()->id != $value->user_id){
-            Notificacion_User::CreateNotyTask($codeNoty, $value->user_id, 'SIN LEER');
+            Notificacion_User::CreateNotyTask($codeNoty, $value->user_id, 'SIN LEER', Auth::user()->grupo_activo);
        }
      }
   }
