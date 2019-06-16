@@ -43,6 +43,16 @@ class Grupo_User extends Model
                 ->paginate(9);
     return $data;
    }
+   
+
+   //CREA LOS USUARIOS QUE TIENEN UN GRUPO, EL REGISTRO PARA SABER QUE UN USUARIO TIENE X GRUPO
+    public static function Create_UserGroup($user_id, $code, $rol){
+      $data = Grupo_User::create([
+           'user_id' => $user_id,
+           'codigo_grupo' => $code,
+           'rol' => $rol,
+      ]);
+   }
 
 
 }

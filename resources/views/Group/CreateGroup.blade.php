@@ -29,8 +29,7 @@
 }
 
   </style>
-<script src="{{asset('ckeditor/ckeditor.js')}}">
-</script>
+
 
 <div>
   <!--ESTO ES PARA CUANDO SE AGREGA UN AVATAR NUEVO-->
@@ -39,34 +38,6 @@
       swal("Tarea agregada correctamente", "", "success");
     </script>
   @endif
-
-  @if(session('fin'))
-  <script type="text/javascript">
-      swal("Cambió estado a FINALIZADO correctamente", "", "success");
-    </script>
-  @endif
-
-  @if(session('proceso'))
-  <script type="text/javascript">
-      swal("Cambió estado a EN PROCESO correctamente", "", "success");
-    </script>
-  @endif
-
-  @if(session('inicio'))
-  <script type="text/javascript">
-      swal("Cambió estado a INICIO correctamente", "", "success");
-    </script>
-  @endif
-
-  @if(session('eliminado'))
-  <script type="text/javascript">
-      swal("Tarea eliminada correctamente", "", "success");
-    </script>
-  @endif
-
-
-
-
   <!--ESTO ES PARA CUANDO SE AGREGA UN AVATAR NUEVO-->
 </div>
 
@@ -79,12 +50,13 @@
    </div>
    <hr>
   </div>
-
+ <form action="{{route('Groups.store')}}" method="post">
+  {{ csrf_field() }}
   <div class="container">
   	<div class="row">
   		<div class="col-md-6">
         <label>Nombre del grupo:</label>
-        <input type="text" name="nombre" required="" class="form-control">
+        <input type="text" name="nombre" required=""  class="form-control">
       </div>
       <div class="col-md-6">
         <label>Codigo:</label>
@@ -94,7 +66,7 @@
       <div class="col-md-12">
         <br>
         <label>Descripcion:</label>
-        <textarea rows="6" class="form-control"></textarea>
+        <textarea name="body" rows="6" class="form-control"></textarea>
       </div>
       <div class="col-md-12">
         <br>
@@ -102,6 +74,6 @@
       </div>
   	</div>
   </div>
-
+</form>
   
 @endsection

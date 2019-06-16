@@ -39,32 +39,7 @@
     </script>
   @endif
 
-  @if(session('fin'))
-  <script type="text/javascript">
-      swal("Cambió estado a FINALIZADO correctamente", "", "success");
-    </script>
-  @endif
-
-  @if(session('proceso'))
-  <script type="text/javascript">
-      swal("Cambió estado a EN PROCESO correctamente", "", "success");
-    </script>
-  @endif
-
-  @if(session('inicio'))
-  <script type="text/javascript">
-      swal("Cambió estado a INICIO correctamente", "", "success");
-    </script>
-  @endif
-
-  @if(session('eliminado'))
-  <script type="text/javascript">
-      swal("Tarea eliminada correctamente", "", "success");
-    </script>
-  @endif
-
-
-
+ 
 
   <!--ESTO ES PARA CUANDO SE AGREGA UN AVATAR NUEVO-->
 </div>

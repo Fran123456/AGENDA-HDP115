@@ -1,15 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\group;
+namespace App\Http\Controllers\Invitations;
 
-use Illuminate\Support\Facades\Auth;
-use App\Grupo;
-use App\Grupo_User;
-use App\API\code;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class GroupController extends Controller
+class InvitationsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +13,15 @@ class GroupController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    //LISTADO DE LOS GRUPOS EN LOS QUE ESTOY AFILIADO
+    public function SendInvitacions(){
+        
+    }
+
+
+
     public function index()
     {
-        $groups = Grupo_User::get_groupsByUser(Auth::user()->id);
-        return view('Group.Groups' , compact('groups'));
+        //
     }
 
     /**
@@ -29,10 +29,9 @@ class GroupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    //CREA EL GRUPO
     public function create()
-    {   $code = Code::code_group();
-        return view('Group.CreateGroup', compact('code'));
+    {
+        //
     }
 
     /**
@@ -43,9 +42,7 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        Grupo::Create_Group($request['code'], $request['nombre'], $request['body'], 'Administrador', Auth::user()->id);
-
-        return redirect()->route('Send-Invitations')->with('agregado', "Elemento agregado correctamente");
+        //
     }
 
     /**
