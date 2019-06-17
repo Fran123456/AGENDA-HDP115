@@ -28,7 +28,7 @@ class Grupo extends Model
      ]);
 
      Grupo_User::Create_UserGroup($user_id, $code, $rol);
-
+     return $group;
      
    }
 

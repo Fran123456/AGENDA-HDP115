@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Invitations;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\User;
+use App\Invitacion;
+use App\Grupo;
+use Illuminate\Support\Facades\Auth;
 
 class InvitationsController extends Controller
 {
@@ -13,11 +17,26 @@ class InvitationsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function SendInvitacions(){
-        
+    public function SendInvitacions($id){
+        $grupo = Grupo::where('codigo_grupo' ,$id)->first();
+        return view('Invitations.Sendinvitacions', compact('grupo','id'));
     }
 
+    //BUSCAR UN USUARIO PARA ENVIARLE LA INVITACION
+    public function LookForUser($id, Request $request){
+    $response = User::get_UserByEmailOrName($request->mail, $id);
+    $users = $response[0];
+    $res = $response[1];
+    $grupo = Grupo::where('codigo_grupo' ,$id)->first();
+    //$users = $users->toArray();
+    return view('Invitations.looking', compact('users','id','grupo','res'));
+    }//BUSCAR UN USUARIO PARA ENVIARLE LA INVITACION
 
+    public function sendInvitation($id,$code){
+
+       Invitacion::SendInvitation($id, Auth::User()->id, $code, 'pendiente');
+        return back()->with('send', "Tarea eliminada correctamente");
+    }
 
     public function index()
     {
@@ -31,7 +50,7 @@ class InvitationsController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -42,7 +61,9 @@ class InvitationsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //creamos la invitacion
+
+        
     }
 
     /**

@@ -60,4 +60,7 @@ Route::resource('Groups', 'group\GroupController');
 
 
 //RUTAS DE INVITACION
-Route::get('Send-Invitations', 'Invitations\InvitationsController@SendInvitacions')->name('Send-Invitations');
+Route::get('Send-Invitations/{id}', 'Invitations\InvitationsController@SendInvitacions')->name('Send-Invitations');
+Route::get('Looking-Users/{id}', 'Invitations\InvitationsController@LookForUser')->name('Looking-Users');
+Route::get('sendingInvitation/{id}/{id2}', 'Invitations\InvitationsController@sendInvitation')->name('sendingInvitation');
+

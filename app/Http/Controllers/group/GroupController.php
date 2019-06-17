@@ -43,9 +43,9 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        Grupo::Create_Group($request['code'], $request['nombre'], $request['body'], 'Administrador', Auth::user()->id);
+        $g =Grupo::Create_Group($request['code'], $request['nombre'], $request['body'], 'Administrador', Auth::user()->id);
 
-        return redirect()->route('Send-Invitations')->with('agregado', "Elemento agregado correctamente");
+        return redirect()->route('Send-Invitations', $g->codigo_grupo)->with('agregado', "Elemento agregado correctamente");
     }
 
     /**

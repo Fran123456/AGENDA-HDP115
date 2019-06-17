@@ -64,7 +64,7 @@
                 <div class="ibox-content product-box">
                     
                         <div class="product-desc">
-                           <span class="product-price">{{$value->nombre_grupo}}s</span>
+                           <span class="product-price">{{$value->nombre_grupo}}</span>
                          </div>
                           <div class="text-center aa">
                                <h5>Rol: {{$value->rol}}</h5>
