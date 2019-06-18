@@ -60,4 +60,8 @@ class User extends Authenticatable
       $response = array($users, $fin);
       return $response;
     }
+
+    public static function UpdateDefaultGroup($code, $id){
+     User::where('id', $id)->update(['grupo_activo' => $code]);
+   }
 }

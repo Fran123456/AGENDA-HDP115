@@ -39,8 +39,20 @@ class InvitationsController extends Controller
     }
 
     public function index()
-    {
-        //
+    {  $invitations= Invitacion::invitations(Auth::User()->id);
+        return view('Invitations.invitations', compact('invitations'));
+    }
+
+    public function accepted($id){
+       Invitacion::changeStatus('aceptada', Auth::User()->id, $id, 'Usuario');
+      //Invitacion::changeStatus($id,'aceptada');
+      return back()->with('aceptada', "Tarea eliminada correctamente");
+    }
+
+    public function denegate($id){
+       Invitacion::changeStatus('rechazada', Auth::User()->id, $id, 'Usuario');
+      //Invitacion::changeStatus($id,'aceptada');
+      return back()->with('aceptada', "Tarea eliminada correctamente");
     }
 
     /**
@@ -97,7 +109,7 @@ class InvitationsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**

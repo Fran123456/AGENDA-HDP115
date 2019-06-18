@@ -39,7 +39,12 @@
     </script>
   @endif
 
- 
+  @if(session('change'))
+  <script type="text/javascript">
+      swal("Cambio de grupo realizado con exito", "", "success");
+    </script>
+  @endif
+
 
   <!--ESTO ES PARA CUANDO SE AGREGA UN AVATAR NUEVO-->
 </div>
@@ -81,13 +86,13 @@
                                       <i class="fa fa-pencil" aria-hidden="true"></i>Administrar</a>
                                     </div>
                                     <div class="col-xs-6 text-center">
-                                      <a class="btn btn-info btn-rounded btn-outline"  href="">
+                                      <a class="btn btn-info btn-rounded btn-outline"  href="{{route('changeGroup', $value->codigo_grupo)}}">
                                       <i class="fa fa-pencil" aria-hidden="true"></i>Seleccionar</a>
                                     </div>
                                     @else
 									<div class="col-xs-12 text-center">
-                                      <a class="btn btn-warning btn-rounded btn-outline"  href="">
-                                      <i class="fa fa-pencil" aria-hidden="true"></i>Administrar</a>
+                                      <a class="btn btn-warning btn-rounded btn-outline"  href="{{route('changeGroup', $value->codigo_grupo)}}">
+                                      <i class="fa fa-pencil" aria-hidden="true"></i>Seleccionar</a>
                                     </div>
                                     @endif
                                   </div>

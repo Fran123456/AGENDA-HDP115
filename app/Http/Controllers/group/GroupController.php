@@ -5,6 +5,7 @@ namespace App\Http\Controllers\group;
 use Illuminate\Support\Facades\Auth;
 use App\Grupo;
 use App\Grupo_User;
+use App\User;
 use App\API\code;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -33,6 +34,12 @@ class GroupController extends Controller
     public function create()
     {   $code = Code::code_group();
         return view('Group.CreateGroup', compact('code'));
+    }
+    
+    //cambia a grupo default por otro
+    public function defaultGroup($code){
+      User::UpdateDefaultGroup($code, Auth::User()->id);
+      return back()->with('change', "Tarea eliminada correctamente");
     }
 
     /**

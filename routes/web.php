@@ -57,10 +57,14 @@ Route::get('Notifications-Sent','Notification\NotificationController@sended')->n
 
 //RUTAS PARA GRUPOS
 Route::resource('Groups', 'group\GroupController');
-
+Route::get('changeGroup/{id}', 'group\GroupController@defaultGroup')->name('changeGroup');
 
 //RUTAS DE INVITACION
 Route::get('Send-Invitations/{id}', 'Invitations\InvitationsController@SendInvitacions')->name('Send-Invitations');
 Route::get('Looking-Users/{id}', 'Invitations\InvitationsController@LookForUser')->name('Looking-Users');
 Route::get('sendingInvitation/{id}/{id2}', 'Invitations\InvitationsController@sendInvitation')->name('sendingInvitation');
+Route::resource('invitations', 'Invitations\InvitationsController');
+Route::get('aceptarSoli/{id}', 'Invitations\InvitationsController@accepted')->name('aceptarSoli');
+Route::get('rechazarSoli/{id}', 'Invitations\InvitationsController@denegate')->name('rechazarSoli');
+
 

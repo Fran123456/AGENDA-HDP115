@@ -186,6 +186,11 @@
                       </ul>
                   </li>
                     <!--PERFIL-->
+                    <!--INVITACIONES-->
+                    <li>
+                      <a href="{{route('invitations.index')}}"><i class="fa fa-telegram" aria-hidden="true"></i> <span class="nav-label">Invitaciones</span></a>
+                    </li>
+                    <!--INVITACIONES-->
               </ul>
           </div>
       </nav>
