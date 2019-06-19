@@ -98,7 +98,7 @@
 
 </head>
 <body>
-
+  
   <div id="wrapper">
       <nav class="navbar-default navbar-static-side" role="navigation">
           <div class="sidebar-collapse">
@@ -200,7 +200,7 @@
           <nav class="navbar navbar-static-top  " role="navigation" style="margin-bottom: 0">
           <div class="navbar-header">
             <!--  <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>-->
-              <a class="stylea navbar-minimalize minimalize-styl-2 " href="#"> <img width="45" height="45" src="{{asset('FUNDAMENTAL/ICONO-SIN-LETRA.png')}}" alt="">&nbsp  {{Task::name_group()}} </a>
+              <a class="stylea navbar-minimalize minimalize-styl-2 " href="#"> <img width="45" height="45" src="{{asset('FUNDAMENTAL/ICONO-SIN-LETRA.png')}}" alt="">&nbsp  {!!Task::name_group()!!} </a>
               <a href="" class=" minimalize-styl-2"></a>
           </div>
               <ul class="nav navbar-top-links navbar-right">
@@ -240,7 +240,7 @@
       </div>
     </div>
 
-
+ 
 
 <!--PLANTILLA----------------------------------------------->
 

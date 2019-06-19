@@ -25,6 +25,21 @@ class GroupController extends Controller
         return view('Group.Groups' , compact('groups'));
     }
 
+    public function loadDefaultGroup(){
+        $groups = Grupo_User::get_groupsByUser(Auth::user()->id);
+        
+    
+    $var=Auth::User()->name; 
+     
+    // numero de posicion donde se encuentra el primer espacio 
+    $pos=strpos($var, " "); 
+     
+    //elimino el string a partir del espacio 
+    $var=substr($var, 0, $pos);  
+    $name = strtoupper($var);
+    return view('Group.NetflixGroupTemplate' , compact('groups', 'name'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -36,11 +51,19 @@ class GroupController extends Controller
         return view('Group.CreateGroup', compact('code'));
     }
     
+
     //cambia a grupo default por otro
     public function defaultGroup($code){
       User::UpdateDefaultGroup($code, Auth::User()->id);
       return back()->with('change', "Tarea eliminada correctamente");
     }
+
+    public function defaultGroupBegin($code){
+      User::UpdateDefaultGroup($code, Auth::User()->id);
+      return redirect()->route('home');
+    }
+
+    
 
     /**
      * Store a newly created resource in storage.

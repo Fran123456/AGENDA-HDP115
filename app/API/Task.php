@@ -18,12 +18,25 @@ class Task
 
   public static function rol(){
       $rolUserActivo = Grupo_User::get_rol(Auth::user()->id, Auth::user()->grupo_activo);
-      return $rolUserActivo;
+
+      if($rolUserActivo == "no"){
+        return '';
+      }else{
+        return $rolUserActivo;
+      }
+      
   }
   public static function name_group(){
     $group = Grupo::get_grupo_name();
-    $name = $group->nombre_grupo;
-    return $name;
+    
+    if(empty($group->codigo_grupo)){
+                return '<meta http-equiv="Refresh" content="0.01;url=/Loading">';
+      }else{
+        $name = $group->nombre_grupo;
+        return $name;
+      }
+    
+    
   }
 
   public static function personalPaginate($data,$lenght, $route){
@@ -32,6 +45,8 @@ class Task
         $dataAux->setPath($route);
         return $dataAux;
   }
+
+  
 
 }
  ?>

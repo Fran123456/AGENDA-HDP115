@@ -81,13 +81,17 @@
                                @endif
                                   <div class="row">
                                   	@if($value->rol =="Administrador" )
-                                    <div class="col-xs-6 text-center">
+                                    <div class="col-xs-4 text-center">
                                       <a class="btn btn-warning btn-rounded btn-outline" href="">
                                       <i class="fa fa-pencil" aria-hidden="true"></i>Administrar</a>
                                     </div>
-                                    <div class="col-xs-6 text-center">
+                                    <div class="col-xs-4 text-center">
                                       <a class="btn btn-info btn-rounded btn-outline"  href="{{route('changeGroup', $value->codigo_grupo)}}">
                                       <i class="fa fa-pencil" aria-hidden="true"></i>Seleccionar</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                      <a class="btn btn-danger btn-rounded"  href="{{route('Send-Invitations', $value->codigo_grupo)}}">
+                                      <i class="fa fa-pencil" aria-hidden="true"></i>Invitar</a>
                                     </div>
                                     @else
 									<div class="col-xs-12 text-center">

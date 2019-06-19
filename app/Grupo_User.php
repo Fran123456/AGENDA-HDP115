@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\API\Task;
 class Grupo_User extends Model
 {
   protected $table = 'grupo_user';
@@ -30,8 +31,12 @@ class Grupo_User extends Model
    }
    //OBTIENE EL ROL DE UN USUARIO EN UN GRUPO ESPECIFICO
    public static function get_rol($user_id, $codeGroup){
-     $user = Grupo_User::where('user_id', $user_id)->where('codigo_grupo', $codeGroup)->first();
-     return $user->rol;
+      $user = Grupo_User::where('user_id', $user_id)->where('codigo_grupo', $codeGroup)->first();
+      if($codeGroup!=""){
+        return $user->rol;
+      }else{
+        return 'no';
+      }
    }
    
    //TODDOS LOS GRUPOS DE UN USUARIO

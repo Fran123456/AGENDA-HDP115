@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-06-2019 a las 07:26:04
+-- Tiempo de generación: 19-06-2019 a las 09:25:43
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.3.0
 
@@ -71,6 +71,7 @@ CREATE TABLE `grupo` (
 
 INSERT INTO `grupo` (`codigo_grupo`, `nombre_grupo`, `descripcion`, `created_at`, `updated_at`) VALUES
 ('FDgm20RE3Dc0EPnNyJ27J8oK', 'MAT315', 'grupo de matematica', '2019-06-17 12:44:22', '2019-06-17 12:44:22'),
+('i4pn69HN8J9bHLOMU7857Ka1', 'FIR215', 'Fisica 2', '2019-06-19 13:18:22', '2019-06-19 13:18:22'),
 ('xE2H41Gg10ws3iU95Gg', 'Grupo Famila Cruz', 'Grupo familiar', '2019-06-09 05:34:06', '2019-06-09 05:34:06');
 
 -- --------------------------------------------------------
@@ -99,7 +100,8 @@ INSERT INTO `grupo_user` (`id_grupo_user`, `user_id`, `codigo_grupo`, `rol`, `cr
 (4, 5, 'xE2H41Gg10ws3iU95Gg', 'Usuario', '2019-06-09 05:39:23', '2019-06-09 05:39:23'),
 (5, 6, 'xE2H41Gg10ws3iU95Gg', 'Usuario', '2019-06-09 05:39:54', '2019-06-09 05:39:54'),
 (9, 2, 'FDgm20RE3Dc0EPnNyJ27J8oK', 'Administrador', '2019-06-17 12:44:22', '2019-06-17 12:44:22'),
-(10, 5, 'FDgm20RE3Dc0EPnNyJ27J8oK', 'Usuario', '2019-06-18 10:42:44', '2019-06-18 10:42:44');
+(10, 5, 'FDgm20RE3Dc0EPnNyJ27J8oK', 'Usuario', '2019-06-18 10:42:44', '2019-06-18 10:42:44'),
+(12, 2, 'i4pn69HN8J9bHLOMU7857Ka1', 'Administrador', '2019-06-19 13:18:22', '2019-06-19 13:18:22');
 
 -- --------------------------------------------------------
 
@@ -122,7 +124,10 @@ CREATE TABLE `invitacion` (
 --
 
 INSERT INTO `invitacion` (`id_invitacion`, `user_id`, `creador`, `grupo_id`, `estado`, `created_at`, `updated_at`) VALUES
-(5, 5, 2, 'FDgm20RE3Dc0EPnNyJ27J8oK', 'aceptada', '2019-06-17 07:42:44', '2019-06-18 04:42:44');
+(5, 5, 2, 'FDgm20RE3Dc0EPnNyJ27J8oK', 'aceptada', '2019-06-17 07:42:44', '2019-06-18 04:42:44'),
+(6, 6, 2, 'i4pn69HN8J9bHLOMU7857Ka1', 'pendiente', '2019-06-19 07:19:04', '2019-06-19 07:19:04'),
+(7, 4, 2, 'i4pn69HN8J9bHLOMU7857Ka1', 'pendiente', '2019-06-19 07:19:18', '2019-06-19 07:19:18'),
+(8, 3, 2, 'i4pn69HN8J9bHLOMU7857Ka1', 'pendiente', '2019-06-19 07:23:50', '2019-06-19 07:23:50');
 
 -- --------------------------------------------------------
 
@@ -315,10 +320,10 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `grupo_activo`, `avatar`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Juan Carlos Contreras', 'carloscontreras@gmail.com', '$2y$10$G88mkcdlWyjX6Olga3ehIu.iSM2k0i4gZ57ug0/zj1xKptDKD/rlW', 'owner', 'https://i.ibb.co/P5p1trd/contacts2.png', '0lusD2F9F80PimoJaBqBJYXHd1CLGlKXUnOjvGIhXfhZg1PjRkKstHtdWzP0', '2019-06-09 05:34:06', '2019-06-09 05:34:06'),
-(2, 'Francisco Navas', 'navasfran98@gmail.com', '$2y$10$G88mkcdlWyjX6Olga3ehIu.iSM2k0i4gZ57ug0/zj1xKptDKD/rlW', 'xE2H41Gg10ws3iU95Gg', 'http://127.0.0.1:8000/AVATAR/PS1BDonXbvxMndcvorlT7ohcbTMPVQER3OwXjnP5.png', 'wpifRQEDd16HowMLct1A7BzH5SU9JuaPWa1NJCmG81dQEYvfCKqcsEjd85bC', '2019-06-09 05:34:06', '2019-06-11 10:48:54'),
+(2, 'Francisco Navas', 'navasfran98@gmail.com', '$2y$10$G88mkcdlWyjX6Olga3ehIu.iSM2k0i4gZ57ug0/zj1xKptDKD/rlW', 'FDgm20RE3Dc0EPnNyJ27J8oK', 'http://127.0.0.1:8000/AVATAR/PS1BDonXbvxMndcvorlT7ohcbTMPVQER3OwXjnP5.png', 'CdGVLWcLXgkDF1fTib0y6nBXd1eoDUtrgUWloIFZvha9RPmbUKV6Kfx3pFjy', '2019-06-09 05:34:06', '2019-06-19 13:02:58'),
 (3, 'Carlos Canela', 'canela45@gmail.com', '$2y$10$FCcl9BsH1k7F6wnEhDB1GuEGSCIWSnincEuH1K9NggBZh7mfez8Ri', 'xE2H41Gg10ws3iU95Gg', 'https://i.ibb.co/P5p1trd/contacts2.png', 'm7PafOKsvsAIYGBKcMG6jdNvFSMSBk08DHW99479eM9jZ17bVrftUoWVUA2c', '2019-06-09 05:37:25', '2019-06-09 05:37:25'),
 (4, 'karla Margarita', 'margatia66@gmail.com', '$2y$10$oBVzb8d2z9MBaBqkc./l6.tYWYkJVkWjwflfuNLBRUIkjcJkrSmOG', 'xE2H41Gg10ws3iU95Gg', 'https://i.ibb.co/P5p1trd/contacts2.png', 'KLbUiEZldVZjtQDMQvnhTP55hgoiJpjgIROd9sZabH1qwB8taaNmqUwnLFSy', '2019-06-09 05:38:36', '2019-06-09 05:38:36'),
-(5, 'Diana Carolina Garcia', 'caro345@gmail.com', '$2y$10$I6cau0iB1UOGmKWldi2HUu6auvRfbdDqTlHmE1NW0LhEN3qAXV7yy', 'FDgm20RE3Dc0EPnNyJ27J8oK', 'http://127.0.0.1:8000/AVATAR/9f1rocC4mDJyANoYDQtgCTmaYDqkPLf8GdCbqsmc.png', 'uf4Mu354G2EXYAb5BCPwX1NmkQuqRkllypARfta7h3oqLHlS6NMXVkY7qDFn', '2019-06-09 05:39:23', '2019-06-18 11:24:20'),
+(5, 'Diana Carolina Garcia', 'caro345@gmail.com', '$2y$10$I6cau0iB1UOGmKWldi2HUu6auvRfbdDqTlHmE1NW0LhEN3qAXV7yy', 'FDgm20RE3Dc0EPnNyJ27J8oK', 'http://127.0.0.1:8000/AVATAR/9f1rocC4mDJyANoYDQtgCTmaYDqkPLf8GdCbqsmc.png', '5xQnIjXLXYqf2A23QgEvhS48JOQnKlBq5syYgwGpzOxBoXO5L6WbBsynqIjy', '2019-06-09 05:39:23', '2019-06-18 11:24:20'),
 (6, 'Hector Costa', 'costaH34@gmail.com', '$2y$10$PF1GukukBx/1sOQokoTdiO56xaY9FrLCgluIRMZn4Bwlb8ii9sD6S', 'xE2H41Gg10ws3iU95Gg', 'http://127.0.0.1:8000/AVATAR/LbAAAetFZpGxNGqvCgO7auIYXx8rj8n5pTYd7rqf.jpeg', NULL, '2019-06-09 05:39:54', '2019-06-09 07:24:23');
 
 --
@@ -418,13 +423,13 @@ ALTER TABLE `avatar`
 -- AUTO_INCREMENT de la tabla `grupo_user`
 --
 ALTER TABLE `grupo_user`
-  MODIFY `id_grupo_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_grupo_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `invitacion`
 --
 ALTER TABLE `invitacion`
-  MODIFY `id_invitacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_invitacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`

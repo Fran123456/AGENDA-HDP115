@@ -58,6 +58,9 @@ Route::get('Notifications-Sent','Notification\NotificationController@sended')->n
 //RUTAS PARA GRUPOS
 Route::resource('Groups', 'group\GroupController');
 Route::get('changeGroup/{id}', 'group\GroupController@defaultGroup')->name('changeGroup');
+Route::get('changeGroupBegin/{id}', 'group\GroupController@defaultGroupBegin')->name('changeGroupBegin');
+
+Route::get('Loading', 'group\GroupController@loadDefaultGroup')->name('Loading');
 
 //RUTAS DE INVITACION
 Route::get('Send-Invitations/{id}', 'Invitations\InvitationsController@SendInvitacions')->name('Send-Invitations');
