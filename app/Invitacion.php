@@ -5,7 +5,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use App\Grupo_User;
-
+use App\API\code;
+use App\API\Noty;
+use Illuminate\Support\Facades\Auth;
 class Invitacion extends Model
 {
     protected $table = 'invitacion';
@@ -20,6 +22,9 @@ class Invitacion extends Model
 		      'grupo_id' => $code,
 		      'estado' => $status,
 		     ]);
+       $title = 'Se te ha enviado una invitación nueva';
+       $msm =  Auth::user()->name ." te ha enviado una invitación para que te unas a su grupo.";
+        Noty::SendNoty(Code::__code('Noty'), null,  $title, $msm, $user_id);
     }
     
     //ontiene las invitaciones

@@ -58,7 +58,7 @@ class Notificacion extends Model
 
    public static function PushNotification($user_id, $group){
       
-        $aux = Notificacion_User::where('grupo_id', $group)
+        $aux = Notificacion_User::where('grupo_id', $group)->orWhere('grupo_id','global')
         ->where('user_id', $user_id)->where('estado','SIN LEER')->get();
                 /*  if(count($aux) > 0){
                      $notifications = DB::table('users')
