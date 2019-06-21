@@ -77,3 +77,5 @@ Route::get('aceptarSoli/{id}', 'Invitations\InvitationsController@accepted')->na
 Route::get('rechazarSoli/{id}', 'Invitations\InvitationsController@denegate')->name('rechazarSoli');
 
 
+//PUSH
+Route::get('push', 'Notification\NotificationController@notificationPUSH')->name('push');

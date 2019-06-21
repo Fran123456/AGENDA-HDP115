@@ -65,7 +65,7 @@
    <div class="row">
 
    <div class="col-md-6">
-       <h2><strong>Tus notificaciones enviadas </strong></h2>
+       <h2><strong>Tus notificaciones recibidas</strong></h2>
      </div>
 
      <div class="col-md-6 text-right">

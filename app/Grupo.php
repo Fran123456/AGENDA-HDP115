@@ -32,11 +32,13 @@ class Grupo extends Model
      return $group;
      
    }
-
+   //BUSCA LOS GRUPOS PARA UNIRTE
    public static function SearchGroups($data){
      $groups =  Grupo::where('codigo_grupo', 'like', '%'.$data.'%')
                     ->orWhere('nombre_grupo', 'like', '%'.$data.'%')
                     ->paginate(20);
+
+      $info = array();
     
      foreach ($groups as $key => $value) {
        $aux = Invitacion::verification_Send_(Auth::user()->id, $value->codigo_grupo);
@@ -47,7 +49,7 @@ class Grupo extends Model
 
      $data = array(0=>$groups, 1=> $info);
      return $data;
-   }
+   }//BUSCA LOS GRUPOS PARA UNIRTE
 
 
 }

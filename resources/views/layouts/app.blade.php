@@ -71,6 +71,8 @@
     <!-- Toastr -->
     <script src="{{asset('js/plugins/toastr/toastr.min.js')}}"></script>
 
+    <script type="text/javascript" src="{{asset('js/push.min.js')}}"></script>
+
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <style type="text/css">
@@ -207,6 +209,15 @@
           </div>
               <ul class="nav navbar-top-links navbar-right">
 
+                 <li class="dropdown" id="mayor">
+                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#" id="padreA">
+                        <i class="fa fa-bell"></i>  <span class="label label-primary" id="num"></span>
+                    </a>
+
+                     <ul class="dropdown-menu dropdown-alerts" id="notisalv">
+                     </ul>
+                 </li>
+
                   <li>
                               <a href="{{ route('logout') }}"
                                   onclick="event.preventDefault();
@@ -252,7 +263,140 @@
 
 
 
+<script type="text/javascript">
+  
+  window.onload = function (){
+    Push.Permission.request();
+  }
 
+
+
+
+
+
+
+function obtener(){
+ $('#notisalv').remove();
+ $('#mayor').append('<ul class="dropdown-menu dropdown-alerts" id="notisalv"></ul>');
+
+ $('#num').remove();
+ $('#padreA').append('<span class="label label-primary" id="num"></span>');
+  var html2 = "";
+  var con = 0;
+   $.ajax({
+     type: 'ajax',
+     method: 'get',
+     url: '/push',
+     async: false,
+     dataType:  'json',
+     success: function(data){
+      console.log(data);
+       con = data.length;
+
+         $("#num").append(con);
+
+      if(con > 0 && con != 0){
+         for (var i = 0; i < data.length; i++) {
+
+
+         html2 = html2 + '<li >'+
+                           '<div class="dropdown-messages-box">'+
+                                '<a href="{{Request::root()}}/Notifications/'+data[i].codigo_noty+'" class="pull-left">'+
+                                    '<img alt="image" class="img-circle" src="'+data[i].avatar+'">'+
+                                '</a>'+
+                                '<div class="media-body">'+
+                                    'Nueva notificación de: <strong>'+data[i].name+'<br></strong>'+
+                                     '<p>'+data[i].titulo+'</p>'+
+                                    '<small class="text-muted">'+data[i].created_at.substr(0,10)+' a las:'+data[i].created_at.substr(10,18)+
+                                  '</small>'+
+                                '</div>'+
+                            '</div>'+
+                        '</li>'+
+         '</li><li class="divider"></li>';
+
+       }
+       $("#notisalv").append(html2);
+     }else{
+      $('#notisalv').append('<h3>No hay notificaciones</h3>');
+     }
+
+
+
+     },
+     error: function(){
+         alert("error");
+     }
+  });
+}
+obtener();
+
+
+function obtenerSecuencia(){
+ var numeroNoti = $('#num').text();
+
+  var html2 = "";
+  var con = 0;
+   $.ajax({
+     type: 'ajax',
+     method: 'get',
+     url: '/push',
+     async: false,
+     dataType:  'json',
+     success: function(data){
+       con = data.length;
+
+       if(con > numeroNoti){
+
+         $('#notisalv').remove();
+         $('#mayor').append('<ul class="dropdown-menu dropdown-alerts" id="notisalv"></ul>');
+
+         $('#num').remove();
+         $('#padreA').append('<span class="label label-primary" id="num"></span>');
+
+
+
+         $("#num").append(con);
+          for (var i = 0; i < data.length; i++) {
+            html2 = html2 + '<li >'+
+                           '<div class="dropdown-messages-box">'+
+                                '<a href="{{Request::root()}}/Notifications/'+data[i].codigo_noty+'" class="pull-left">'+
+                                    '<img alt="image" class="img-circle" src="'+data[i].avatar+'">'+
+                                '</a>'+
+                                '<div class="media-body">'+
+                                    'Nueva notificación de: <strong>'+data[i].name+'<br></strong>'+
+                                     '<p>'+data[i].titulo+'</p>'+
+                                    '<small class="text-muted">'+data[i].created_at.substr(0,10)+' a las:'+data[i].created_at.substr(10,18)+
+                                  '</small>'+
+                                '</div>'+
+                            '</div>'+
+                        '</li>'+
+         '</li><li class="divider"></li>';
+
+          }
+          $("#notisalv").append(html2);
+          //Bienvenida();
+
+          Push.create('Nueva notificación de: '+data[0].name,{
+             body: data[0].titulo,
+             icon:  data[0].avatar,
+             timeout : 15000,
+             onclick: function(){
+              //  window.location='"{{Request::root()}}/nueva-notificacion/'+data[0].codigo_noty+'"';
+             },
+             vibrate: ['100', '100', '100'],
+           })
+
+       }
+
+     },
+     error: function(){
+         alert("error");
+     }
+  });
+}
+setInterval(function(){ obtenerSecuencia(); }, 10000);
+
+</script>
 
 
 </body>
