@@ -5,6 +5,7 @@ namespace App\Http\Controllers\group;
 use Illuminate\Support\Facades\Auth;
 use App\Grupo;
 use App\Grupo_User;
+use App\Invitacion;
 use App\User;
 use App\API\code;
 use Illuminate\Http\Request;
@@ -63,6 +64,32 @@ class GroupController extends Controller
       return redirect()->route('home');
     }
 
+    public function LookingGroups(Request $request){
+        $data = Grupo::SearchGroups($request->looking);
+        $groups = $data[0];
+        $res = $data[1];
+        return view('Group.Search', compact('groups', 'res'));
+    }
+   
+   public function InvitationUser($id){
+        Invitacion::SendInvitation(Auth::user()->id, null, $id, 'asking');
+        return redirect()->route('Groups.index')->with('se', "Elemento agregado correctamente");
+    }
+    
+    //MUSTRA LAS SOLICITUDES DE INGRESO EN UN DETERMINADO GRUPO
+    public function joins(){
+        $data = Invitacion::get_Joins(Auth::user()->grupo_activo);
+
+        return view('Group.joins', compact('data'));
+    }
+    //MUSTRA LAS SOLICITUDES DE INGRESO EN UN DETERMINADO GRUPO
+    //ACEPTA LA SOLICITUD DE UN USUARIO AL GRUPO
+    public function AceptingJoin($id){
+      Invitacion::changeStatus('aceptada', $id, Auth::user()->grupo_activo, 'Usuario');
+      return back()->with('sed','elemento');
+    }//ACEPTA LA SOLICITUD DE UN USUARIO AL GRUPO
+    
+
     
 
     /**
@@ -86,7 +113,7 @@ class GroupController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**

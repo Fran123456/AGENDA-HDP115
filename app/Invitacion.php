@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use App\Grupo_User;
+
 class Invitacion extends Model
 {
     protected $table = 'invitacion';
@@ -42,5 +43,23 @@ class Invitacion extends Model
         Grupo_User::Create_UserGroup($user_id, $code, $rol);
       }
       
+    }
+
+    public static function verification_Send_($user_id, $group){
+        $aux =Invitacion::where('grupo_id', $group)->where('user_id', $user_id)->get();
+        return count($aux);
+    }  
+
+    //BUSCA
+    public static function get_Joins($code){
+       $data = DB::table('invitacion')
+                ->join('users', 'invitacion.user_id', '=', 'users.id')
+                ->where('invitacion.estado', 'asking')
+                ->where('invitacion.grupo_id', $code)
+                ->select('users.*')
+                ->paginate(20);
+
+                return $data;
+
     }
 }

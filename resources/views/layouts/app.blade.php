@@ -177,15 +177,17 @@
                       </ul>
                   </li>
                     <!--PERFIL-->
-                    <!--PERFIL-->
+                    <!--GRUPO-->
                     <li>
                     <a href=""><i class="fa fa-folder-open" aria-hidden="true"></i> <span class="nav-label">Grupos</span> <span class="fa arrow"></span></a>
                       <ul class="nav nav-second-level collapse">
                           <li><a href="{{route('Groups.index')}}">Mis grupos</a></li>
-                          
+                          @if(Task::rol() == "Administrador")
+                          <li><a href="{{route('Joins')}}">Peticiones de unión</a></li>
+                          @endif
                       </ul>
                   </li>
-                    <!--PERFIL-->
+                    <!--GRUPO-->
                     <!--INVITACIONES-->
                     <li>
                       <a href="{{route('invitations.index')}}"><i class="fa fa-telegram" aria-hidden="true"></i> <span class="nav-label">Invitaciones</span></a>
