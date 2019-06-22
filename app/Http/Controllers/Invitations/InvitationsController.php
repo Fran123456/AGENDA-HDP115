@@ -42,15 +42,19 @@ class InvitationsController extends Controller
        $body=  Auth::user()->name ." te ha enviado una invitación para que te unas a su grupo.";
 
         $codigo =Code::__code('Noty');
-        $noty= Notificacion::Create_Noty($codigo, $title, $body, Auth::user()->id, Auth::user()->grupo_activo , null, 'invitacion');
+        $noty= Notificacion::Create_Noty($codigo, $title, $body, Auth::user()->id, $code , null, 'invitacion');
         Notificacion_User::CreateNotyTask($codigo, $id, 'SIN LEER', 'global');
 
         return back()->with('send', "Tarea eliminada correctamente");
     }
 
     public function index()
-    {  $invitations= Invitacion::invitations(Auth::User()->id);
-        return view('Invitations.invitations', compact('invitations'));
+    {   $response= Invitacion::invitations(Auth::User()->id);
+
+        $invitations = $response[0];
+        $noty = $response[1];
+        
+        return view('Invitations.invitations', compact('invitations' ,'noty'));
     }
 
     public function accepted($id, $id2, $id3){

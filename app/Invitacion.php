@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use App\Grupo_User;
+use App\Notificacion_User;
+use App\Notificacion;
 use App\API\code;
 use App\API\Noty;
 
@@ -34,8 +36,17 @@ class Invitacion extends Model
                 ->where('invitacion.user_id', $user)
                 ->where('invitacion.estado' ,'pendiente')
                 ->select( 'grupo.*','invitacion.*')
-                ->paginate(15);
-                return $iv;
+                ->get();
+     $response = array();
+      foreach ($iv as $key => $value) {
+       $noty[$key] = Notificacion::where('creador' , $value->creador)->where('grupo' , $value->codigo_grupo)->where('tipo','invitacion')->get();
+          foreach ($noty[$key] as $x => $item) {
+              $response[$x] = Notificacion_User::where('notificacion_id' , $item->codigo_noty)->where('user_id', Auth::user()->id)->first();
+          }
+      }
+      $data = array($iv, $response);
+
+      return $data;
 
     }
     //cambia el estado de la invitacion.
@@ -61,12 +72,21 @@ class Invitacion extends Model
 
     //BUSCA
     public static function get_Joins($code){
-       $data = DB::table('invitacion')
+       $iv = DB::table('invitacion')
                 ->join('users', 'invitacion.user_id', '=', 'users.id')
                 ->where('invitacion.estado', 'asking')
-                ->where('invitacion.grupo_id', $code)
+               ->where('invitacion.grupo_id', $code)
                 ->select('users.*','invitacion.*')
-                ->paginate(20);
+                ->get();
+
+                $response = array();
+                 foreach ($iv as $key => $value) {
+                  $noty[$key] = Notificacion::where('creador' , $value->id)->where('grupo' , $value->grupo_id)->where('tipo','asking')->get();
+                     foreach ($noty[$key] as $x => $item) {
+                         $response[$x] = Notificacion_User::where('notificacion_id' , $item->codigo_noty)->where('user_id', Auth::user()->id)->first();
+                     }
+                 }
+                 $data = array($iv, $response);
 
                 return $data;
 

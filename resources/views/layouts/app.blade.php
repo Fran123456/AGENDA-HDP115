@@ -100,7 +100,7 @@
 
 </head>
 <body>
-  
+
   <div id="wrapper">
       <nav class="navbar-default navbar-static-side" role="navigation">
           <div class="sidebar-collapse">
@@ -253,7 +253,7 @@
       </div>
     </div>
 
- 
+
 
 <!--PLANTILLA----------------------------------------------->
 
@@ -264,7 +264,7 @@
 
 
 <script type="text/javascript">
-  
+
   window.onload = function (){
     Push.Permission.request();
   }

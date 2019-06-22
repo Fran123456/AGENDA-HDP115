@@ -27,12 +27,14 @@ class Notificacion extends Model
 
    public static function get_My_Notifications($user_id, $group){
 
-                  $aux = Notificacion_User::where('grupo_id', $group)->where('user_id', $user_id)->get();
+                //  $aux = Notificacion_User::where('grupo_id', $group)->where('user_id', $user_id)->get();
+                  $aux = Notificacion_User::where('user_id', $user_id)->get();
                   if(count($aux) > 0){
                      $notifications = DB::table('users')
                      ->join('notificacion_user', 'users.id', '=', 'notificacion_user.user_id')
                      ->join('notificacion', 'notificacion_user.notificacion_id', '=', 'notificacion.codigo_noty')
-                     ->where('notificacion_user.user_id', $user_id)->where('notificacion_user.grupo_id', $group)
+                     ->where('notificacion_user.user_id', $user_id)
+                  //   ->where('notificacion_user.grupo_id', $group)
                      ->select( 'notificacion.*', 'notificacion_user.estado')
                      ->paginate(12);
                   }else{
@@ -42,7 +44,8 @@ class Notificacion extends Model
    }
 
    public static function get_My_Notifications_Sended($user_id, $group){
-          $aux = Notificacion::where('creador', $user_id)->where('grupo', $group)->paginate(12);
+          //$aux = Notificacion::where('creador', $user_id)->where('grupo', $group)->paginate(12);
+          $aux = Notificacion::where('creador', $user_id)->paginate(12);
           return $aux;
    }
 
@@ -57,9 +60,9 @@ class Notificacion extends Model
    }
 
    public static function PushNotification($user_id, $group){
-      
+
         $aux = Notificacion_User::where('grupo_id', $group)->orWhere('grupo_id','global')
-        ->where('user_id', $user_id)->where('estado','SIN LEER')->get();
+        ->where('user_id', $user_id)->where('estado','SIN LEER')->orderBy('id','desc')->get();
                 /*  if(count($aux) > 0){
                      $notifications = DB::table('users')
                      ->join('notificacion_user', 'users.id', '=', 'notificacion_user.user_id')

@@ -93,9 +93,11 @@ class GroupController extends Controller
 
     //MUSTRA LAS SOLICITUDES DE INGRESO EN UN DETERMINADO GRUPO
     public function joins(){
-        $data = Invitacion::get_Joins(Auth::user()->grupo_activo);
-
-        return view('Group.joins', compact('data'));
+        $response = Invitacion::get_Joins(Auth::user()->grupo_activo);
+        $data = $response[0];
+        $noty = $response[1];
+        
+        return view('Group.joins', compact('data','noty'));
     }
     //MUSTRA LAS SOLICITUDES DE INGRESO EN UN DETERMINADO GRUPO
     //ACEPTA LA SOLICITUD DE UN USUARIO AL GRUPO

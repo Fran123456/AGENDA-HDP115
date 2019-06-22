@@ -5,7 +5,7 @@
 
 </style>
 
-  
+
     @if(session('aceptada'))
         <script type="text/javascript">
             swal("Invitación aceptada", "", "success");
@@ -18,7 +18,7 @@
      <div class="col-md-12">
        <h2><strong>Invitaciones de grupos</strong></h2>
      </div>
-     
+
    </div>
    <hr>
   </div>
@@ -36,13 +36,13 @@
                    <h3>{{$key+1}}. &nbsp<strong>{{$element->nombre_grupo}}  </strong></h3>
                     </div>
                     <div class="col-md-4 text-right">
-                      <a class=" btn btn-primary" href="{{route('aceptarSoli', $element->codigo_grupo)}}">Aceptar</a>
+                      <a class=" btn btn-primary" href="{{route('aceptarSoli', ['id' => $element->codigo_grupo, 'id2' =>$element->creador, 'id3' =>$noty[$key]->notificacion_id])}}">Aceptar</a>
                       &nbsp&nbsp&nbsp&nbsp
-                      <a class=" btn btn-danger" href="{{route('rechazarSoli', $element->codigo_grupo)}}">Rechazar</a>
+
                     </div>
                     </div>
                     </div>
-                    
+
                  </li>
                @endforeach
           </ul>
