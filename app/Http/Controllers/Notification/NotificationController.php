@@ -117,4 +117,12 @@ class NotificationController extends Controller
     }
 
 
+
+
+    public  function notificationPUSH() {
+       $data = Notificacion::PushNotification(Auth::user()->id , Auth::user()->grupo_activo);
+       echo json_encode($data);
+    }
+
+
 }

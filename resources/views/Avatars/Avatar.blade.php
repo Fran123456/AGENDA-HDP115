@@ -28,7 +28,7 @@
  <div class="container">
    <div class="row">
      <div class="col-md-8">
-       <h2><strong>Avatars publicos y del grupo: {{$group->nombre_grupo}}</strong></h2>
+       <h2><strong>Avatars publicos y del grupo {{--$group->nombre_grupo--}}</strong></h2>
      </div>
      <div class="col-md-4 text-right">
        <a class="btn btn-success" href="{{route('Avatars.create')}}">Agregar avatar</a>

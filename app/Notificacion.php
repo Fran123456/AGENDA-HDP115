@@ -55,4 +55,37 @@ class Notificacion extends Model
      );
      return $data;
    }
+
+   public static function PushNotification($user_id, $group){
+      
+        $aux = Notificacion_User::where('grupo_id', $group)->orWhere('grupo_id','global')
+        ->where('user_id', $user_id)->where('estado','SIN LEER')->get();
+                /*  if(count($aux) > 0){
+                     $notifications = DB::table('users')
+                     ->join('notificacion_user', 'users.id', '=', 'notificacion_user.user_id')
+                     ->join('notificacion', 'notificacion_user.notificacion_id', '=', 'notificacion.codigo_noty')
+
+                     ->where('notificacion_user.user_id', $user_id)->where('notificacion_user.grupo_id', $group)->where('notificacion_user.estado','SIN LEER')
+                     ->select('users.*', 'notificacion.*', 'notificacion_user.estado')
+                     ->get();
+                  }else{
+                    $notifications = array();
+                  }*/
+
+                    if(count($aux) > 0){
+                    foreach ($aux as $key => $value) {
+                      $data[$key] = DB::table('users')
+                     ->join('notificacion', 'users.id', '=', 'notificacion.creador')
+                     ->where('notificacion.codigo_noty', $value->notificacion_id)
+                     ->select('users.*', 'notificacion.*')
+                     ->first();
+                    }
+                  }else{
+                    $data = array();
+                  }
+                return $data;
+   }
+
+
+
 }

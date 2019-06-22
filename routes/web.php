@@ -56,3 +56,28 @@ Route::get('deleteNoty/{id}','Notification\NotificationController@delete_noty')-
 Route::get('deleteNotyOwner/{id}','Notification\NotificationController@delete_ownerNoty')->name('deleteNotyOwner');
 
 Route::get('Notifications-Sent','Notification\NotificationController@sended')->name('Notifications-Sent');
+
+//RUTAS PARA GRUPOS
+Route::resource('Groups', 'group\GroupController');
+Route::get('changeGroup/{id}', 'group\GroupController@defaultGroup')->name('changeGroup');
+Route::get('changeGroupBegin/{id}', 'group\GroupController@defaultGroupBegin')->name('changeGroupBegin');
+Route::post('Busca-grupos', 'group\GroupController@LookingGroups')->name('Busca-grupos');
+Route::get('askingInvitation/{id}', 'group\GroupController@InvitationUser')->name('askingInvitation');
+Route::get('Joins', 'group\GroupController@joins')->name('Joins');
+Route::get('acepting/{id}', 'group\GroupController@AceptingJoin')->name('acepting');
+
+
+
+Route::get('Loading', 'group\GroupController@loadDefaultGroup')->name('Loading');
+
+//RUTAS DE INVITACION
+Route::get('Send-Invitations/{id}', 'Invitations\InvitationsController@SendInvitacions')->name('Send-Invitations');
+Route::get('Looking-Users/{id}', 'Invitations\InvitationsController@LookForUser')->name('Looking-Users');
+Route::get('sendingInvitation/{id}/{id2}', 'Invitations\InvitationsController@sendInvitation')->name('sendingInvitation');
+Route::resource('invitations', 'Invitations\InvitationsController');
+Route::get('aceptarSoli/{id}', 'Invitations\InvitationsController@accepted')->name('aceptarSoli');
+Route::get('rechazarSoli/{id}', 'Invitations\InvitationsController@denegate')->name('rechazarSoli');
+
+
+//PUSH
+Route::get('push', 'Notification\NotificationController@notificationPUSH')->name('push');

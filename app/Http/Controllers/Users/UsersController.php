@@ -18,10 +18,12 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $group = Grupo::get_grupo_name();
+       // $group = Grupo::get_grupo_name();
         $users = Grupo_User::get_users_by_group();
         $rolUserActivo = Grupo_User::get_rol(Auth::user()->id, Auth::user()->grupo_activo);
-         return view('Users.Users', compact('group','users','rolUserActivo'));
+       //  return view('Users.Users', compact('group','users','rolUserActivo'));
+
+         return view('Users.Users', compact('users','rolUserActivo'));
     }
 
     /**
@@ -89,6 +91,8 @@ class UsersController extends Controller
     {
         //
     }
+
+    
 
 
 

@@ -63,6 +63,17 @@
 
  <div class="container">
    <div class="row">
+
+   <div class="col-md-6">
+       <h2><strong>Tus notificaciones recibidas</strong></h2>
+     </div>
+
+     <div class="col-md-6 text-right">
+       <a class="btn btn-success" href="">Crear notificación</a>
+     </div><br><br>
+      <br><br>
+
+
      @if(!empty($data))
        @foreach ($data as $key => $value)
               <div class="col-md-3 col-xs-12">
