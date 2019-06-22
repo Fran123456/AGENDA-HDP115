@@ -83,10 +83,9 @@
                                               <small>{{$value->created_at}}</small>
                                               <br>
                                               {{$value->titulo}}
-
                                                   <!--<a class="data" href="{{route('Notifications.show', $value->codigo_noty)}}">
                                                     <i class="fa fa-eye" aria-hidden="true"></i></a>-->
-                                                  <a href="{{route('deleteNoty',$value->codigo_noty)}}"><i class="fa fa-trash-o "></i></a>
+                                                  <a href="{{route('deleteNotyOwner',$value->codigo_noty)}}"><i class="fa fa-trash-o "></i></a>
                                           </div>
                                          </li>
                                    </ul>

@@ -110,5 +110,11 @@ class NotificationController extends Controller
       return back()->with('eliminado', "Tarea eliminada correctamente");
     }
 
+    //ELIMINA LA PROPIA NOTIFICACION QUE HE ENVIADO
+    public function delete_ownerNoty($id){
+        Notificacion::where('codigo_noty', $id)->where('grupo' ,Auth::user()->grupo_activo)->delete();
+       return back()->with('eliminado', "Tarea eliminada correctamente");
+    }
+
 
 }
