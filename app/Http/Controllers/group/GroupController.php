@@ -72,20 +72,28 @@ class GroupController extends Controller
     }
    
    public function InvitationUser($id){
-        Invitacion::SendInvitation(Auth::user()->id, null, $id, 'asking');
+        $grupo = Grupo::where('codigo_grupo', $id)->first();
+        $title = Auth::user()->name ." HA PEDIDO UNIRSE A TU GRUPO " . $grupo->nombre_grupo;
+        $msm = "Hola, El usuario " . Auth::user()->name . " ha pedido unirse a tu grupo " . $grupo->nombre_grupo . 
+        " puedes recharzar o aceptar la petición del usuario";
+
+        Invitacion::SendInvitation(Auth::user()->id, null, $id, 'asking', $title, $msm);
+
+
         return redirect()->route('Groups.index')->with('se', "Elemento agregado correctamente");
     }
     
     //MUSTRA LAS SOLICITUDES DE INGRESO EN UN DETERMINADO GRUPO
     public function joins(){
         $data = Invitacion::get_Joins(Auth::user()->grupo_activo);
-
+     
         return view('Group.joins', compact('data'));
     }
     //MUSTRA LAS SOLICITUDES DE INGRESO EN UN DETERMINADO GRUPO
     //ACEPTA LA SOLICITUD DE UN USUARIO AL GRUPO
-    public function AceptingJoin($id){
-      Invitacion::changeStatus('aceptada', $id, Auth::user()->grupo_activo, 'Usuario');
+    public function AceptingJoin($id, $id2){
+    //$id es el usuario y el $id2 es el codigo del grupo
+      Invitacion::changeStatusAcepting('aceptada', $id, $id2, 'Usuario');
       return back()->with('sed','elemento');
     }//ACEPTA LA SOLICITUD DE UN USUARIO AL GRUPO
     

@@ -62,7 +62,7 @@ Route::get('changeGroupBegin/{id}', 'group\GroupController@defaultGroupBegin')->
 Route::post('Busca-grupos', 'group\GroupController@LookingGroups')->name('Busca-grupos');
 Route::get('askingInvitation/{id}', 'group\GroupController@InvitationUser')->name('askingInvitation');
 Route::get('Joins', 'group\GroupController@joins')->name('Joins');
-Route::get('acepting/{id}', 'group\GroupController@AceptingJoin')->name('acepting');
+Route::get('acepting/{id}/{id2}', 'group\GroupController@AceptingJoin')->name('acepting');
 
 
 

@@ -33,8 +33,10 @@ class InvitationsController extends Controller
     }//BUSCAR UN USUARIO PARA ENVIARLE LA INVITACION
 
     public function sendInvitation($id,$code){
-
-       Invitacion::SendInvitation($id, Auth::User()->id, $code, 'pendiente');
+        $title = 'Se te ha enviado una invitación nueva';
+        $msm =  Auth::user()->name ." te ha enviado una invitación para que te unas a su grupo";
+        
+        Invitacion::SendInvitation($id, Auth::User()->id, $code, 'pendiente', $title, $msm);
         return back()->with('send', "Tarea eliminada correctamente");
     }
 
