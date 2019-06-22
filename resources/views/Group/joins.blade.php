@@ -42,7 +42,8 @@
                        <strong>{{$element->name}} &nbsp&nbsp  {{$element->email}} &nbsp&nbsp </strong>
                     </div>
                     <div class="col-md-3 col-xm-12 text-right">
-                       <a class="text-right btn btn-info" href="{{route('acepting', $element->id)}}">Aceptar</a>
+                       <a class="text-right btn btn-info" href="{{route('acepting', ['id' =>$element->id, 'id2' =>$element->grupo_id])}}">Aceptar</a>
+
                     </div><br><br><br>
                 </li>
                
@@ -52,6 +53,12 @@
           <div class="text-center"><h3>No hay peticiones</h3></div>
          @endif
        </div>
+       <div class="col-md-12 text-center">
+         {{ $data->render()}}
+
+       </div>
+
+
 
   	</div>
   </div>

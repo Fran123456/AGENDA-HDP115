@@ -39,16 +39,31 @@
                                      </div>
                                  </div>
                                          <!--CUERPO-->
-                                         @if ($info['noty']->tipo =="tarea")
-                                             <div style="padding-left: 20px;padding-bottom: 20px">
-                                             {!!$info['noty']->cuerpo!!}
+                                         <div style="padding-left: 20px;padding-bottom: 20px">
 
-                                             <br> <br>
+                                         @if ($info['noty']->tipo =="tarea")
+                                             {!!$info['noty']->cuerpo!!} <br> <br>
                                              <a href="{{route('Tasks.show', $info['noty']->tarea_id)}}" class="btn btn-primary btn-rounded btn-outline">Ver tarea</a>
                                             </div>
-
+                                         @elseif ($info['noty']->tipo =="invitacion")
+                                           <div>
+                                                {!!$info['noty']->cuerpo!!}  {{$invitacion->nombre_grupo}}<br> <br>
+                                                <a class=" btn btn-primary" href="{{ route('aceptarSoli', ['id' => $info['noty']->grupo  , 'id2' =>$info['owner']->id ,'id3' =>$info['noty']->codigo_noty ]) }}">Aceptar</a>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                                <!--<a class=" btn btn-danger" href="{{-- route('rechazarSoli', $info['noty']->grupo) --}}">Rechazar</a>-->
+                                            </div>
+                                           @elseif($info['noty']->tipo == 'invitacionPositiva')
+                                             <h4>La solicitud ya ha sido aceptada.</h4>
+                                           @elseif($info['noty']->tipo == 'aceptacion')
+                                              {!!$info['noty']->cuerpo!!}
+                                           @elseif($info['noty']->tipo =="asking")
+                                            {!!$info['noty']->cuerpo!!}
+                                            <a class="text-right btn btn-info" href="{{route('acepting', ['id' =>$info['owner']->id, 'id2' =>$invitacion->codigo_grupo ,'id3'=> $info['noty']->codigo_noty] )}}">Aceptar</a>
+                                          @elseif($info['noty']->tipo =="askingPositiva")
+                                           <h4>La solicitud ya ha sido correspondida.</h4>
+                                          @elseif($info['noty']->tipo =="aceptacionUser")
+                                          {!!$info['noty']->cuerpo!!}
                                          @endif
-
                                           <!--CUERPO-->
                                   </div>
                              </div>
@@ -58,4 +73,5 @@
 
    </div>
  </div>
+
 @endsection

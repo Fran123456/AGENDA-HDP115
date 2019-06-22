@@ -64,7 +64,7 @@ Route::get('changeGroupBegin/{id}', 'group\GroupController@defaultGroupBegin')->
 Route::post('Busca-grupos', 'group\GroupController@LookingGroups')->name('Busca-grupos');
 Route::get('askingInvitation/{id}', 'group\GroupController@InvitationUser')->name('askingInvitation');
 Route::get('Joins', 'group\GroupController@joins')->name('Joins');
-Route::get('acepting/{id}', 'group\GroupController@AceptingJoin')->name('acepting');
+Route::get('acepting/{id}/{id2}/{id3}', 'group\GroupController@AceptingJoin')->name('acepting');
 
 
 
@@ -75,7 +75,7 @@ Route::get('Send-Invitations/{id}', 'Invitations\InvitationsController@SendInvit
 Route::get('Looking-Users/{id}', 'Invitations\InvitationsController@LookForUser')->name('Looking-Users');
 Route::get('sendingInvitation/{id}/{id2}', 'Invitations\InvitationsController@sendInvitation')->name('sendingInvitation');
 Route::resource('invitations', 'Invitations\InvitationsController');
-Route::get('aceptarSoli/{id}', 'Invitations\InvitationsController@accepted')->name('aceptarSoli');
+Route::get('aceptarSoli/{id}/{id2}/{id3}', 'Invitations\InvitationsController@accepted')->name('aceptarSoli');
 Route::get('rechazarSoli/{id}', 'Invitations\InvitationsController@denegate')->name('rechazarSoli');
 
 

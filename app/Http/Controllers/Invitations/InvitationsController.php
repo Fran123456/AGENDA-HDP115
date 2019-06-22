@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Invitacion;
+use App\Notificacion;
+use App\Notificacion_User;
 use App\Grupo;
+use App\API\Code;
 use Illuminate\Support\Facades\Auth;
 
 class InvitationsController extends Controller
@@ -50,10 +53,18 @@ class InvitationsController extends Controller
         return view('Invitations.invitations', compact('invitations'));
     }
 
-    public function accepted($id){
-       Invitacion::changeStatus('aceptada', Auth::User()->id, $id, 'Usuario');
-      //Invitacion::changeStatus($id,'aceptada');
-      return back()->with('aceptada', "Tarea eliminada correctamente");
+    public function accepted($id, $id2, $id3){
+      //id = codigo del gurpo , id2 = administrador que envioo la solicitud, id3 es el codigo de la nbotificacion
+       Invitacion::changeStatus('aceptada', Auth::User()->id, $id, 'Usuario', $id3,'invitacionPositiva');
+       $grupo = Grupo::where('codigo_grupo' , $id)->first();
+
+       $codigo =Code::__code('Noty');
+       $title = strtoupper(Auth::user()->name). " HA ACEPTADO UNA INVITACIÓN TUYA";
+       $body = Auth::user()->name . " Ha aceptado la invitación a tu grupo: " .$grupo->nombre_grupo . " , ahora ya pertenece a tu grupo dale la bienvenida";
+       $noty= Notificacion::Create_Noty($codigo, $title, $body, Auth::user()->id, $id , null, 'aceptacion');
+
+       Notificacion_User::CreateNotyTask($codigo, $id2, 'SIN LEER', 'global');
+       return back()->with('aceptada', "Tarea eliminada correctamente");
     }
 
     public function denegate($id){

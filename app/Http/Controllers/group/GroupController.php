@@ -8,6 +8,8 @@ use App\Grupo_User;
 use App\Invitacion;
 use App\User;
 use App\API\code;
+use App\Notificacion;
+use App\Notificacion_User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -28,15 +30,15 @@ class GroupController extends Controller
 
     public function loadDefaultGroup(){
         $groups = Grupo_User::get_groupsByUser(Auth::user()->id);
-        
-    
-    $var=Auth::User()->name; 
-     
-    // numero de posicion donde se encuentra el primer espacio 
-    $pos=strpos($var, " "); 
-     
-    //elimino el string a partir del espacio 
-    $var=substr($var, 0, $pos);  
+
+
+    $var=Auth::User()->name;
+
+    // numero de posicion donde se encuentra el primer espacio
+    $pos=strpos($var, " ");
+
+    //elimino el string a partir del espacio
+    $var=substr($var, 0, $pos);
     $name = strtoupper($var);
     return view('Group.NetflixGroupTemplate' , compact('groups', 'name'));
     }
@@ -51,7 +53,7 @@ class GroupController extends Controller
     {   $code = Code::code_group();
         return view('Group.CreateGroup', compact('code'));
     }
-    
+
 
     //cambia a grupo default por otro
     public function defaultGroup($code){
@@ -70,12 +72,25 @@ class GroupController extends Controller
         $res = $data[1];
         return view('Group.Search', compact('groups', 'res'));
     }
-   
+
    public function InvitationUser($id){
+        $grupo = Grupo::where('codigo_grupo', $id)->first();
+        $title = strtoupper(Auth::user()->name )." HA PEDIDO UNIRSE A TU GRUPO " . $grupo->nombre_grupo;
+        $body = "Hola, El usuario " . Auth::user()->name . " ha pedido unirse a tu grupo " . $grupo->nombre_grupo .
+        " puedes recharzar o aceptar la petición del usuario";
+
         Invitacion::SendInvitation(Auth::user()->id, null, $id, 'asking');
+
+        $codigo =Code::__code('Noty');
+        $noty= Notificacion::Create_Noty($codigo, $title, $body, Auth::user()->id, $id , null, 'asking');
+
+        $AEnviar = Grupo_User::where('codigo_grupo', $id)->where('rol', 'Administrador')->get();
+        foreach ($AEnviar as $key => $value) {
+          Notificacion_User::CreateNotyTask($codigo, $value->user_id, 'SIN LEER', 'global');
+        }
         return redirect()->route('Groups.index')->with('se', "Elemento agregado correctamente");
     }
-    
+
     //MUSTRA LAS SOLICITUDES DE INGRESO EN UN DETERMINADO GRUPO
     public function joins(){
         $data = Invitacion::get_Joins(Auth::user()->grupo_activo);
@@ -84,13 +99,26 @@ class GroupController extends Controller
     }
     //MUSTRA LAS SOLICITUDES DE INGRESO EN UN DETERMINADO GRUPO
     //ACEPTA LA SOLICITUD DE UN USUARIO AL GRUPO
-    public function AceptingJoin($id){
-      Invitacion::changeStatus('aceptada', $id, Auth::user()->grupo_activo, 'Usuario');
+    public function AceptingJoin($id, $id2, $id3){
+    //$id es el usuario y el $id2 es el codigo del grupo, $id3 es el codigo de la notificacion amodificaR
+    //  Invitacion::changeStatusAcepting('aceptada', $id, $id2, 'Usuario');
+
+        Invitacion::changeStatus('aceptadaAdmin', $id, $id2, 'Usuario', $id3, 'askingPositiva');
+        $title = strtoupper(Auth::user()->name) . " HA ACEPTADO TU SOLICITUD";
+
+        $grupo = Grupo::where('codigo_grupo', $id2)->first();
+        $body = Auth::user()->name . " acepto tu solicitud a su grupo: " . $grupo->nombre_grupo;
+
+        $codigo =Code::__code('Noty');
+        $noty= Notificacion::Create_Noty($codigo, $title, $body, Auth::user()->id, $id2 , null, 'aceptacionUser');
+        Notificacion_User::CreateNotyTask($codigo, $id, 'SIN LEER', 'global');
+
+
       return back()->with('sed','elemento');
     }//ACEPTA LA SOLICITUD DE UN USUARIO AL GRUPO
-    
 
-    
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -113,7 +141,7 @@ class GroupController extends Controller
      */
     public function show($id)
     {
-        
+
     }
 
     /**

@@ -66,8 +66,18 @@ class NotificationController extends Controller
     public function show($id)
     {
         $info = Notificacion::get_Notification($id);
+
+        //Si es notificacion de invitacion::
+        $invitacion = array();
+
+
+        if($info['noty']->tipo =='invitacion' || $info['noty']->tipo =='aceptarSoli' || $info['noty']->tipo =='asking'){
+          $invitacion= Grupo::where('codigo_grupo', $info['noty']->grupo)->first();
+          //$estado = Invitacion::where('')
+          //$estado = Notificacion_User::where('notificacion_id', $id)->where('user_id', Auth::user()->id)->first();
+        }
         Notificacion_User::change_status($id, Auth::user()->id);
-        return view('Notifications.Notification', compact('info'));
+        return view('Notifications.Notification', compact('info','invitacion'));
     }
 
     /**
