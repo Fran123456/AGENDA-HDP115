@@ -34,7 +34,6 @@ class Noty
 
   public static function SendNoty($codeNoty, $codeTask,  $title, $msm, $user){
     $noty= Notificacion::Create_Noty($codeNoty,  $title, $msm,Auth::user()->id, Auth::user()->grupo_activo,null, 'invitacion');
-
     Notificacion_User::CreateNotyTask($codeNoty, $user, 'SIN LEER', Auth::user()->grupo_activo);
   }
 

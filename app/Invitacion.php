@@ -22,11 +22,8 @@ class Invitacion extends Model
 		      'grupo_id' => $code,
 		      'estado' => $status,
 		     ]);
-       $title = 'Se te ha enviado una invitación nueva';
-       $msm =  Auth::user()->name ." te ha enviado una invitación para que te unas a su grupo.";
-        Noty::SendNoty(Code::__code('Noty'), null,  $title, $msm, $user_id);
     }
-    
+
     //ontiene las invitaciones
     public static function invitations($user){
        // return Invitacion::where('user_id', $user)->where('estado' ,'pendiente')->paginate(12);
@@ -47,13 +44,13 @@ class Invitacion extends Model
       if($status == 'aceptada'){
         Grupo_User::Create_UserGroup($user_id, $code, $rol);
       }
-      
+
     }
 
     public static function verification_Send_($user_id, $group){
         $aux =Invitacion::where('grupo_id', $group)->where('user_id', $user_id)->get();
         return count($aux);
-    }  
+    }
 
     //BUSCA
     public static function get_Joins($code){

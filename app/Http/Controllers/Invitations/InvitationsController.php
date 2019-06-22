@@ -35,6 +35,13 @@ class InvitationsController extends Controller
     public function sendInvitation($id,$code){
 
        Invitacion::SendInvitation($id, Auth::User()->id, $code, 'pendiente');
+       $title = 'Se te ha enviado una invitación nueva';
+       $body=  Auth::user()->name ." te ha enviado una invitación para que te unas a su grupo.";
+
+        $codigo =Code::__code('Noty');
+        $noty= Notificacion::Create_Noty($codigo, $title, $body, Auth::user()->id, Auth::user()->grupo_activo , null, 'invitacion');
+        Notificacion_User::CreateNotyTask($codigo, $id, 'SIN LEER', 'global');
+
         return back()->with('send', "Tarea eliminada correctamente");
     }
 
@@ -62,7 +69,7 @@ class InvitationsController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
@@ -75,7 +82,7 @@ class InvitationsController extends Controller
     {
         //creamos la invitacion
 
-        
+
     }
 
     /**
@@ -109,7 +116,7 @@ class InvitationsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
     }
 
     /**
