@@ -38,16 +38,16 @@
                                         <div class="row">
                                           @if ($value->rol == "Administrador")
                                             <div class="col-xs-12 text-center">
-                                              <a class="btn btn-warning" href="http://mobile-yetitask.djfrankremixer.com/actualizar-perfil/5">
+                                              <a class="btn btn-warning" href="">
                                                <i class="fa fa-pencil" aria-hidden="true"></i> Editar</a>
                                             </div>
                                            @else
                                              <div class="col-xs-6 text-right">
-                                               <a class="btn btn-warning" href="http://mobile-yetitask.djfrankremixer.com/actualizar-perfil/5">
+                                               <a class="btn btn-warning" href="">
                                                 <i class="fa fa-pencil" aria-hidden="true"></i> Editar</a>
                                              </div>
                                              <div class="col-xs-6 text-left">
-                                               <form method="POST" action="http://mobile-yetitask.djfrankremixer.com/Perfil/5" accept-charset="UTF-8"><input name="_method" type="hidden" value="DELETE"><input name="_token" type="hidden" value="QRbQRCy6fzepo1PDO3UELsbFxincQaSKQUx2DKkW">
+                                               <form method="POST" action="" accept-charset="UTF-8"><input name="_method" type="hidden" value="DELETE"><input name="_token" type="hidden" value="QRbQRCy6fzepo1PDO3UELsbFxincQaSKQUx2DKkW">
                                                     <button onclick="return confirm('Estas seguro de Eliminar este Registro')" class="btn btn-sm btn-outline btn-danger">
                                                           <i class="fa fa-trash" aria-hidden="true"></i>Eliminar
                                                     </button>

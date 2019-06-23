@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\API\code;
+use App\Grupo;
+use App\Grupo_User;
+use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
     /**
@@ -24,6 +27,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $grupo = Grupo::where('codigo_grupo', Auth::user()->grupo_activo)->first();
+        $users = Grupo_User::contacts(Auth::user()->grupo_activo);
+        $n = count($users);
+        return view('home', compact('grupo','n'));
     }
 }
