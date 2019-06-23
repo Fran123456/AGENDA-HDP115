@@ -35,7 +35,7 @@ class Notificacion extends Model
                      ->join('notificacion', 'notificacion_user.notificacion_id', '=', 'notificacion.codigo_noty')
                      ->where('notificacion_user.user_id', $user_id)
                   //   ->where('notificacion_user.grupo_id', $group)
-                     ->select( 'notificacion.*', 'notificacion_user.estado')
+                     ->select( 'notificacion.*', 'notificacion_user.estado')->orderBy('id_noty','desc')
                      ->paginate(12);
                   }else{
                     $notifications = array();
@@ -45,7 +45,7 @@ class Notificacion extends Model
 
    public static function get_My_Notifications_Sended($user_id, $group){
           //$aux = Notificacion::where('creador', $user_id)->where('grupo', $group)->paginate(12);
-          $aux = Notificacion::where('creador', $user_id)->paginate(12);
+          $aux = Notificacion::where('creador', $user_id)->orderBy('id_noty','desc')->paginate(12);
           return $aux;
    }
 
@@ -60,9 +60,8 @@ class Notificacion extends Model
    }
 
    public static function PushNotification($user_id, $group){
-
-        $aux = Notificacion_User::where('grupo_id', $group)->orWhere('grupo_id','global')
-        ->where('user_id', $user_id)->where('estado','SIN LEER')->orderBy('id','desc')->get();
+    //    $aux = Notificacion_User::where('grupo_id', $group)->orWhere('grupo_id','global')
+        $aux = Notificacion_User::where('user_id', $user_id)->where('estado','SIN LEER')->orderBy('id','desc')->get();
                 /*  if(count($aux) > 0){
                      $notifications = DB::table('users')
                      ->join('notificacion_user', 'users.id', '=', 'notificacion_user.user_id')

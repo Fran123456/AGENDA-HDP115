@@ -43,7 +43,14 @@
 
                                          @if ($info['noty']->tipo =="tarea")
                                              {!!$info['noty']->cuerpo!!} <br> <br>
-                                             <a href="{{route('Tasks.show', $info['noty']->tarea_id)}}" class="btn btn-primary btn-rounded btn-outline">Ver tarea</a>
+                                             @if(Auth::user()->grupo_activo == $info['noty']->grupo)
+                                               <a href="{{route('Tasks.show', $info['noty']->tarea_id)}}" class="btn btn-primary btn-rounded btn-outline">Ver tarea</a>
+                                             @else
+                                                <h4>No puede visualizar la tarea, primero ingrese al grupo correspondiente {{$invitacion->nombre_grupo}}.</h4>
+                                                <a class="btn btn-info btn-rounded btn-outline" href="{{route('changeGroup', $invitacion->codigo_grupo)}}">
+                                                <i class="fa fa-pencil" aria-hidden="true"></i>Cambiar de grupo</a>
+                                            @endif
+
                                             </div>
                                          @elseif ($info['noty']->tipo =="invitacion")
                                            <div>
@@ -52,17 +59,28 @@
                                                 &nbsp;&nbsp;&nbsp;&nbsp;
                                                 <!--<a class=" btn btn-danger" href="{{-- route('rechazarSoli', $info['noty']->grupo) --}}">Rechazar</a>-->
                                             </div>
-                                           @elseif($info['noty']->tipo == 'invitacionPositiva')
+                                          @elseif($info['noty']->tipo == 'invitacionPositiva')
                                              <h4>La solicitud ya ha sido aceptada.</h4>
-                                           @elseif($info['noty']->tipo == 'aceptacion')
+                                          @elseif($info['noty']->tipo == 'aceptacion')
                                               {!!$info['noty']->cuerpo!!}
-                                           @elseif($info['noty']->tipo =="asking")
+                                          @elseif($info['noty']->tipo =="asking")
                                             {!!$info['noty']->cuerpo!!}
                                             <a class="text-right btn btn-info" href="{{route('acepting', ['id' =>$info['owner']->id, 'id2' =>$invitacion->codigo_grupo ,'id3'=> $info['noty']->codigo_noty] )}}">Aceptar</a>
                                           @elseif($info['noty']->tipo =="askingPositiva")
                                            <h4>La solicitud ya ha sido correspondida.</h4>
                                           @elseif($info['noty']->tipo =="aceptacionUser")
                                           {!!$info['noty']->cuerpo!!}
+                                         @elseif($info['noty']->tipo =="cambio")
+                                           {!!$info['noty']->cuerpo!!}<br>
+                                              Tarea correspondiente al grupo: {{$invitacion->nombre_grupo}} <br><br>
+                                              @if (Auth::user()->grupo_activo == $info['noty']->grupo)
+                                                <a class="btn btn-primary btn-rounded btn-outline" href="{{route('Tasks.show', $info['noty']->tarea_id)}}">Ver tarea</a>
+                                              @else
+                                                <h4>No puede visualizar la tarea, primero ingrese al grupo correspondiente {{$invitacion->nombre_grupo}}.</h4>
+                                                <a class="btn btn-info btn-rounded btn-outline" href="{{route('changeGroup', $invitacion->codigo_grupo)}}">
+                                                <i class="fa fa-pencil" aria-hidden="true"></i>Cambiar de grupo</a>
+                                              @endif
+
                                          @endif
                                           <!--CUERPO-->
                                   </div>

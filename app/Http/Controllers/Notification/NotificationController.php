@@ -27,6 +27,8 @@ class NotificationController extends Controller
     {
       $data = Notificacion::get_My_Notifications(Auth::user()->id, Auth::user()->grupo_activo);
     //  print_r($data);
+
+
       return view('Notifications.myNotifications', compact('data'));
     }
 
@@ -71,7 +73,7 @@ class NotificationController extends Controller
         $invitacion = array();
 
 
-        if($info['noty']->tipo =='invitacion' || $info['noty']->tipo =='aceptarSoli' || $info['noty']->tipo =='asking'){
+        if($info['noty']->tipo =='invitacion' || $info['noty']->tipo =='aceptarSoli' || $info['noty']->tipo =='asking' || $info['noty']->tipo =='tarea'|| $info['noty']->tipo =='cambio'){
           $invitacion= Grupo::where('codigo_grupo', $info['noty']->grupo)->first();
           //$estado = Invitacion::where('')
           //$estado = Notificacion_User::where('notificacion_id', $id)->where('user_id', Auth::user()->id)->first();
