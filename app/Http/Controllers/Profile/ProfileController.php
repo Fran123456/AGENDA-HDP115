@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\User;
-
+use App\Grupo_User;
 class ProfileController extends Controller
 {
     /**
@@ -16,7 +16,9 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return view('Profile.Profile');
+        $grupos =Grupo_User::get_groupsByUser(Auth::user()->id);
+        $users = Grupo_User::contacts(Auth::user()->grupo_activo);
+        return view('Profile.Profile', compact('grupos','users'));
     }
 
     /**

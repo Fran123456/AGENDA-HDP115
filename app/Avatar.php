@@ -19,7 +19,7 @@ class Avatar extends Model
       $avatars = Avatar::where('tipo', 'publico')
       ->orWhere('tipo' , Auth::user()
       ->grupo_activo)
-      ->paginate(12);
+      ->paginate(20);
       return $avatars;
    }
 

@@ -38,7 +38,7 @@ class Grupo_User extends Model
         return 'no';
       }
    }
-   
+
    //TODDOS LOS GRUPOS DE UN USUARIO
    public static function get_groupsByUser($user){
      $data = DB::table('grupo_user')
@@ -48,7 +48,16 @@ class Grupo_User extends Model
                 ->paginate(9);
     return $data;
    }
-   
+
+   public static function contacts($grupo){
+     $data = DB::table('grupo_user')
+                ->join('users', 'grupo_user.user_id', '=', 'users.id')
+                ->where('grupo_user.codigo_grupo', $grupo)
+                ->select( 'users.*')
+                ->get();
+    return $data;
+   }
+
 
    //CREA LOS USUARIOS QUE TIENEN UN GRUPO, EL REGISTRO PARA SABER QUE UN USUARIO TIENE X GRUPO
     public static function Create_UserGroup($user_id, $code, $rol){

@@ -53,8 +53,8 @@ class InvitationsController extends Controller
 
         $invitations = $response[0];
         $noty = $response[1];
-        
-        return view('Invitations.invitations', compact('invitations' ,'noty'));
+   
+       return view('Invitations.invitations', compact('invitations' ,'noty'));
     }
 
     public function accepted($id, $id2, $id3){

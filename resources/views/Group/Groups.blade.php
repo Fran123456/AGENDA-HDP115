@@ -26,6 +26,13 @@
 .backdoor{
 	background-color: red;
 }
+.ibox {
+    clear: both;
+    margin-bottom: 45px;
+    margin-top: 10px;
+    margin-top: 0;
+    padding: 0;
+}
 
   </style>
 
@@ -58,7 +65,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  
+
   <div class="modal-dialog" role="document">
     <form action="{{route('Busca-grupos')}}" method="post" class="">
     <div class="modal-content">
@@ -100,29 +107,28 @@
 
   <div class="container">
     <div class="row">
-     <div class="col-md-9">
+     <div class="col-md-9 col-xs-12">
        <h2><strong>Tus grupos</strong></h2><br>
      </div>
-     <div class="col-md-2 text-right">
+     <div class="col-md-2 col-xs-12 text-right">
        <a class="btn btn-success" href="{{route('Groups.create')}}">Crear grupo</a>
      </div>
-     <div class="col-md-1 text-right">
+     <div class="col-md-1 col-xs-12 text-right">
        <!-- Button trigger modal -->
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
         <i class="fa fa-search" aria-hidden="true"></i>
       </button>
      </div>
+     <hr>
    </div>
-   <hr>
-  </div>
+ </div><br><br>
 
   <div class="container">
   	<div class="row">
   		@foreach($groups as $key => $value)
-  		<div class="col-md-4 col-xs-12 col-xl-4">
+  		<div class="col-md-4 col-xs-12 ">
              <div class="ibox">
                 <div class="ibox-content product-box">
-                    
                         <div class="product-desc">
                            <span class="product-price">{{$value->nombre_grupo}}</span>
                          </div>
@@ -136,22 +142,22 @@
                                @endif
                                   <div class="row">
                                   	@if($value->rol =="Administrador" )
-                                    <div class="col-xs-4 text-center">
+                                    <div class="col-xs-4 text-right">
                                       <a class="btn btn-warning btn-rounded btn-outline" href="">
-                                      <i class="fa fa-pencil" aria-hidden="true"></i>Administrar</a>
+                                      <i class="fa fa-pencil" aria-hidden="true"></i>Editar</a>
                                     </div>
                                     <div class="col-xs-4 text-center">
                                       <a class="btn btn-info btn-rounded btn-outline"  href="{{route('changeGroup', $value->codigo_grupo)}}">
-                                      <i class="fa fa-pencil" aria-hidden="true"></i>Seleccionar</a>
+                                      <i class="fa fa-check-square-o" aria-hidden="true"></i></a>
                                     </div>
-                                    <div class="col-xs-4 text-center">
+                                    <div class="col-xs-4 text-left">
                                       <a class="btn btn-danger btn-rounded"  href="{{route('Send-Invitations', $value->codigo_grupo)}}">
-                                      <i class="fa fa-pencil" aria-hidden="true"></i>Invitar</a>
+                                      <i class="fa fa-paper-plane" aria-hidden="true"></i>Invitar</a>
                                     </div>
                                     @else
-									<div class="col-xs-12 text-center">
+									                  <div class="col-xs-12 text-center">
                                       <a class="btn btn-warning btn-rounded btn-outline"  href="{{route('changeGroup', $value->codigo_grupo)}}">
-                                      <i class="fa fa-pencil" aria-hidden="true"></i>Seleccionar</a>
+                                      <i class="fa fa-check-square-o" aria-hidden="true"></i></a>
                                     </div>
                                     @endif
                                   </div>
@@ -166,5 +172,5 @@
   	</div>
   </div>
 
-  
+
 @endsection

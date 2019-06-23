@@ -174,8 +174,8 @@
                     <li>
                     <a href=""><i class="fa fa-user" aria-hidden="true"></i> <span class="nav-label">Mi perfil</span> <span class="fa arrow"></span></a>
                       <ul class="nav nav-second-level collapse">
-                          <li><a href="http://mobile-yetitask.djfrankremixer.com/Perfil/2">Mi perfil</a></li>
-                          <li><a href="http://mobile-yetitask.djfrankremixer.com/Perfil/2/edit">Editar perfil</a></li>
+                          <li><a href="{{route('Profile.index')}}">Mi perfil</a></li>
+                          <li><a href="#">Editar perfil</a></li>
                       </ul>
                   </li>
                     <!--PERFIL-->

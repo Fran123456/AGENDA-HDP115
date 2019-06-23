@@ -33,12 +33,12 @@
                     <div class="container-fluid">
                       <div class="row">
                       <div class="col-md-8">
-                   <h3>{{$key+1}}. &nbsp<strong>{{$element->nombre_grupo}}  </strong></h3>
+                   <h3>{{$key+1}}. &nbsp Grupo:<strong> {{$element->nombre_grupo}}  </strong></h3> Te invito: &nbsp <img height="40" width="40" src="{{$element->avatar}}" alt="">  {{$element->name}}
                     </div>
                     <div class="col-md-4 text-right">
+                      <br>
                       <a class=" btn btn-primary" href="{{route('aceptarSoli', ['id' => $element->codigo_grupo, 'id2' =>$element->creador, 'id3' =>$noty[$key]->notificacion_id])}}">Aceptar</a>
                       &nbsp&nbsp&nbsp&nbsp
-
                     </div>
                     </div>
                     </div>

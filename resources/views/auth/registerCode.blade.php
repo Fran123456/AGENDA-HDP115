@@ -98,8 +98,7 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Descripción</label>
                                 <div class="col-md-9">
-                                    <textarea name="des" readonly class="form-control" rows="4" cols="8">
-                                    {{$da->descripcion}}</textarea>
+                                    <textarea name="des" readonly class="form-control" rows="4">{{$da->descripcion}}</textarea>
                                 </div>
                             </div>
 

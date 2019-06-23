@@ -6,16 +6,19 @@
 </style>
 
   @if(session('agregado'))
-  
+
   @endif
 
 
   <div class="container">
     <div class="row">
-     <div class="col-md-12">
+     <div class="col-md-8">
        <h2><strong>Invitaciones para el grupo {{$grupo->nombre_grupo}}</strong></h2>
      </div>
-    
+     <div class="col-md-4 text-right">
+       <a class="btn btn-primary" href="{{route('Groups.index')}}">Finalizar proceso</a>
+     </div>
+
    </div>
    <hr>
   </div>
@@ -38,5 +41,5 @@
 
 
 
-  
+
 @endsection

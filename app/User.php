@@ -36,6 +36,8 @@ class User extends Authenticatable
       ->update(['avatar' => $url_avatar->avatar_url]);
     }
 
+    
+
     public static function get_user($id){
       $user = user::find($id);
       return $user;
@@ -45,7 +47,7 @@ class User extends Authenticatable
       $users =  User::where('email', 'like', '%'.$data.'%')
                     ->orWhere('name', 'like', '%'.$data.'%')
                     ->select('users.name','users.avatar','users.email','users.id')->get();
-    
+
     $fin = array();
     foreach ($users as $key => $value) {
         $aux = Invitacion::where('user_id', $value->id)->where('grupo_id', $id)->get();
@@ -56,7 +58,7 @@ class User extends Authenticatable
             $fin[$key] = 'no';
         }
     }
-                
+
       $response = array($users, $fin);
       return $response;
     }

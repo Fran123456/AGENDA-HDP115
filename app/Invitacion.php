@@ -33,18 +33,24 @@ class Invitacion extends Model
 
     	$iv = DB::table('invitacion')
                 ->join('grupo', 'invitacion.grupo_id', '=', 'grupo.codigo_grupo')
+                ->join('users', 'invitacion.creador', '=', 'users.id')
                 ->where('invitacion.user_id', $user)
                 ->where('invitacion.estado' ,'pendiente')
-                ->select( 'grupo.*','invitacion.*')
+                ->select( 'grupo.*','invitacion.*', 'users.name', 'users.avatar')
                 ->get();
      $response = array();
+     $aux = array();
       foreach ($iv as $key => $value) {
        $noty[$key] = Notificacion::where('creador' , $value->creador)->where('grupo' , $value->codigo_grupo)->where('tipo','invitacion')->get();
           foreach ($noty[$key] as $x => $item) {
               $response[$x] = Notificacion_User::where('notificacion_id' , $item->codigo_noty)->where('user_id', Auth::user()->id)->first();
+              $Vigelante = isset($response[$x]);
+              if($Vigelante == 1){
+                $aux[$key] = $response[$x];
+              }
           }
       }
-      $data = array($iv, $response);
+      $data = array($iv, $aux);
 
       return $data;
 
@@ -80,15 +86,24 @@ class Invitacion extends Model
                 ->get();
 
                 $response = array();
+                $aux = array();
                  foreach ($iv as $key => $value) {
                   $noty[$key] = Notificacion::where('creador' , $value->id)->where('grupo' , $value->grupo_id)->where('tipo','asking')->get();
                      foreach ($noty[$key] as $x => $item) {
                          $response[$x] = Notificacion_User::where('notificacion_id' , $item->codigo_noty)->where('user_id', Auth::user()->id)->first();
+                         $Vigelante = isset($response[$x]);
+                         if ($Vigelante == 1) {
+                          $aux[$key] = $response[$x];
+                         }
                      }
                  }
-                 $data = array($iv, $response);
+                 $data = array($iv, $aux);
 
                 return $data;
+
+
+
+
 
     }
 }
