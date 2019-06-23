@@ -22,6 +22,12 @@ class NotificationController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+     public function __construct()
+     {
+         $this->middleware('auth');
+
+     }
+
 
     public function index() //NOTIFICACIONES PARA UN USUARIO EN ESPECIFICO EN UN GRUPO
     {

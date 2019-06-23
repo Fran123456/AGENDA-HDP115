@@ -24,6 +24,12 @@ class TaskController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+     public function __construct()
+     {
+         $this->middleware('auth');
+
+     }
+
     public function adminTask(){//MUESTRA EL MENU DE TODAS LAS TAREAS SI ERES ADMIN
       $rolUserActivo = Grupo_User::get_rol(Auth::user()->id, Auth::user()->grupo_activo);
       return view('Task.TaskAdmin', compact('rolUserActivo'));

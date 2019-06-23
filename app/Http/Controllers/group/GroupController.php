@@ -20,6 +20,11 @@ class GroupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function __construct()
+     {
+         $this->middleware('auth');
+
+     }
 
     //LISTADO DE LOS GRUPOS EN LOS QUE ESTOY AFILIADO
     public function index()

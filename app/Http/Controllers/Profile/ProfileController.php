@@ -14,6 +14,13 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function __construct()
+     {
+         $this->middleware('auth');
+
+     }
+
+
     public function index()
     {
         $grupos =Grupo_User::get_groupsByUser(Auth::user()->id);

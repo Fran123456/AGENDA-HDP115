@@ -20,6 +20,12 @@ class InvitationsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+     public function __construct()
+     {
+         $this->middleware('auth');
+
+     }
+
     public function SendInvitacions($id){
         $grupo = Grupo::where('codigo_grupo' ,$id)->first();
         return view('Invitations.Sendinvitacions', compact('grupo','id'));
@@ -53,7 +59,7 @@ class InvitationsController extends Controller
 
         $invitations = $response[0];
         $noty = $response[1];
-   
+
        return view('Invitations.invitations', compact('invitations' ,'noty'));
     }
 

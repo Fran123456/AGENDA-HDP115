@@ -16,6 +16,13 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function __construct()
+     {
+         $this->middleware('auth');
+
+     }
+
     public function index()
     {
        // $group = Grupo::get_grupo_name();
@@ -92,7 +99,7 @@ class UsersController extends Controller
         //
     }
 
-    
+
 
 
 
